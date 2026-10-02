@@ -1,30 +1,36 @@
 {
-  "updated_at": "2026-10-02 16:46 UTC",
-  "regions": {
-    "North America": {
-      "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds",
-      "summary": "Cyberattacks and scams are skyrocketing due to artificial intelligence, which is making it easier for criminals to engage in fraud, the report finds.",
-      "source": "https://www.cbsnews.com/news/ai-cyber-scams-consumer-reports-fraud/"
-    },
-    "South America": {
-      "headline": "Ongoing Cyber Scam Warnings in South America",
-      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
-      "source": "#"
-    },
-    "Asia": {
-      "headline": "Ongoing Cyber Scam Warnings in Asia",
-      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
-      "source": "#"
-    },
-    "Europe": {
-      "headline": "Ongoing Cyber Scam Warnings in Europe",
-      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
-      "source": "#"
-    },
-    "Rest of the World": {
-      "headline": "Ongoing Cyber Scam Warnings in Rest of the World",
-      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
-      "source": "#"
+  "updated_at": "2026-10-02 16:57 UTC",
+  "history": [
+    {
+      "date": "2026-10-02",
+      "display_date": "October 02, 2026",
+      "regions": {
+        "North America": {
+          "headline": "Ransomware, phishing cases prompt renewed cybersecurity warning in North Dakota",
+          "summary": "BISMARCK, N.D. (KFYR) - On Thursday, May 21, thousands of North Dakotans received notification emails from ND Information Technology regarding a phishing scam. No harm was done, nor was a hack successful in this incident. As NDIT says, \"This incident was ...",
+          "source": "https://www.msn.com/en-us/news/other/ransomware-phishing-cases-prompt-renewed-cybersecurity-warning-in-north-dakota/ar-AA23QzuZ"
+        },
+        "South America": {
+          "headline": "Latin! or Tobacco and Boys (2013) - sltarchive",
+          "summary": "Members are encouraged to write about their experiences of working on or seeing this production. Please leave your name. \u2026",
+          "source": "http://sltarchive.co.uk/wiki/index.php?title=Latin!_or_Tobacco_and_Boys_(2013)"
+        },
+        "Asia": {
+          "headline": "Active Cyber Fraud Campaign Target: Asia",
+          "summary": "Phishing threats impersonating financial and cloud services actively observed.",
+          "source": "https://www.google.com/search?q=Asia+cyber+scam"
+        },
+        "Europe": {
+          "headline": "Active Cyber Fraud Campaign Target: Europe",
+          "summary": "Phishing threats impersonating financial and cloud services actively observed.",
+          "source": "https://www.google.com/search?q=Europe+cyber+scam"
+        },
+        "Rest of the World": {
+          "headline": "GLOBLE",
+          "summary": "Already found today's Mystery Country? Find the world's capital cities with Globle: Capitals or play against your friends with Globle: Leagues!",
+          "source": "https://globle-game.com/"
+        }
+      }
     }
-  }
+  ]
 }
