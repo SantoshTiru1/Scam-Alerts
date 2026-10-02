@@ -1,0 +1,39 @@
+name: Daily Cyber Scam Agent
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Runs daily at 06:00 UTC
+  workflow_dispatch:     # Allows manual trigger button in GitHub UI
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install duckduckgo_search groq
+
+      - name: Run Cyber Threat Agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          python agent.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "ScamWatch-Bot"
+          git config --global user.email "bot@github-actions.internal"
+          git add scams.json
+          git commit -m "Auto-update scam digest: $(date +'%Y-%m-%d')" || exit 0
+          git push
