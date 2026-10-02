@@ -9,7 +9,7 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
   <div class="max-w-6xl mx-auto">
     
-    <!-- Sticky / Top Header -->
+    <!-- Top Header -->
     <header class="border-b border-slate-800 pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div>
         <div class="flex items-center gap-3">
@@ -23,17 +23,16 @@
       </div>
     </header>
 
-    <!-- Infinite Scroll / Timeline Feed Container -->
+    <!-- Scrollable Timeline -->
     <main id="timeline-container" class="space-y-12">
-      <!-- Date sections will be injected here automatically -->
+      <div class="text-slate-500 text-sm animate-pulse">Loading threat reports...</div>
     </main>
 
   </div>
 
   <script>
-    // Format YYYY-MM-DD into "DD-MMM-YYYY" (e.g., 02-Oct-2026)
     function formatDateHeader(dateStr) {
-      if (!dateStr) return "";
+      if (!dateStr) return "Today";
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       const parts = dateStr.split("-");
       if (parts.length === 3) {
@@ -49,11 +48,18 @@
       const container = document.getElementById('timeline-container');
       try {
         const res = await fetch('./scams.json?nocache=' + Date.now());
-        if (!res.ok) throw new Error("Could not load feed data");
+        if (!res.ok) throw new Error("File not found");
         const data = await res.json();
         
         document.getElementById('last-updated').innerText = "Last Updated: " + (data.updated_at || "Recent");
-        const history = data.history || [];
+
+        // Backward compatibility fallback:
+        let history = [];
+        if (Array.isArray(data.history) && data.history.length > 0) {
+          history = data.history;
+        } else if (data.regions) {
+          history = [{ date: "2026-10-02", regions: data.regions }];
+        }
 
         if (history.length === 0) {
           container.innerHTML = '<p class="text-slate-400 text-sm">No scam reports recorded yet.</p>';
@@ -62,7 +68,6 @@
 
         container.innerHTML = '';
 
-        // Iterate through all days (newest to oldest) and render sequentially
         history.forEach((dayData, index) => {
           const formattedDate = formatDateHeader(dayData.date);
           const isLatest = index === 0;
@@ -70,7 +75,6 @@
           const daySection = document.createElement('section');
           daySection.className = "border-b border-slate-900 pb-10 last:border-b-0";
 
-          // Date Header Banner
           let dateHeaderHtml = `
             <div class="flex items-center gap-3 mb-6">
               <span class="h-3 w-3 rounded-full ${isLatest ? 'bg-cyan-400 animate-pulse' : 'bg-slate-600'}"></span>
@@ -82,11 +86,10 @@
             </div>
           `;
 
-          // Grid for the 5 Regions under this date
           let cardsHtml = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
           for (const [region, info] of Object.entries(dayData.regions || {})) {
             cardsHtml += `
-              <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 transition rounded-xl p-5 shadow-md flex flex-col justify-between">
+              <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 transition rounded-xl p-5 shadow flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
                     <span class="text-xs font-bold uppercase tracking-wider bg-cyan-950/80 text-cyan-400 px-2.5 py-1 rounded border border-cyan-800/60">
@@ -94,7 +97,7 @@
                     </span>
                   </div>
                   <h3 class="text-base font-semibold text-slate-100 mb-2 leading-snug">${info.headline || region + ' Alert'}</h3>
-                  <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">${info.summary || 'No summary available.'}</p>
+                  <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">${info.summary || 'Summary unavailable.'}</p>
                 </div>
                 ${info.source ? `
                   <a href="${info.source}" target="_blank" rel="noopener noreferrer" 
@@ -113,7 +116,7 @@
       } catch (err) {
         container.innerHTML = `
           <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 text-sm">
-            Failed to load reports. Ensure the GitHub Action has run and created scams.json.
+            Failed to load reports. Trigger the workflow under the GitHub Actions tab.
           </div>`;
       }
     }
