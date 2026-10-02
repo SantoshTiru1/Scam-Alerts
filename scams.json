@@ -1,9 +1,38 @@
 {
-  "updated_at": "2026-10-02 16:57 UTC",
+  "updated_at": "2026-10-02 16:59 UTC",
   "history": [
     {
       "date": "2026-10-02",
-      "display_date": "October 02, 2026",
+      "regions": {
+        "North America": {
+          "headline": "Active Cyber Scam Activity in North America",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=North America+cyber+scam"
+        },
+        "South America": {
+          "headline": "Active Cyber Scam Activity in South America",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=South America+cyber+scam"
+        },
+        "Asia": {
+          "headline": "Active Cyber Scam Activity in Asia",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=Asia+cyber+scam"
+        },
+        "Europe": {
+          "headline": "Active Cyber Scam Activity in Europe",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=Europe+cyber+scam"
+        },
+        "Rest of the World": {
+          "headline": "Active Cyber Scam Activity in Rest of the World",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=Rest of the World+cyber+scam"
+        }
+      }
+    },
+    {
+      "date": "2026-10-01",
       "regions": {
         "North America": {
           "headline": "Ransomware, phishing cases prompt renewed cybersecurity warning in North Dakota",
@@ -11,24 +40,24 @@
           "source": "https://www.msn.com/en-us/news/other/ransomware-phishing-cases-prompt-renewed-cybersecurity-warning-in-north-dakota/ar-AA23QzuZ"
         },
         "South America": {
-          "headline": "Latin! or Tobacco and Boys (2013) - sltarchive",
-          "summary": "Members are encouraged to write about their experiences of working on or seeing this production. Please leave your name. \u2026",
-          "source": "http://sltarchive.co.uk/wiki/index.php?title=Latin!_or_Tobacco_and_Boys_(2013)"
+          "headline": "Active Cyber Scam Activity in South America",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=South America+cyber+scam"
         },
         "Asia": {
-          "headline": "Active Cyber Fraud Campaign Target: Asia",
-          "summary": "Phishing threats impersonating financial and cloud services actively observed.",
+          "headline": "Active Cyber Scam Activity in Asia",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
           "source": "https://www.google.com/search?q=Asia+cyber+scam"
         },
         "Europe": {
-          "headline": "Active Cyber Fraud Campaign Target: Europe",
-          "summary": "Phishing threats impersonating financial and cloud services actively observed.",
-          "source": "https://www.google.com/search?q=Europe+cyber+scam"
+          "headline": "Europe - Wikipedia",
+          "summary": "Europe is a continent [t] located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere. It is bordered by the Arctic \u2026",
+          "source": "https://en.wikipedia.org/wiki/Europe"
         },
         "Rest of the World": {
-          "headline": "GLOBLE",
-          "summary": "Already found today's Mystery Country? Find the world's capital cities with Globle: Capitals or play against your friends with Globle: Leagues!",
-          "source": "https://globle-game.com/"
+          "headline": "Active Cyber Scam Activity in Rest of the World",
+          "summary": "Active phishing campaigns targeting consumers and cloud credentials reported.",
+          "source": "https://www.google.com/search?q=Rest of the World+cyber+scam"
         }
       }
     }
