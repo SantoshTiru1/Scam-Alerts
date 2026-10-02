@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Cyber Scam Daily Watch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-6xl mx-auto">
+    <header class="border-b border-slate-800 pb-5 mb-8">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">🛡️</span>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-cyan-400">Daily Global Cyber Scam Digest</h1>
+          <p class="text-slate-400 text-sm mt-1">Autonomous daily monitoring across 5 global regions.</p>
+        </div>
+      </div>
+      <div id="last-updated" class="text-xs text-slate-500 mt-3 font-mono">Checking feed...</div>
+    </header>
+
+    <div id="scam-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards render here dynamically -->
+    </div>
+  </div>
+
+  <script>
+    async function loadFeed() {
+      const container = document.getElementById('scam-grid');
+      try {
+        const res = await fetch('./scams.json?nocache=' + Date.now());
+        if (!res.ok) throw new Error("File not found");
+        const data = await res.json();
+        
+        document.getElementById('last-updated').innerText = "Last Updated: " + data.updated_at;
+        container.innerHTML = '';
+
+        for (const [region, info] of Object.entries(data.regions)) {
+          const card = document.createElement('div');
+          card.className = "bg-slate-900 border border-slate-800 hover:border-slate-700 transition rounded-xl p-5 shadow flex flex-col justify-between";
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold uppercase tracking-wider bg-cyan-950/80 text-cyan-400 px-2.5 py-1 rounded border border-cyan-800/60">
+                  ${region}
+                </span>
+              </div>
+              <h2 class="text-base font-semibold text-slate-100 mb-2 leading-snug">${info.headline}</h2>
+              <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">${info.summary}</p>
+            </div>
+            ${info.source && info.source !== '#' ? `<a href="${info.source}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-xs font-medium text-cyan-400 hover:underline">Read primary report &rarr;</a>` : ''}
+          `;
+          container.appendChild(card);
+        }
+      } catch (err) {
+        container.innerHTML = '<div class="col-span-full p-4 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 text-sm">No scam reports published yet. Run the GitHub Action once to populate data.</div>';
+      }
+    }
+    loadFeed();
+  </script>
+</body>
+</html>
