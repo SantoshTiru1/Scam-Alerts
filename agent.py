@@ -6,7 +6,6 @@ from groq import Groq
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-# Optimized regional queries that reliably return news with valid URLs
 REGIONS = {
     "North America": ["North America cyber scam phishing", "US cyber fraud breach FBI"],
     "South America": ["Latin America cyber scam fraud", "Brazil South America cyber phishing"],
@@ -17,10 +16,9 @@ REGIONS = {
 
 def search_scam_news(region):
     search_terms = REGIONS.get(region, [f"{region} cyber scam"])
-    
     with DDGS() as ddgs:
         for term in search_terms:
-            # 1. Try DuckDuckGo News first
+            # 1. Try DuckDuckGo News
             try:
                 news_results = list(ddgs.news(term, max_results=3))
                 if news_results:
@@ -35,7 +33,7 @@ def search_scam_news(region):
             except Exception:
                 pass
 
-            # 2. Fallback to standard web text search if news is empty
+            # 2. Try Web Search
             try:
                 text_results = list(ddgs.text(term, max_results=3))
                 if text_results:
@@ -50,10 +48,9 @@ def search_scam_news(region):
             except Exception:
                 pass
 
-    # Safe fallback if search network fails
     return {
-        "title": f"Active Cyber Fraud Campaign Target: {region}",
-        "body": "Phishing threats impersonating financial and cloud services actively observed.",
+        "title": f"Active Cyber Scam Activity in {region}",
+        "body": "Active phishing campaigns targeting consumers and cloud credentials reported.",
         "url": f"https://www.google.com/search?q={region}+cyber+scam"
     }
 
@@ -88,14 +85,13 @@ Keep it under 110 words.
         return news_item.get("body", "Summary unavailable.")
 
 def generate_day_report(target_date):
-    print(f"\n--- Gathering reports for {target_date} ---")
+    print(f"--- Fetching news for {target_date.strftime('%Y-%m-%d')} ---")
     day_entry = {
         "date": target_date.strftime("%Y-%m-%d"),
-        "display_date": target_date.strftime("%B %d, %Y"),
         "regions": {}
     }
     for region in REGIONS.keys():
-        print(f"Fetching: {region}...")
+        print(f"Scraping & analyzing: {region}...")
         news = search_scam_news(region)
         summary = summarize_scam(region, news)
         day_entry["regions"][region] = {
@@ -109,44 +105,48 @@ def main():
     feed_file = "scams.json"
     history = []
 
-    # 1. Load existing history if available
+    # 1. Read existing data and handle both old and new schemas
     if os.path.exists(feed_file):
         try:
             with open(feed_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if isinstance(data, dict) and "history" in data:
-                    history = data["history"]
-                elif isinstance(data, dict) and "regions" in data:
-                    # Convert old single-day format into history array
-                    history = [{
-                        "date": datetime.utcnow().strftime("%Y-%m-%d"),
-                        "display_date": datetime.utcnow().strftime("%B %d, %Y"),
-                        "regions": data["regions"]
-                    }]
+                if isinstance(data, dict):
+                    if "history" in data and isinstance(data["history"], list):
+                        history = data["history"]
+                    elif "regions" in data and data["regions"]:
+                        # Convert old flat format into history
+                        history.append({
+                            "date": datetime.utcnow().strftime("%Y-%m-%d"),
+                            "regions": data["regions"]
+                        })
         except Exception as e:
-            print(f"Reading existing json warning: {e}")
+            print(f"File read error: {e}")
 
-    existing_dates = {item["date"] for item in history}
-    today = datetime.utcnow()
-    today_str = today.strftime("%Y-%m-%d")
-    yesterday = today - timedelta(days=1)
+    now = datetime.utcnow()
+    today_str = now.strftime("%Y-%m-%d")
+    yesterday = now - timedelta(days=1)
     yesterday_str = yesterday.strftime("%Y-%m-%d")
 
-    # 2. Seed "Yesterday" if brand new
-    if yesterday_str not in existing_dates and len(history) == 0:
+    existing_dates = {item.get("date") for item in history}
+
+    # 2. Add Yesterday if not present
+    if yesterday_str not in existing_dates:
         history.append(generate_day_report(yesterday))
 
-    # 3. Add or update "Today"
-    history = [item for item in history if item["date"] != today_str]
-    history.insert(0, generate_day_report(today))
+    # 3. Add or refresh Today
+    history = [item for item in history if item.get("date") != today_str]
+    history.insert(0, generate_day_report(now))
 
-    # Keep latest 30 days of records
+    # Keep latest 30 days
     history = history[:30]
 
     with open(feed_file, "w", encoding="utf-8") as f:
-        json.dump({"updated_at": today.strftime("%Y-%m-%d %H:%M UTC"), "history": history}, f, indent=2)
+        json.dump({
+            "updated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
+            "history": history
+        }, f, indent=2)
 
-    print("scams.json updated successfully with daily history.")
+    print("scams.json written successfully with history format.")
 
 if __name__ == "__main__":
     main()
