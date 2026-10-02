@@ -2,15 +2,17 @@ name: Daily Cyber Scam Agent
 
 on:
   schedule:
-    - cron: '0 6 * * *' # Runs daily at 06:00 UTC
-  workflow_dispatch:     # Allows manual trigger
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   run-agent:
-    # Pinning to ubuntu-24.04 keeps your runner stable and silences upcoming migration warnings
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+    env:
+      # Suppresses the Node.js runner migration warning banner
+      ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: "node24"
 
     steps:
       - name: Checkout code
