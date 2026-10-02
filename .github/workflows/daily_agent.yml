@@ -3,11 +3,12 @@ name: Daily Cyber Scam Agent
 on:
   schedule:
     - cron: '0 6 * * *' # Runs daily at 06:00 UTC
-  workflow_dispatch:     # Allows manual trigger button in GitHub UI
+  workflow_dispatch:     # Allows manual trigger
 
 jobs:
   run-agent:
-    runs-on: ubuntu-latest
+    # Pinning to ubuntu-24.04 keeps your runner stable and silences upcoming migration warnings
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
 
@@ -22,7 +23,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install duckduckgo_search groq
+          python -m pip install --upgrade pip
+          pip install duckduckgo_search groq requests
 
       - name: Run Cyber Threat Agent
         env:
