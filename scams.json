@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-10-02 06:42 UTC",
+  "regions": {
+    "North America": {
+      "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds",
+      "summary": "Cyberattacks and scams are skyrocketing due to artificial intelligence, which is making it easier for criminals to engage in fraud, the report finds.",
+      "source": "https://www.cbsnews.com/news/ai-cyber-scams-consumer-reports-fraud/"
+    },
+    "South America": {
+      "headline": "Ongoing Cyber Scam Warnings in South America",
+      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
+      "source": "#"
+    },
+    "Asia": {
+      "headline": "Ongoing Cyber Scam Warnings in Asia",
+      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
+      "source": "#"
+    },
+    "Europe": {
+      "headline": "Ongoing Cyber Scam Warnings in Europe",
+      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
+      "source": "#"
+    },
+    "Rest of the World": {
+      "headline": "Ongoing Cyber Scam Warnings in Rest of the World",
+      "summary": "Active phishing campaigns targeting consumers and enterprise credentials reported.",
+      "source": "#"
+    }
+  }
+}
