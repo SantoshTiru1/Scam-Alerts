@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-02 17:26 UTC",
+  "updated_at": "2026-10-03 06:07 UTC",
   "history": [
+    {
+      "date": "2026-10-03",
+      "regions": {
+        "North America": {
+          "headline": "Booking.com customers warned of 'reservation hijack' scams after data breach - BBC",
+          "summary": "Booking.com customers warned of 'reservation hijack' scams after data breach\u00a0\u00a0BBC",
+          "source": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5pQy1QaWFsR0FmYmw3MFFIbFp5MHhYX082M3FyWmFtMjFZcHFHaUt4V0taVTVhT1ZodHlQakhlNGI4QTQyYUQ1aVJUdm12c3FJUzdiVkJOb0JrZw?oc=5"
+        },
+        "South America": {
+          "headline": "October Launches Cybersecurity Month in the United States and Europe With a Call for a Safer Online World - EIN Presswire",
+          "summary": "October Launches Cybersecurity Month in the United States and Europe With a Call for a Safer Online World\u00a0\u00a0EIN Presswire",
+          "source": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQbzVrVGtJMG1udElySm9ZbWc3RGxqWnRKMTRpNVNocUs2S1Z3UEZKMzZmb0NuQmNJMkthOGhjMjdpbFY4NEtxWWFpTl94Qm5tcWJ4LUs4cWxxWXlESjRrMzdpVDJWYjUwckYyMm91eHI0SlZuWXpwVDdxMGJDZ19XRnVWaEdLT1Ewel9DWEtjeXNzdTl6RzU0Rkp4OE5CcGpWMUJQWTQ3TmZVRTZqem15d19ybWNfWGsyQjJ0S0ZxUUsyQlV5SjFLNHhNaVhBRzIwem9NbTgtWW43eDUyUjc0NEFZZlN3dVU?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "India": {
+          "headline": "Daily Digest",
+          "summary": "Official National Cyber Crime Reporting Portal Daily Digest Advisory (Daily Digest). Covers active financial fraud vectors, malicious APK campaigns, and cyber safety alerts across India.",
+          "source": "https://cybercrime.gov.in/Webform/daily-digest.aspx"
+        },
+        "Singapore": {
+          "headline": "Police warn against scams involving intimate images and sexually explicit video calls - The Straits Times",
+          "summary": "Police warn against scams involving intimate images and sexually explicit video calls\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMVVZWGg0UDAyR0ROZU5EYmZJRTRXSXoxMXhpUnJqRDRocUU1WFlvXzRBOHM5eU54THAtUmZOaE1FcnNNVTh0REoyRTYtTkNVNExkNi1jR2Q4Qzc3ZEloSkVmNDIzejhsbDVzV0lfVzBWb19wTmY0ZVFyWWZUWWNYUnNWMG8yTXZtcGlwTDI1YlhqMFcxZVZWX0Y5UkNaQ1RZT1JwRGVHUmRsTU1tUHNQanhYbmEyd0ZsdmJFSFplYXVuZw?oc=5"
+        },
+        "China": {
+          "headline": "Global Crackdown Arrests 276, Shuts 9 Crypto Scam Centers, Seizes $701M - The Hacker News",
+          "summary": "Global Crackdown Arrests 276, Shuts 9 Crypto Scam Centers, Seizes $701M\u00a0\u00a0The Hacker News",
+          "source": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOMTB5Y0ZQVng5YTM4U3I0VElUMFhuWHRJX0htNDdiRDBESF82OFdOUE1WX3k0ZjE3U2F0d1dSWVdjZS1IS0R1b3V2blFXYUZKXzluUDZwdmFjVDFZTUJUTGdQalVyWFlmQVluMFROVlFzRklFTFU1ZE41blIxejhVaQ?oc=5"
+        },
+        "Japan": {
+          "headline": "Meet AIko: Japan\u2019s AI police chief taking on a US$2 billion scam epidemic - South China Morning Post",
+          "summary": "Meet AIko: Japan\u2019s AI police chief taking on a US$2 billion scam epidemic\u00a0\u00a0South China Morning Post",
+          "source": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOQks1RmF5MU1aenVnYnFhd2t1eU1pczFQWERNM2VwUjJTcjR6YktfNEVydTBSS1o0WHVneUt0WU9kS3VnbGNLdUd1d1R5eW02bjByMVZyTHhjbC1VUThfQmg4SjVmNjBFc19XdzBTbFlXZ2pjMHE1cWI5RzRBcXJKWFp1TDFrZDFLZTRWRmdfRHJhYlR0RlR4M0lPVTJuNkdOYm1udzdFcWdiY01RaldlNm5TaEJJazAzaEg2RGxBSUzSAcABQVVfeXFMTlNJUW5GbkxVekpRVUtRQnpjQW9VUlkxd2FUTjlYTGt2MG1QSkVVLXhNam9vcDNrdjdSQ181NFV1ZGhvalhIOUYzMHVpaTNrbzltSW1vTFduQy1mQ0RzNEIzSlgxSEpWUDAyX1BuUHRfc1VFWWFWdzBoOGJSYUFCS0hBT3U5R09CRFBkMkNZZHp3QjFtM1BKSVk5MHNlazR4OWhSQWVSQVlDQjk2b0RCR0Z3RERsVEpUOUlpZFJlMGwz?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
+          "summary": "58 arrests in global effort to dismantle West African organized crime groups\u00a0\u00a0Interpol",
+          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc3NwM19iUmZSc185R1k1X2xpQ1BYQU1uYVd1cHBHenZKekVWS0tpaEdycS0wbkdxcTdSdXJicS1GRXR1QXJteEdaTzllVmlmZHhZWWEtUGtIWlN3Zjd5U0R3M19SWFRmeS1SQjZka3Q5cC1pMU1QNlk4QXdkRVp5QktFdWVjV09FZHB3TTE0c1lDWUFndExwNkVHT0ppNWgyaDAwa3BsRGs0LVhiTk1OcS1VVkxKMm13SFZrS1lHX1d4WEl6eXc?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-02",
       "regions": {
