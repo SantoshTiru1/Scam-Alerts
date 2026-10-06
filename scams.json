@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-05 06:04 UTC",
+  "updated_at": "2026-10-06 06:02 UTC",
   "history": [
+    {
+      "date": "2026-10-06",
+      "regions": {
+        "North America": {
+          "headline": "You're a vendor at a local market \u2014 or are you? Here's what you need to know about market scams - CBC",
+          "summary": "You're a vendor at a local market \u2014 or are you? Here's what you need to know about market scams\u00a0\u00a0CBC",
+          "source": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOLU9XMGxra3ZiQjNuU0NjV1ZqdzlJTjdHYTF6X0Y5dHNfSkViazltVnpNSGpoamhpNGxkTGZXTUpiYkRwQjF5ZzhTcklBR1ZuaWxRQjhySWduY3JTdWhueXdpLVBRWk1aQjlJWDVoMmdQR2xTU01WQWtkUWx3SnJWTGZKOVdvVG5DeFFoY1dRemoteEZadkFET0ZYMTJKazB4ZnVF?oc=5"
+        },
+        "South America": {
+          "headline": "Evaluating Mexico\u2019s New Cybersecurity Plan - recordedfuture.com",
+          "summary": "Evaluating Mexico\u2019s New Cybersecurity Plan\u00a0\u00a0recordedfuture.com",
+          "source": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZkZqbFVQZlFVS0VDUkQtWnlvNm9kZVFqUzhoNmk5NS12Z1dacVpVdW5oZ1Vaakp3OEFuNFZPcXBVUWU4aXpGTWJyNExLc1dUdzdzTkh4UzNOdE1QdnktbUROMktXWnF3MnYtZ2EtcHNna0FpUGQxVi1fVmJuXzlpQUVWUXJGR2s?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "India": {
+          "headline": "Daily Digest",
+          "summary": "Official National Cyber Crime Reporting Portal Daily Digest Advisory (Daily Digest). Covers active financial fraud vectors, malicious APK campaigns, and cyber safety alerts across India.",
+          "source": "https://cybercrime.gov.in/Webform/daily-digest.aspx"
+        },
+        "Singapore": {
+          "headline": "Singapore Is Literally Training People to Get Scammed - TechRepublic",
+          "summary": "Singapore Is Literally Training People to Get Scammed\u00a0\u00a0TechRepublic",
+          "source": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOYVhuNDgtMl96XzFEQTlyR3diOU1qZFNSYmNId2RzX3VkMTVtazJYcWZVYTh2QWgxdEQyRjhRTGozd190cEh4V2F4N3lHLTRtblkwRzhaQWJUOTBTZUFPNmFkM3lELWVKUl8zNEJXZWZhVDR0OS1EQnMwTkdmSzlvcnRLQXg3NUlZREU4VTN1OHVhdklnelE?oc=5"
+        },
+        "China": {
+          "headline": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN - South China Morning Post",
+          "summary": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN\u00a0\u00a0South China Morning Post",
+          "source": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQXBTci1yRUZFRS1hRUFHbm11ZW1Bcm9yaGM0WmpZUXpER1o5TC1jTTZOQVFxY2hPRWludlAwRlI4b1JBWVJwZDc0VmRsUkl5NWMwRmMxa0swUHNFMDZZSWpOWGstRWdGXzVPSjFJOVdfa1NvazJrclBWLWJCWUVELU83ZTVsZ000ZHA2SHNRcjFiSVFpR2trTnc3SElDNnRjcDAwalFCTWxSdlM3VzNQeHFQNEdBeWgxMW5lWkhwVHZMd9IBwgFBVV95cUxOTDNPcW45YVJSSnVpY2Uzc2pteklHWjJrclZZOHhGcVF5T1UtaE02SkV6MENuZ3RsbnIta2xnamptallmOGFQTnVrTERPZUlRcUl1SW1Rd0tzT0U5OWtheGE3aUpTcjVEc0o5UVlBZ1B4ejJyOTNob3JiRGNKX3RnNVhiODZnZzRPZmNLUU5melJrUERqeWdPYks5c3VtRkxDcUk5OTJaZDFWaHl0N0h5LUQ0eXRvNVNVSmFYUjZDX3IzZw?oc=5"
+        },
+        "Japan": {
+          "headline": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam - CyberSecurityNews",
+          "summary": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam\u00a0\u00a0CyberSecurityNews",
+          "source": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZTGtFU1c4bXcyalc3aDZmVWlHQ3hHeVRjZjlUUDhvV21XNnRTWEJJZlNCX2RRaWt2VTVaSEl4SHJDZkNZUVRaZHlwbUwtVkJRZjBXVNIBWkFVX3lxTFBTaWd5QWdVOFpOUGtNbW1FYXBMUF9fbEpsUjNvcnhBVzVrMjF4UmFuZC1VbjdCQTBITTdPb3hpbkhyRk4wTHE4c215RGVlVzdxQndNT0JtcXpiZw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
+          "summary": "58 arrests in global effort to dismantle West African organized crime groups\u00a0\u00a0Interpol",
+          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc3NwM19iUmZSc185R1k1X2xpQ1BYQU1uYVd1cHBHenZKekVWS0tpaEdycS0wbkdxcTdSdXJicS1GRXR1QXJteEdaTzllVmlmZHhZWWEtUGtIWlN3Zjd5U0R3M19SWFRmeS1SQjZka3Q5cC1pMU1QNlk4QXdkRVp5QktFdWVjV09FZHB3TTE0c1lDWUFndExwNkVHT0ppNWgyaDAwa3BsRGs0LVhiTk1OcS1VVkxKMm13SFZrS1lHX1d4WEl6eXc?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-05",
       "regions": {
