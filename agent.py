@@ -217,6 +217,62 @@ def generate_day_report(target_date):
         }
     return day_entry
 
+def post_to_telegram(day_entry):
+    """
+    Sends the daily summary report directly to your Telegram channel.
+    """
+    bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+
+    if not bot_token or not chat_id:
+        print("Telegram tokens not set. Skipping Telegram notification.")
+        return
+
+    date_str = day_entry.get("date", "Today")
+    regions_data = day_entry.get("regions", {})
+
+    message = f"🚨 *Global Cyber Scam Alert — {date_str}*\n\n"
+
+    # Prioritize India at the top if present
+    ordered_keys = sorted(regions_data.keys(), key=lambda x: (x != "India", x))
+
+    for region in ordered_keys:
+        info = regions_data[region]
+        headline = info.get("headline", f"{region} Scam Alert")
+        # Extract the core summary or first lines
+        summary = info.get("summary", "").replace("*", "")
+        # Shorten cleanly if needed for Telegram's message limits
+        summary_short = summary.split("\n")[0]
+        source = info.get("source", "")
+
+        message += f"🌍 *{region}*: {headline}\n"
+        message += f"_{summary_short}_\n"
+        if source and source != "#":
+            message += f"[🔗 Read Primary Report]({source})\n"
+        message += "\n"
+
+    message += "🌐 *Full Interactive Feed & Archives:*\n"
+    message += "https://santoshtiru1.github.io/Scam-Alerts/\n\n"
+    message += "#CyberSecurity #ScamAlert #Phishing #India #CyberCrime"
+
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": message,
+        "parse_mode": "Markdown",
+        "disable_web_page_preview": True
+    }
+
+    try:
+        res = requests.post(url, json=payload, timeout=15)
+        if res.status_code == 200:
+            print("Telegram alert delivered successfully!")
+        else:
+            print(f"Telegram returned error code {res.status_code}: {res.text}")
+    except Exception as e:
+        print(f"Telegram network error: {e}")
+
+
 def main():
     feed_file = "scams.json"
     history = []
@@ -254,7 +310,10 @@ def main():
             "history": history
         }, f, indent=2)
 
-    print("scams.json updated with India, Singapore, China, Japan & direct articles.")
+    # Broadcast Today's digest to your Telegram channel
+    if history:
+        post_to_telegram(history[0])
 
+    print("Process complete.")
 if __name__ == "__main__":
     main()
