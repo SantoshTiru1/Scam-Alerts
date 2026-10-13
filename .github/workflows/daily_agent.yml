@@ -31,7 +31,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install duckduckgo_search groq requests beautifulsoup4 edge-tts moviepy google-api-python-client google-auth-oauthlib
+          pip install duckduckgo_search groq requests beautifulsoup4 edge-tts moviepy==1.0.3 google-api-python-client google-auth-oauthlib
 
       - name: Run Cyber Threat Agent
         env:
