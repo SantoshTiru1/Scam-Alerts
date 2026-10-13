@@ -1,6 +1,11 @@
 import os
 import asyncio
 import edge_tts
+
+# Tell MoviePy where ImageMagick is on Ubuntu
+from moviepy.config import change_settings
+change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/convert"})
+
 from moviepy.editor import AudioFileClip, ColorClip, TextClip, CompositeVideoClip
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
