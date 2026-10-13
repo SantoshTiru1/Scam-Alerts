@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-12 17:20 UTC",
+  "updated_at": "2026-10-13 06:05 UTC",
   "history": [
+    {
+      "date": "2026-10-13",
+      "regions": {
+        "North America": {
+          "headline": "Williams Food Equipment warns customers of security breach - AM 800 CKLW",
+          "summary": "Williams Food Equipment warns customers of security breach\u00a0\u00a0AM 800 CKLW",
+          "source": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQeHQyM2VwTDVZM28zYjlxSEdjX2VpbXNreEtneDRKYlFDcnhHaEtleTVJRHU5d2lZSUJiVktpNk94NDIyNE9HZ0tKelR4YjZKR3BydllkU2g5MGhtUE1IOWdMZHh5RUlSall3YmRBZS01MllldDc0WjJQQWt0RGVFSlB3TzBJVHdjam1ncWw5U0VaeGRm?oc=5"
+        },
+        "South America": {
+          "headline": "Evaluating Mexico\u2019s New Cybersecurity Plan - Recorded Future",
+          "summary": "Evaluating Mexico\u2019s New Cybersecurity Plan\u00a0\u00a0Recorded Future",
+          "source": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZkZqbFVQZlFVS0VDUkQtWnlvNm9kZVFqUzhoNmk5NS12Z1dacVpVdW5oZ1Vaakp3OEFuNFZPcXBVUWU4aXpGTWJyNExLc1dUdzdzTkh4UzNOdE1QdnktbUROMktXWnF3MnYtZ2EtcHNna0FpUGQxVi1fVmJuXzlpQUVWUXJGR2s?oc=5"
+        },
+        "Europe": {
+          "headline": "Teenager suspected of leading KillSec ransomware group as law enforcement seizes servers and leak site - Europol",
+          "summary": "Teenager suspected of leading KillSec ransomware group as law enforcement seizes servers and leak site\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOTnNvT1lkQW9IbUhmSW01TVBOZE5Ca2llTzE0cktpdEczTm1GMGt3eHJ2OUlWY1M1SFN6V2h6NHB5OTZwN08zNWJudzFRRVFFREYxMDRjZlhuMHdlUTdTQ0xabzlSaGNZQnJQcVBRR0lIZ0daMVR5czFieVM0TXZIWDJac01TRERNOGJzM1U0WXVlZkZvWG1TRjNLcndkd0gtUmZhUUZsTFdqcFhPQ05FZE55U0F5aFhzQXpObVZpNjhPWkFvR01mVnAwN0wxaTNvQ0RpaEpDMGRBREJySFdlNEFha2s2TldmbVBz?oc=5"
+        },
+        "India": {
+          "headline": "I4C cautions corporates and finance professionals against \u2018Boss Scam\u2019: WhatsApp account takeover through malicious \u2018Statement of Account\u2019, \u2018MCA\u2019 and \u2018RBI\u2019 files aimed at high-value financial fraud - \u092a\u0940\u0906\u0908\u092c\u0940",
+          "summary": "I4C cautions corporates and finance professionals against \u2018Boss Scam\u2019: WhatsApp account takeover through malicious \u2018Statement of Account\u2019, \u2018MCA\u2019 and \u2018RBI\u2019 files aimed at high-value financial fraud\u00a0\u00a0\u092a\u0940\u0906\u0908\u092c\u0940",
+          "source": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5wc3FrR0ROTFZyb0M1elhOOTkwVHBMWlFyMk4ydkdIeUFnUGwycXVaWVY5dmdFNHRNN0t4c2dqOGFBTjBOcjNLM19EVWtwTFljV3pXblQybTdYckFPR1o3dGp1S0RIUF93UVhtdnBkaHppcV9OaWJicXlPUQ?oc=5"
+        },
+        "Singapore": {
+          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
+          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
+        },
+        "China": {
+          "headline": "Gang with China links busted in Rs 1.95-crore whale phishing fraud - The Indian Express",
+          "summary": "Gang with China links busted in Rs 1.95-crore whale phishing fraud\u00a0\u00a0The Indian Express",
+          "source": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOQWdUbWt3VTI3U0JnaXF5SlVNYjlmdUNqdW1YSjlJZFJweGktQ1RkQ01ieERTVUJWRzRXQTJwX3Eta1Y1RVZkZ3JQWTh4U0JzY1VEQ3Z6amdLa0RONEJNTktSSEFnTnZSLWVPajlwMGZ2SzBXYnRzT052WjFGb1F2Ymc4cXJuclRER0tlMThzbzBQSF9yN2xGWE5ySkpNS21xdUdB0gGqAUFVX3lxTE0wbm0tMXQxWlRLRGVMT291VlV4ekRVZTEwWHpFOFp5REV2b0xlRlRIeGsxLURhamduYU1uaEV0YjJVR194ZVphd1pSZ1lxSzZEeXl0aFlZT2tQcE5nUWpmX0hVNjhTT2Z5YllMNk41RjZKX0xZS2s5V20zQXZ4YmRrY1U3NUVRUUJpVEtkQ2gxQnVBNi1QMzZwSzZRV0VLY1pXUE9OcVdaVWZR?oc=5"
+        },
+        "Japan": {
+          "headline": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam - CyberSecurityNews",
+          "summary": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam\u00a0\u00a0CyberSecurityNews",
+          "source": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZTGtFU1c4bXcyalc3aDZmVWlHQ3hHeVRjZjlUUDhvV21XNnRTWEJJZlNCX2RRaWt2VTVaSEl4SHJDZkNZUVRaZHlwbUwtVkJRZjBXVNIBWkFVX3lxTFBTaWd5QWdVOFpOUGtNbW1FYXBMUF9fbEpsUjNvcnhBVzVrMjF4UmFuZC1VbjdCQTBITTdPb3hpbkhyRk4wTHE4c215RGVlVzdxQndNT0JtcXpiZw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
+          "summary": "58 arrests in global effort to dismantle West African organized crime groups\u00a0\u00a0Interpol",
+          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc3NwM19iUmZSc185R1k1X2xpQ1BYQU1uYVd1cHBHenZKekVWS0tpaEdycS0wbkdxcTdSdXJicS1GRXR1QXJteEdaTzllVmlmZHhZWWEtUGtIWlN3Zjd5U0R3M19SWFRmeS1SQjZka3Q5cC1pMU1QNlk4QXdkRVp5QktFdWVjV09FZHB3TTE0c1lDWUFndExwNkVHT0ppNWgyaDAwa3BsRGs0LVhiTk1OcS1VVkxKMm13SFZrS1lHX1d4WEl6eXc?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-12",
       "regions": {
