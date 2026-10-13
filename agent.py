@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import requests
 from bs4 import BeautifulSoup
 from groq import Groq
+from youtube_agent import process_youtube_short
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
@@ -313,6 +314,8 @@ def main():
     # Broadcast Today's digest to your Telegram channel
     if history:
         post_to_telegram(history[0])
+        post_to_whatsapp(history[0])
+        process_youtube_short(history[0])  # <--- ADD THIS LINE
 
     print("Process complete.")
 if __name__ == "__main__":
