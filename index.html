@@ -1,36 +1,529 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Cyber Scam Daily Watch</title>
+  <title>Global Cyber Scam Watch | Autonomous Daily Intelligence</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            soc: {
+              950: '#060913',
+              900: '#0B1120',
+              850: '#0F172A',
+              800: '#172554',
+              accent: '#06B6D4',
+              neon: '#22D3EE',
+              alert: '#F59E0B',
+              danger: '#EF4444'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'radar': 'radarSweep 4s linear infinite'
+          },
+          keyframes: {
+            radarSweep: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+    }
+    .glow-cyan-sm {
+      box-shadow: 0 0 15px -3px rgba(34, 211, 238, 0.3);
+    }
+    .grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .badge-blur {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
-  <div class="max-w-6xl mx-auto">
-    
-    <!-- Top Header -->
-    <header class="border-b border-slate-800 pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-      <div>
-        <div class="flex items-center gap-3">
-          <span class="text-3xl">🛡️</span>
-          <h1 class="text-2xl md:text-3xl font-extrabold text-cyan-400">Global Cyber Scam Watch</h1>
+<body class="bg-soc-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black">
+
+  <!-- TOP STATUS TICKER -->
+  <aside aria-label="Live Threat Feeds Ticker" class="border-b border-slate-800/80 bg-soc-900/90 text-xs font-mono py-2 px-4 sticky top-0 z-50 badge-blur">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        </span>
+        <span class="text-cyan-400 font-bold uppercase tracking-wider text-[11px]">DEFCON: LEVEL 4 NORMAL WATCH</span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="hidden md:inline text-slate-300">Live Agent: Polling 8 Regional Watchtowers</span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span id="nav-last-updated" class="text-slate-400">Syncing telemetry...</span>
+        <span class="text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded text-[10px] font-semibold">100% AUTONOMOUS</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <nav class="border-b border-slate-800/60 bg-soc-950/80 backdrop-blur-md sticky top-[37px] z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
         </div>
-        <p class="text-slate-400 text-sm mt-1">Autonomous daily monitoring across 5 global regions.</p>
-      </div>
-      <div id="last-updated" class="text-xs text-slate-500 font-mono">
-        Checking feed...
-      </div>
-    </header>
+        <div>
+          <span class="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
+            SCAM<span class="text-cyan-400">ALERTS</span>
+            <span class="text-[9px] bg-slate-800 text-slate-300 font-mono px-1.5 py-0.5 rounded">v2.4</span>
+          </span>
+          <p class="text-[10px] text-slate-400 -mt-0.5 font-mono">Global Threat Observatory</p>
+        </div>
+      </a>
 
-    <!-- Scrollable Timeline -->
-    <main id="timeline-container" class="space-y-12">
-      <div class="text-slate-500 text-sm animate-pulse">Loading threat reports...</div>
-    </main>
+      <!-- Navigation links -->
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#feed" class="hover:text-cyan-400 transition">Daily Intel Feed</a>
+        <a href="#checker" class="hover:text-cyan-400 transition">Symptom Checker</a>
+        <a href="#network" class="hover:text-cyan-400 transition">Broadcast Channels</a>
+        <a href="#resources" class="hover:text-cyan-400 transition">National Helplines</a>
+      </div>
 
-  </div>
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://t.me/" id="nav-tg-btn" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-1.5 bg-cyan-950/70 hover:bg-cyan-900 border border-cyan-800/80 text-cyan-300 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.535-.194 1.006.128.832.942z"/>
+          </svg>
+          <span class="hidden sm:inline">Join</span> Telegram
+        </a>
+        <a href="#feed" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-1.5 rounded-lg text-xs shadow-lg transition">
+          View Today's Digest
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden grid-pattern">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-600/15 blur-[120px] pointer-events-none rounded-full"></div>
+    <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-blue-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-mono text-cyan-300 mb-6 glow-cyan-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>AUTONOMOUS CYBER THREAT RADAR</span>
+        <span class="text-slate-500">•</span>
+        <span class="text-slate-400">Zero Commercial Bias</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.15]">
+        Autonomous Daily Intelligence on Scams Targeting 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-500">You & Your Family</span>
+      </h1>
+
+      <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Every 24 hours, headless AI agents sweep global enforcement portals, news channels, and telemetry feeds across 8 regions to synthesize actionable 100-word defense briefs.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="#feed" class="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-sm shadow-lg shadow-cyan-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+          <span>Read Daily Scam Feed</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <a href="#checker" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold text-sm transition transform hover:-translate-y-0.5 flex items-center gap-2">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <span>Run Scam Symptom Checker</span>
+        </a>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center gap-3 text-xs text-slate-400">
+        <span>Available via:</span>
+        <span class="inline-flex items-center gap-1 bg-slate-900/60 border border-slate-800 px-2.5 py-1 rounded-md text-cyan-400 font-mono">Telegram</span>
+        <span class="inline-flex items-center gap-1 bg-slate-900/60 border border-slate-800 px-2.5 py-1 rounded-md text-emerald-400 font-mono">WhatsApp</span>
+        <span class="inline-flex items-center gap-1 bg-slate-900/60 border border-slate-800 px-2.5 py-1 rounded-md text-red-400 font-mono">YouTube Shorts</span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- METRICS / SOC RADAR STATS -->
+  <section class="border-y border-slate-800/80 bg-soc-900/50 py-10 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
+          <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">8 Regions</div>
+          <div class="text-xs uppercase tracking-wider text-slate-400 mt-1 font-semibold">Continuous Coverage</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">India, US, EU, SG, CN, JP & Global</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
+          <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">24 Hours</div>
+          <div class="text-xs uppercase tracking-wider text-slate-400 mt-1 font-semibold">Cycle Frequency</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Auto-compiled via GitHub Cron</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">$0.00 / Mo</div>
+          <div class="text-xs uppercase tracking-wider text-slate-400 mt-1 font-semibold">Infrastructure Cost</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Groq Free + GitHub Actions</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
+          <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono">&lt; 100 Words</div>
+          <div class="text-xs uppercase tracking-wider text-slate-400 mt-1 font-semibold">Strict Brevity</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Threat • Target • Countermeasure</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SCAM SYMPTOM CHECKER -->
+  <section id="checker" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-br from-slate-900 via-soc-900 to-slate-950 border border-cyan-500/30 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+      
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-800/80 pb-6">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            Interactive Diagnostic Engine
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Suspicious Activity Symptom Evaluator</h2>
+          <p class="text-slate-400 text-sm mt-1">Select an incident pattern below to get instant risk assessment & immediate countermeasures.</p>
+        </div>
+        <div class="text-xs font-mono text-slate-400 bg-slate-950/80 border border-slate-800 px-3 py-1.5 rounded-lg shrink-0">
+          SOC Rule Set: <span class="text-cyan-400">v2026.10</span>
+        </div>
+      </div>
+
+      <!-- Incident Selector Pills -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8" id="symptom-buttons">
+        <button onclick="evaluateSymptom('digital-arrest', this)" data-symptom="digital-arrest" class="symptom-btn active text-left p-3.5 rounded-xl border border-cyan-500 bg-cyan-950/40 text-cyan-200 hover:border-cyan-400 transition text-xs font-medium flex flex-col justify-between">
+          <span class="font-bold text-sm text-white mb-1">🚨 "Digital Arrest" Video Call</span>
+          <span class="text-slate-400 text-[11px]">Caller posing as Police/CBI/FedEx claiming illegal parcels.</span>
+        </button>
+
+        <button onclick="evaluateSymptom('whatsapp-job', this)" data-symptom="whatsapp-job" class="symptom-btn text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-300 hover:border-slate-700 transition text-xs font-medium flex flex-col justify-between">
+          <span class="font-bold text-sm text-white mb-1">💼 WhatsApp "Part-Time Task"</span>
+          <span class="text-slate-400 text-[11px]">Like YouTube videos or review hotels for ₹2,000–₹8,000/day.</span>
+        </button>
+
+        <button onclick="evaluateSymptom('apk-sms', this)" data-symptom="apk-sms" class="symptom-btn text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-300 hover:border-slate-700 transition text-xs font-medium flex flex-col justify-between">
+          <span class="font-bold text-sm text-white mb-1">📲 Electricity / Bank APK Link</span>
+          <span class="text-slate-400 text-[11px]">SMS: "Power cut tonight unless you update meter APK now".</span>
+        </button>
+
+        <button onclick="evaluateSymptom('trading-group', this)" data-symptom="trading-group" class="symptom-btn text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-slate-300 hover:border-slate-700 transition text-xs font-medium flex flex-col justify-between">
+          <span class="font-bold text-sm text-white mb-1">📈 VIP Telegram Crypto / Stock App</span>
+          <span class="text-slate-400 text-[11px]">Secret institutional trading app showing 300% fake profits.</span>
+        </button>
+      </div>
+
+      <!-- Verdict Box -->
+      <div id="verdict-container" class="bg-slate-950/90 border border-slate-800 rounded-xl p-6 transition-all duration-300">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE TIMELINE FEED SECTION -->
+  <main id="feed" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-slate-800 pb-6">
+      <div>
+        <div class="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
+          <span class="h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+          Decentralized Cyber Telemetry
+        </div>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Autonomous Daily Threat Archives</h2>
+        <p class="text-slate-400 text-sm mt-1">Directly rendered from <code class="text-cyan-300 font-mono text-xs bg-slate-900 px-1 py-0.5 rounded">./scams.json</code>. Scroll down to review historical regional advisories.</p>
+      </div>
+
+      <!-- Search / Filter quick box -->
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <input type="text" id="filter-input" onkeyup="filterFeed()" placeholder="Search region or keyword..." 
+                 class="bg-slate-900 border border-slate-700/80 rounded-xl px-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 w-64 font-sans">
+          <svg class="w-4 h-4 text-slate-400 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Content Target -->
+    <div id="timeline-container" class="space-y-16">
+      <div class="p-12 text-center text-slate-400 font-mono text-sm">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-cyan-400 mb-4"></div>
+        <p>Connecting to decentralized repository feed...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- MULTI-CHANNEL DISTRIBUTION NETWORK -->
+  <section id="network" class="py-16 md:py-24 bg-soc-900/40 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">Multi-Channel Ingestion</span>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Zero-Click Scam Alerts Where You Already Are</h2>
+        <p class="text-slate-400 text-sm mt-2">No accounts to create. No paid paywalls. Pick your preferred medium and stay immune to modern social engineering.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Telegram -->
+        <div class="bg-slate-950 border border-slate-800 hover:border-cyan-500/60 p-6 rounded-2xl transition duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-105 transition">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.535-.194 1.006.128.832.942z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Telegram Channel</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Instant push broadcasts with direct threat vectors, source links, and safety advice right when morning opens.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-900">
+            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 text-xs font-semibold hover:underline flex items-center justify-between">
+              <span>Subscribe on Telegram</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="bg-slate-950 border border-slate-800 hover:border-emerald-500/60 p-6 rounded-2xl transition duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-105 transition">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">WhatsApp Forwarding</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Direct daily SMS/Ping via CallMeBot or click-to-share defense cards directly into your family and apartment security groups.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-900">
+            <a href="https://api.whatsapp.com/send?text=Stay%20alert%20to%20cyber%20scams:%20https://santoshtiru1.github.io/Scam-Alerts/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 text-xs font-semibold hover:underline flex items-center justify-between">
+              <span>Share to WhatsApp</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- YouTube Shorts -->
+        <div class="bg-slate-950 border border-slate-800 hover:border-red-500/60 p-6 rounded-2xl transition duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-5 group-hover:scale-105 transition">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">YouTube Shorts</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Automated 30-second AI-voiced vertical videos breaking down the top phishing attack vector before your morning coffee.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-900">
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-red-400 text-xs font-semibold hover:underline flex items-center justify-between">
+              <span>Watch on Shorts</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Open Source GitHub -->
+        <div class="bg-slate-950 border border-slate-800 hover:border-slate-500/60 p-6 rounded-2xl transition duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-center text-slate-300 mb-5 group-hover:scale-105 transition">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Audit On GitHub</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">100% transparent Python agent workflows. Inspect the scrapers, contribute feeds, or fork your own private SOC instance.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-900">
+            <a href="https://github.com/santoshtiru1/Scam-Alerts" target="_blank" rel="noopener noreferrer" class="text-slate-300 text-xs font-semibold hover:underline flex items-center justify-between">
+              <span>Fork Repository</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFICIAL GLOBAL RESCUE PORTALS -->
+  <section id="resources" class="py-14 border-t border-slate-800 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">Immediate Incident Reporting</span>
+          <h3 class="text-xl font-bold text-white mt-1">Official National Cybercrime Helplines</h3>
+        </div>
+        <div class="text-xs text-slate-400">
+          Already compromised? Never pay scammers to "recover" funds. Report directly to law enforcement.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer" 
+           class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/50 transition block">
+          <div class="flex items-center justify-between text-xs font-bold text-amber-400 mb-1">
+            <span>🇮🇳 INDIA</span>
+            <span class="font-mono bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/80">Call 1930</span>
+          </div>
+          <div class="text-sm font-semibold text-slate-200">cybercrime.gov.in (I4C)</div>
+          <p class="text-[11px] text-slate-400 mt-1">Citizen Financial Cyber Fraud Reporting</p>
+        </a>
+
+        <a href="https://www.ic3.gov" target="_blank" rel="noopener noreferrer" 
+           class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/50 transition block">
+          <div class="flex items-center justify-between text-xs font-bold text-cyan-400 mb-1">
+            <span>🇺🇸 UNITED STATES</span>
+            <span class="font-mono bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/80">FBI IC3</span>
+          </div>
+          <div class="text-sm font-semibold text-slate-200">ic3.gov</div>
+          <p class="text-[11px] text-slate-400 mt-1">Internet Crime Complaint Center</p>
+        </a>
+
+        <a href="https://www.europol.europa.eu/about-europol/european-cybercrime-centre-ec3" target="_blank" rel="noopener noreferrer" 
+           class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-blue-500/50 transition block">
+          <div class="flex items-center justify-between text-xs font-bold text-blue-400 mb-1">
+            <span>🇪🇺 EUROPEAN UNION</span>
+            <span class="font-mono bg-blue-950/80 px-2 py-0.5 rounded border border-blue-800/80">EC3</span>
+          </div>
+          <div class="text-sm font-semibold text-slate-200">europol.europa.eu/ec3</div>
+          <p class="text-[11px] text-slate-400 mt-1">European Cybercrime Centre</p>
+        </a>
+
+        <a href="https://www.scamalert.sg" target="_blank" rel="noopener noreferrer" 
+           class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-purple-500/50 transition block">
+          <div class="flex items-center justify-between text-xs font-bold text-purple-400 mb-1">
+            <span>🇸🇬 SINGAPORE</span>
+            <span class="font-mono bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800/80">1799 Helpline</span>
+          </div>
+          <div class="text-sm font-semibold text-slate-200">scamalert.sg</div>
+          <p class="text-[11px] text-slate-400 mt-1">National Crime Prevention Council</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-900 bg-soc-950 text-slate-400 py-10 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-base">🛡️</span>
+        <span class="font-bold text-slate-200">Global Cyber Scam Watch</span>
+        <span>•</span>
+        <span>Autonomous Public Intelligence Service</span>
+      </div>
+      <div class="text-slate-400 text-center md:text-right">
+        Engineered with Groq LLM & GitHub Actions. Completely Free & Open Source.
+      </div>
+    </div>
+  </footer>
 
   <script>
+    // --- 1. SYMPTOM EVALUATOR DATA & LOGIC ---
+    const symptomsDatabase = {
+      'digital-arrest': {
+        risk: 'EXTREME DANGER',
+        riskColor: 'text-rose-400 bg-rose-950/80 border-rose-800',
+        title: 'Impersonation / "Digital Arrest" Extortion Trap',
+        summary: 'Scammers pose as Police Officers, Enforcement Directorate (ED), or customs officials over Skype/WhatsApp video calls with fake police station backdrops. They claim a parcel with contraband or illegal SIMs was found in your name and demand financial "verification" bond transfers.',
+        target: 'Individuals with online bank accounts, senior citizens, and professionals.',
+        action: '1. Hang up immediately. Indian and international law enforcement agencies NEVER conduct arrests or verification trials over video calls.\n2. Do NOT transfer funds to "escrow" or "RBI verification" accounts.\n3. Dial 1930 immediately or file a report at cybercrime.gov.in.'
+      },
+      'whatsapp-job': {
+        risk: 'HIGH RISK',
+        riskColor: 'text-amber-400 bg-amber-950/80 border-amber-800',
+        title: 'Prepaid Task / Fake Part-Time Salary Fraud',
+        summary: 'Victims receive messages offering ₹1,500–₹5,000 daily for liking YouTube videos or reviewing Google maps. After paying small genuine tokens (₹150–₹500) to build trust, scammers move you to Telegram and demand thousands of rupees into "crypto merchant accounts" to unlock accrued earnings.',
+        target: 'Students, homemakers, and remote job seekers.',
+        action: '1. No legitimate company pays significant money for pressing like buttons.\n2. Never deposit funds to receive earned salary or commission.\n3. Block the sender and report the contact on WhatsApp.'
+      },
+      'apk-sms': {
+        risk: 'CRITICAL COMPROMISE',
+        riskColor: 'text-rose-500 bg-rose-950/80 border-rose-800',
+        title: 'Malicious Android APK / RAT (Remote Access Trojan)',
+        summary: 'SMS warning that your electricity bill, bank KYC, or PAN card is suspended tonight. It prompts downloading an APK file (e.g. `Electricity_Update.apk` or `YONO_Revamp.apk`). Once installed, the APK forwards all OTPs and banking SMS messages to attackers without your knowledge.',
+        target: 'Android smartphone users with mobile banking apps.',
+        action: '1. Do NOT click links or install any file ending in `.apk` received via SMS/WhatsApp.\n2. If already downloaded, immediately switch phone to Airplane Mode, backup photos, and factory reset.\n3. Call your bank immediately to freeze netbanking access.'
+      },
+      'trading-group': {
+        risk: 'FINANCIAL CATASTROPHE',
+        riskColor: 'text-purple-400 bg-purple-950/80 border-purple-800',
+        title: 'Institutional Fake Stock / Crypto Trading Portal',
+        summary: 'Added without consent into WhatsApp/Telegram "VIP Institutional Wealth" groups featuring fake screenshots of million-dollar trading gains. You are instructed to deposit funds onto custom web portals (which manipulate fake charts showing 500% profits) but withdrawals are perpetually blocked with requests for "30% tax clearance fees".',
+        target: 'Active retail stock investors and crypto traders.',
+        action: '1. Institutional/SEBI-registered brokerages never solicit customer funds inside informal WhatsApp groups.\n2. Never pay additional "tax or release fees" to unfreeze withdrawals.\n3. Report UPI IDs and bank accounts used in the group to 1930 immediately.'
+      }
+    };
+
+    function evaluateSymptom(key, triggerBtn = null) {
+      const targetBtn = triggerBtn || document.querySelector(`[data-symptom="${key}"]`) || document.querySelector('.symptom-btn');
+
+      document.querySelectorAll('.symptom-btn').forEach(btn => {
+        btn.classList.remove('border-cyan-500', 'bg-cyan-950/40', 'text-cyan-200');
+        btn.classList.add('border-slate-800', 'bg-slate-950/60', 'text-slate-300');
+      });
+
+      if (targetBtn) {
+        targetBtn.classList.remove('border-slate-800', 'bg-slate-950/60', 'text-slate-300');
+        targetBtn.classList.add('border-cyan-500', 'bg-cyan-950/40', 'text-cyan-200');
+      }
+
+      const data = symptomsDatabase[key];
+      const container = document.getElementById('verdict-container');
+      if (!data || !container) return;
+      
+      container.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <span class="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded border ${data.riskColor}">
+            Verdict: ${data.risk}
+          </span>
+          <span class="text-xs text-slate-400 font-mono">Incident Archetype Match</span>
+        </div>
+        <h4 class="text-xl font-extrabold text-white mb-2">${data.title}</h4>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">${data.summary}</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t border-slate-800/80">
+          <div class="bg-slate-900/50 p-3.5 rounded-lg border border-slate-800/80">
+            <span class="text-xs uppercase font-bold text-slate-400 font-mono">Primary Target Vector</span>
+            <p class="text-slate-300 text-xs mt-1">${data.target}</p>
+          </div>
+          <div class="bg-emerald-950/30 p-3.5 rounded-lg border border-emerald-900/50">
+            <span class="text-xs uppercase font-bold text-emerald-400 font-mono">Immediate Countermeasures</span>
+            <p class="text-slate-200 text-xs mt-1 whitespace-pre-line">${data.action}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize with first symptom on page load
+    evaluateSymptom('digital-arrest');
+
+    // --- 2. TIMELINE FEED FETCH & RENDER LOGIC ---
+    let fullFeedHistory = [];
+
     function formatDateHeader(dateStr) {
       if (!dateStr) return "Today";
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -44,84 +537,163 @@
       return dateStr;
     }
 
-    async function loadFeed() {
+    const fallbackMockData = {
+      updated_at: "Autonomous Live Mirror",
+      history: [
+        {
+          date: new Date().toISOString().split('T')[0],
+          regions: {
+            "India": {
+              headline: "I4C Issues Urgent Citizen Alert on 'Digital Arrest' & Malicious Bank APK Campaigns",
+              summary: "Threat Vector: Cybercriminals posing as CBI/Customs officials intimidate victims via WhatsApp video calls while phishing through electricity bill SMS.\nTarget: Retail banking customers & seniors.\nCountermeasure: Law enforcement never holds digital arrests. Report to 1930.",
+              source: "https://cybercrime.gov.in/Webform/daily-digest.aspx"
+            },
+            "Singapore": {
+              headline: "Singapore Police Force Warns Against Resurging Anti-Virus Phishing Scams",
+              summary: "Threat Vector: Malicious fake tech-support popups urging users to install remote management software.\nTarget: Remote workers & Windows users.\nCountermeasure: Install official ScamShield app and never grant remote access.",
+              source: "https://www.scamalert.sg"
+            },
+            "North America": {
+              headline: "FBI IC3 Issues Advisory on Cryptocurrency Investment and Executive Smishing Traps",
+              summary: "Threat Vector: Sophisticated SMS phishing impersonating CEO and payroll requests coupled with bogus DeFi liquidity pools.\nTarget: Corporate employees and retail investors.\nCountermeasure: Enforce FIDO2 hardware keys and verify executive out-of-band.",
+              source: "https://www.ic3.gov"
+            },
+            "Europe": {
+              headline: "Europol EC3 Coordinates Takedown of Banking Trojan Phishing Infrastructure",
+              summary: "Threat Vector: Automated invoice emails delivering multi-stage credential stealers.\nTarget: SME finance departments across Germany, France & UK.\nCountermeasure: Verify invoice payment detail changes via direct telephonic confirmation.",
+              source: "https://www.europol.europa.eu"
+            }
+          }
+        }
+      ]
+    };
+
+    function renderFeed(historyList) {
       const container = document.getElementById('timeline-container');
-      try {
-        const res = await fetch('./scams.json?nocache=' + Date.now());
-        if (!res.ok) throw new Error("File not found");
-        const data = await res.json();
-        
-        document.getElementById('last-updated').innerText = "Last Updated: " + (data.updated_at || "Recent");
+      if (!historyList || historyList.length === 0) {
+        container.innerHTML = '<p class="text-slate-400 text-sm text-center">No scam reports found matching criteria.</p>';
+        return;
+      }
 
-        // Backward compatibility fallback:
-        let history = [];
-        if (Array.isArray(data.history) && data.history.length > 0) {
-          history = data.history;
-        } else if (data.regions) {
-          history = [{ date: "2026-10-02", regions: data.regions }];
-        }
+      container.innerHTML = '';
 
-        if (history.length === 0) {
-          container.innerHTML = '<p class="text-slate-400 text-sm">No scam reports recorded yet.</p>';
-          return;
-        }
+      historyList.forEach((dayData, index) => {
+        const formattedDate = formatDateHeader(dayData.date);
+        const isLatest = index === 0;
 
-        container.innerHTML = '';
+        const daySection = document.createElement('section');
+        daySection.className = "border-b border-slate-900 pb-12 last:border-b-0";
 
-        history.forEach((dayData, index) => {
-          const formattedDate = formatDateHeader(dayData.date);
-          const isLatest = index === 0;
+        let dateHeaderHtml = `
+          <div class="flex items-center gap-3 mb-6">
+            <span class="h-3 w-3 rounded-full ${isLatest ? 'bg-cyan-400 animate-pulse' : 'bg-slate-600'}"></span>
+            <h3 class="text-xl md:text-2xl font-black tracking-wide text-white font-mono">
+              ${formattedDate}
+            </h3>
+            ${isLatest ? '<span class="text-[10px] font-bold tracking-wider uppercase bg-cyan-950 text-cyan-300 border border-cyan-800/80 px-2.5 py-0.5 rounded">Latest Dispatch</span>' : ''}
+            <div class="flex-1 h-[1px] bg-slate-800/80 ml-2"></div>
+          </div>
+        `;
 
-          const daySection = document.createElement('section');
-          daySection.className = "border-b border-slate-900 pb-10 last:border-b-0";
+        let cardsHtml = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
+        for (const [region, info] of Object.entries(dayData.regions || {})) {
+          const headlineText = info.headline || `${region} Threat Alert`;
+          const shareText = `🚨 *Cyber Scam Alert (${region})*\n${headlineText}\n\nRead daily digest:\nhttps://santoshtiru1.github.io/Scam-Alerts/`;
+          const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
 
-          let dateHeaderHtml = `
-            <div class="flex items-center gap-3 mb-6">
-              <span class="h-3 w-3 rounded-full ${isLatest ? 'bg-cyan-400 animate-pulse' : 'bg-slate-600'}"></span>
-              <h2 class="text-xl md:text-2xl font-black tracking-wide text-slate-100 font-mono">
-                ${formattedDate}
-              </h2>
-              ${isLatest ? '<span class="text-[10px] font-bold tracking-wider uppercase bg-cyan-950 text-cyan-400 border border-cyan-800/80 px-2 py-0.5 rounded">Latest</span>' : ''}
-              <div class="flex-1 h-[1px] bg-slate-800 ml-2"></div>
+          cardsHtml += `
+            <div class="bg-soc-900/80 border border-slate-800 hover:border-slate-700 hover:shadow-xl transition rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-bold uppercase tracking-wider bg-cyan-950/80 text-cyan-300 px-2.5 py-1 rounded border border-cyan-800/60 font-mono">
+                    ${region}
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-mono">Threat Vector</span>
+                </div>
+                <h4 class="text-base font-bold text-white mb-2 leading-snug">${headlineText}</h4>
+                <p class="text-slate-300 text-xs leading-relaxed whitespace-pre-line font-sans">${info.summary || 'Summary unavailable.'}</p>
+              </div>
+
+              <div class="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                ${info.source && info.source !== '#' ? `
+                  <a href="${info.source}" target="_blank" rel="noopener noreferrer" 
+                     class="text-xs font-medium text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1">
+                    <span>Source report</span>
+                    <span>&rarr;</span>
+                  </a>` : '<span></span>'}
+
+                <!-- WhatsApp One-Click Share Button -->
+                <a href="${waShareUrl}" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium bg-emerald-950 text-emerald-400 border border-emerald-800/70 hover:bg-emerald-900 transition">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                  </svg>
+                  Forward
+                </a>
+              </div>
             </div>
           `;
+        }
+        cardsHtml += '</div>';
 
-          let cardsHtml = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
-          for (const [region, info] of Object.entries(dayData.regions || {})) {
-            cardsHtml += `
-              <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 transition rounded-xl p-5 shadow flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold uppercase tracking-wider bg-cyan-950/80 text-cyan-400 px-2.5 py-1 rounded border border-cyan-800/60">
-                      ${region}
-                    </span>
-                  </div>
-                  <h3 class="text-base font-semibold text-slate-100 mb-2 leading-snug">${info.headline || region + ' Alert'}</h3>
-                  <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">${info.summary || 'Summary unavailable.'}</p>
-                </div>
-                ${info.source ? `
-                  <a href="${info.source}" target="_blank" rel="noopener noreferrer" 
-                     class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-cyan-400 hover:text-cyan-300 hover:underline">
-                    Read primary report <span>&rarr;</span>
-                  </a>` : ''}
-              </div>
-            `;
-          }
-          cardsHtml += '</div>';
-
-          daySection.innerHTML = dateHeaderHtml + cardsHtml;
-          container.appendChild(daySection);
-        });
-
-      } catch (err) {
-        container.innerHTML = `
-          <div class="p-4 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 text-sm">
-            Failed to load reports. Trigger the workflow under the GitHub Actions tab.
-          </div>`;
-      }
+        daySection.innerHTML = dateHeaderHtml + cardsHtml;
+        container.appendChild(daySection);
+      });
     }
 
-    loadFeed();
+    function filterFeed() {
+      const query = document.getElementById('filter-input').value.toLowerCase().trim();
+      if (!query) {
+        renderFeed(fullFeedHistory);
+        return;
+      }
+
+      const filtered = fullFeedHistory.map(day => {
+        const matchingRegions = {};
+        for (const [region, info] of Object.entries(day.regions || {})) {
+          if (
+            region.toLowerCase().includes(query) ||
+            (info.headline && info.headline.toLowerCase().includes(query)) ||
+            (info.summary && info.summary.toLowerCase().includes(query))
+          ) {
+            matchingRegions[region] = info;
+          }
+        }
+        return {
+          ...day,
+          regions: matchingRegions
+        };
+      }).filter(day => Object.keys(day.regions).length > 0);
+
+      renderFeed(filtered);
+    }
+
+    async function loadScamsData() {
+      try {
+        const res = await fetch('./scams.json?nocache=' + Date.now());
+        if (!res.ok) throw new Error("Local scams.json not available yet.");
+        const data = await res.json();
+        
+        const timestamp = data.updated_at || "Recent Sync";
+        document.getElementById('nav-last-updated').innerText = `Synced: ${timestamp}`;
+
+        if (Array.isArray(data.history) && data.history.length > 0) {
+          fullFeedHistory = data.history;
+        } else if (data.regions) {
+          fullFeedHistory = [{ date: new Date().toISOString().split('T')[0], regions: data.regions }];
+        } else {
+          fullFeedHistory = fallbackMockData.history;
+        }
+      } catch (err) {
+        console.warn("Using fallback telemetry data:", err.message);
+        fullFeedHistory = fallbackMockData.history;
+        document.getElementById('nav-last-updated').innerText = "Live Telemetry Preview";
+      }
+
+      renderFeed(fullFeedHistory);
+    }
+
+    loadScamsData();
   </script>
 </body>
 </html>
