@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-14 10:24 UTC",
+  "updated_at": "2026-10-15 06:16 UTC",
   "history": [
+    {
+      "date": "2026-10-15",
+      "regions": {
+        "North America": {
+          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
+          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
+        },
+        "South America": {
+          "headline": "The fraud landscape in Central America: From credential theft to scams - BioCatch",
+          "summary": "The fraud landscape in Central America: From credential theft to scams\u00a0\u00a0BioCatch",
+          "source": "https://news.google.com/rss/articles/CBMimwFBVV95cUxObWtmcWtZb0k1V2NpVEhKVjZrNzhRM1dGR0Q5eks5ck1CTzAyUDNMUTBvNGwzNjV6QTUxUzBibDlhdVROeFlSdWdIWTEtYThIOUdpLWY1UE1fN0hDVkFXeWVNdlFLdndHcllFa0dILVFGM3c3MjFxSnlhX0g3aWR1b2FsMlpUckZkejJhRm5yVGNPTDdBSzA2TG5rUQ?oc=5"
+        },
+        "Europe": {
+          "headline": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network - Migration and Home Affairs",
+          "summary": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network\u00a0\u00a0Migration and Home Affairs",
+          "source": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPekZudmUtRFExZk9KZHlJV2NwUHR0NUlhbmJ6azVzb0hmdV9xb0U1Y3dtUjlzM1VqemdVZVNYQUlOUTB6UnRnRFNaTU1yWG9ldjJnRllKZWFDbkRSVTJHcm0zMWhKc3VrTUIzM0FsdVp0eFlxZkF3S2p1WnR5c1l1TzJxUEs4RWlhTVUxMl9Pb05JcUxjazBhYVY5enA3cUpIUllIQ21yTjNtbi1MOFBWc2FqVkNYRWRYbEFlYl8tUXlWaUU5OF82azg0WmEwV3o5SzNNOUtITl9lQnJuYnNCUi1PQWk3Zm8?oc=5"
+        },
+        "India": {
+          "headline": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs - The420.in",
+          "summary": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs\u00a0\u00a0The420.in",
+          "source": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9YSDE4TEFGTExkZmtieWNDMFo3TTZxQVVlemE0WFFld0huZ3NiamltRXhDa3l2djRJbURaV05fRk5VZmdnRUttUXYyOEFpc1pqWlh2SXRkMkJBNTFPdWxrQ2F5bEY?oc=5"
+        },
+        "Singapore": {
+          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
+          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
+        },
+        "China": {
+          "headline": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime - Malay Mail",
+          "summary": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime\u00a0\u00a0Malay Mail",
+          "source": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOX19UX19CeHNKV2ZWaTdjSFlDaGpCYnl1VnB0MU1sYUNvRkJmRnQ3NS0zaWpPak1GemYyODZUUVNYVVgzcEp6OUNtQ1FUcE1RSGM2cjFQbGZVWjZCV3pkdWxELS1BbHVEdmVWczlRTGNkM1hCOTVPRy12Z2xUeGVIemd6SmJRUVcyTWx0akZSVjQzMEZMTGJQYWl5eU1jWm5xaWpCWS1ieU1Ra1p3VnNmVDJLeHNBRkhGekZHMmhPWm81M0tPSk9jZGozdThyNk1U0gHWAUFVX3lxTE5zMkdlY1JEZTdCV2tjc2xGRmJSQ0JLYm5ZX1BqeUVzb2Q4OFgtWWh0VV9TZjViczkybXVMUWtHNG8xQUpVWHNyZW1aTXVMZXB6eVlvUXliZWxpT1JUcHdmVjZjT2xsZ2cwZ3VCV1dzYW5yVWUtSmN0WTl4ZTBON0E3akJuTU5FeDhva3VoNlNTdzlwQ0RGZVU0NGNySEQ4bzlhcWVxVzFzcG4tOVJmOTI0NWVRUU5UOFpWQzVacWltMlA0Q1dndmVQenE0RjlwX2RiQnlWdXc?oc=5"
+        },
+        "Japan": {
+          "headline": "Microsoft Disrupts 3 Phishing Kits Linked to Over 1 Billion Scam Messages - The Hacker News",
+          "summary": "Microsoft Disrupts 3 Phishing Kits Linked to Over 1 Billion Scam Messages\u00a0\u00a0The Hacker News",
+          "source": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1vbmcweWhVSHFHeEpod1ZVRmoxQ3dJcWtXOHZucU9HVU9KMFM2LXY3WUtqYkMzWWF5akZCMWg2OFdzWk9mNnU3X0tXWlc0eWRTU3B2bjhDOVhqenFUaVk1dmJwSmU3SnNUbmFlLUdtVkVLdk1zdjBBdFR4ejBkdw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
+          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-14",
       "regions": {
