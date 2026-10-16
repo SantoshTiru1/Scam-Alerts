@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-15 06:16 UTC",
+  "updated_at": "2026-10-16 06:15 UTC",
   "history": [
+    {
+      "date": "2026-10-16",
+      "regions": {
+        "North America": {
+          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
+          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
+        },
+        "South America": {
+          "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
+          "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
+          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
+        },
+        "Europe": {
+          "headline": "Quicker cross-border cooperation needed to disrupt scams and crimes: S\u2019pore, international police - The Straits Times",
+          "summary": "Quicker cross-border cooperation needed to disrupt scams and crimes: S\u2019pore, international police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPUW9VSlAwOXBoalVpa0tXU2pvYUFxYnJFelZVdWV6Vl9EWTFIOHpreVBaV2tQNmxTWTVIYjNKM011REdmNG51WGZGZTdmcjlSbzFIck9SOG16aXZ4Y1IzNWtTN3g3Nk16aV9oemtlWnVsSXVuTVB1aXVqTkpUeGoyQ3RWekNqZmZsVUltNkM5ZG5sSHhlU3JWQkhTeDh6T0xiSG9XeUgxZFJVdFYzTXB1eHM2dWRhTzlBbFZZemxIenpEQjlmV1BqcTF3eHRxQQ?oc=5"
+        },
+        "India": {
+          "headline": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide) - DeXpose",
+          "summary": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide)\u00a0\u00a0DeXpose",
+          "source": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1tbldUNldVWWRGajZUdGVyc3VteVItNF8xQ0VTRzlMOHl1VTYwVkNUakhFZS1sY2VhdTJjeUtvYzBDZC03OU5nNUtTSnJJd1dBekpPWkNEbw?oc=5"
+        },
+        "Singapore": {
+          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
+          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
+        },
+        "China": {
+          "headline": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime - Malay Mail",
+          "summary": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime\u00a0\u00a0Malay Mail",
+          "source": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOX19UX19CeHNKV2ZWaTdjSFlDaGpCYnl1VnB0MU1sYUNvRkJmRnQ3NS0zaWpPak1GemYyODZUUVNYVVgzcEp6OUNtQ1FUcE1RSGM2cjFQbGZVWjZCV3pkdWxELS1BbHVEdmVWczlRTGNkM1hCOTVPRy12Z2xUeGVIemd6SmJRUVcyTWx0akZSVjQzMEZMTGJQYWl5eU1jWm5xaWpCWS1ieU1Ra1p3VnNmVDJLeHNBRkhGekZHMmhPWm81M0tPSk9jZGozdThyNk1U0gHWAUFVX3lxTE5zMkdlY1JEZTdCV2tjc2xGRmJSQ0JLYm5ZX1BqeUVzb2Q4OFgtWWh0VV9TZjViczkybXVMUWtHNG8xQUpVWHNyZW1aTXVMZXB6eVlvUXliZWxpT1JUcHdmVjZjT2xsZ2cwZ3VCV1dzYW5yVWUtSmN0WTl4ZTBON0E3akJuTU5FeDhva3VoNlNTdzlwQ0RGZVU0NGNySEQ4bzlhcWVxVzFzcG4tOVJmOTI0NWVRUU5UOFpWQzVacWltMlA0Q1dndmVQenE0RjlwX2RiQnlWdXc?oc=5"
+        },
+        "Japan": {
+          "headline": "Microsoft, Japan Cybercrime Takedown Hits 1B Scams [2026] - https://tech-insider.org/",
+          "summary": "Microsoft, Japan Cybercrime Takedown Hits 1B Scams [2026]\u00a0\u00a0https://tech-insider.org/",
+          "source": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5jc1IzT3VEZHlGVVpCUEZ0M19VVDdMYTU4UnBBeHNKcUl1clZxdGFoM1ZfZUllTmw3MXFiXzRFUG9EVFJ5VWRuVnFHSFY1TEZTcEJmMWpScTFPdnV2M3pxZXlZckxjbkhjVWdzMXhIa1UxazhXc3plU0dUYW9zRFk?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "AI is supercharging a global cyber fraud crisis. It could also solve it - The World Economic Forum",
+          "summary": "AI is supercharging a global cyber fraud crisis. It could also solve it\u00a0\u00a0The World Economic Forum",
+          "source": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNWGlMWWE0aE9Oc2lkWURBWS1qbUQwQzdQOWdibjVUdGJ6Uk5STjgzcFk0VnZNNWh2M1hRTUlkdDdNS3RNLTN1bGN4RDZvTURHai1vYjlvMTdOaV9IMng1MDVOcHlIYW5aT2RzNWhYd1ZjTWg4Y2VjUW1yUllfNV9jUGt1bWN4WUZWdzRGc1BUS0tZSGFQVGp1WXpPdGJiSjVhbjlfa2pBeFdRZDVCOHc?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-15",
       "regions": {
