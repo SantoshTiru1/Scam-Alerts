@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-16 06:15 UTC",
+  "updated_at": "2026-10-17 06:12 UTC",
   "history": [
+    {
+      "date": "2026-10-17",
+      "regions": {
+        "North America": {
+          "headline": "Chase streams AI scam prevention event to 700 branches across the US - The Paypers",
+          "summary": "Chase streams AI scam prevention event to 700 branches across the US\u00a0\u00a0The Paypers",
+          "source": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOUzRWd0xEeUxoMzlZVzNEblRmQU51cjgtek1VdHJWUjlDbUhORENnX0dTdWphSTdTN29tR1R0Z0g1Zm1Lc0F5WmgtamdxQ3dHOHM0THU5aE51YmpRN2JpVmJGVHB5STg5RENENWNyaWVLTy1BalZDNzBsSURuVXIzeURUYTJ4eTl2Q2I4ZEhDN0R6WTdBUkIyUmQxWGloZnhPMzRBdkw0YjJVcGl5a2ljRHlaQkExQQ?oc=5"
+        },
+        "South America": {
+          "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
+          "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
+          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
+        },
+        "Europe": {
+          "headline": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network - Migration and Home Affairs",
+          "summary": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network\u00a0\u00a0Migration and Home Affairs",
+          "source": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPekZudmUtRFExZk9KZHlJV2NwUHR0NUlhbmJ6azVzb0hmdV9xb0U1Y3dtUjlzM1VqemdVZVNYQUlOUTB6UnRnRFNaTU1yWG9ldjJnRllKZWFDbkRSVTJHcm0zMWhKc3VrTUIzM0FsdVp0eFlxZkF3S2p1WnR5c1l1TzJxUEs4RWlhTVUxMl9Pb05JcUxjazBhYVY5enA3cUpIUllIQ21yTjNtbi1MOFBWc2FqVkNYRWRYbEFlYl8tUXlWaUU5OF82azg0WmEwV3o5SzNNOUtITl9lQnJuYnNCUi1PQWk3Zm8?oc=5"
+        },
+        "India": {
+          "headline": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs - The420.in",
+          "summary": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs\u00a0\u00a0The420.in",
+          "source": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9YSDE4TEFGTExkZmtieWNDMFo3TTZxQVVlemE0WFFld0huZ3NiamltRXhDa3l2djRJbURaV05fRk5VZmdnRUttUXYyOEFpc1pqWlh2SXRkMkJBNTFPdWxrQ2F5bEY?oc=5"
+        },
+        "Singapore": {
+          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
+          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
+        },
+        "China": {
+          "headline": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime - Malay Mail",
+          "summary": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime\u00a0\u00a0Malay Mail",
+          "source": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOX19UX19CeHNKV2ZWaTdjSFlDaGpCYnl1VnB0MU1sYUNvRkJmRnQ3NS0zaWpPak1GemYyODZUUVNYVVgzcEp6OUNtQ1FUcE1RSGM2cjFQbGZVWjZCV3pkdWxELS1BbHVEdmVWczlRTGNkM1hCOTVPRy12Z2xUeGVIemd6SmJRUVcyTWx0akZSVjQzMEZMTGJQYWl5eU1jWm5xaWpCWS1ieU1Ra1p3VnNmVDJLeHNBRkhGekZHMmhPWm81M0tPSk9jZGozdThyNk1U0gHWAUFVX3lxTE5zMkdlY1JEZTdCV2tjc2xGRmJSQ0JLYm5ZX1BqeUVzb2Q4OFgtWWh0VV9TZjViczkybXVMUWtHNG8xQUpVWHNyZW1aTXVMZXB6eVlvUXliZWxpT1JUcHdmVjZjT2xsZ2cwZ3VCV1dzYW5yVWUtSmN0WTl4ZTBON0E3akJuTU5FeDhva3VoNlNTdzlwQ0RGZVU0NGNySEQ4bzlhcWVxVzFzcG4tOVJmOTI0NWVRUU5UOFpWQzVacWltMlA0Q1dndmVQenE0RjlwX2RiQnlWdXc?oc=5"
+        },
+        "Japan": {
+          "headline": "Japanese authorities target websites selling phishing tools used to mastermind scams - The Japan Times",
+          "summary": "Japanese authorities target websites selling phishing tools used to mastermind scams\u00a0\u00a0The Japan Times",
+          "source": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQdmhBODdvZ2JFRFpreXZXYTZVazVWazJuUl80dG9fZkxIUkVldHhZSlFtWmwyLVdqYTYzS3JRb2JXSnliZFNQMVdnbm9FbkFtMW1teWEwQzd6VDdpX0JIc3pvZWhkLWJSWUdBclpzbDZ5YnlvZ2h3UndpWnpqRmRLRmRaYV9XbHZpakF0cUJRa2NMVE1lenFSM0hRWUtBYTFJYTlfd0phdw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "4 key steps to tackling AI-fuelled cyber fraud - The World Economic Forum",
+          "summary": "4 key steps to tackling AI-fuelled cyber fraud\u00a0\u00a0The World Economic Forum",
+          "source": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQLVRxWklONGlSTlY2Q2V4VGVRd1RCdkZHNHJzY1U1U1JMS2RURXgtVjZ0RzRJWDNaNmJHdEVtTHRaa3VzN2lVVkUwU0FlMzVOQm5sVmpPakpMTUU2bGFzUjVtT29TWlF5Wm4tdVFRQVNiVkxfb3BLeUl6SzFnWldQVWR3?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-16",
       "regions": {
