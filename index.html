@@ -120,8 +120,8 @@
           <span>Explore Today's Feed</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </a>
-        <a href="#checker" class="px-5 py-2.5 rounded-xl bg-surface-card hover:bg-surface-highlight border border-surface-border text-slate-200 font-semibold text-xs sm:text-sm transition flex items-center gap-2">
-          <span>Check Suspicious Incident</span>
+        <a href="#matrix" class="px-5 py-2.5 rounded-xl bg-surface-card hover:bg-surface-highlight border border-surface-border text-slate-200 font-semibold text-xs sm:text-sm transition flex items-center gap-2">
+          <span>Explore Threat Matrix</span>
           <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -133,61 +133,75 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE SCAM SYMPTOM CHECKER -->
-  <section id="checker" class="py-14 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 w-full">
-    <div class="bg-surface-raised border border-surface-border rounded-2xl p-6 sm:p-8">
+  <!-- INTERACTIVE SCAM THREAT MATRIX & PLAYBOOK -->
+  <section id="matrix" class="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+    <div class="bg-surface-raised border border-surface-border rounded-2xl p-5 sm:p-7 shadow-xl">
       
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+      <!-- Matrix Header & Search Filter -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-surface-border">
         <div>
-          <h2 class="text-xl sm:text-2xl font-display font-bold text-white">Suspicious Message Evaluator</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Select a pattern below to understand how the scam works and what actions to take immediately.</p>
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-[11px] font-mono font-medium mb-2">
+            <span>DATABASE: CITIZEN DEFENSE PLAYBOOK</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">Citizen Scam Defense Matrix</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Categorized breakdown of scam patterns, delivery channels, target mechanics, and emergency action steps.</p>
         </div>
-        <span class="text-xs font-mono text-slate-400 bg-surface-card px-3 py-1 rounded-md border border-surface-border self-start sm:self-auto">
-          Rule Base: 2026.4
-        </span>
+
+        <!-- Search in Matrix -->
+        <div class="relative w-full md:w-80">
+          <input type="text" id="matrix-search" oninput="filterMatrix()" placeholder="Search scam, method, or keyword..." 
+                 class="w-full bg-surface-card border border-surface-border rounded-xl px-3.5 py-2 pl-9 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 transition">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
       </div>
-      <!-- Incident Selector Pills -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        <button onclick="evaluateSymptom('digital-arrest', this)" data-symptom="digital-arrest" 
-                class="symptom-btn text-left p-3.5 rounded-xl border border-brand-500 bg-brand-500/10 text-white transition text-xs flex flex-col justify-between">
-          <span class="font-bold text-sm mb-1 text-white flex items-center gap-1.5">
-            <span>🚨</span> "Digital Arrest" Call
-          </span>
-          <span class="text-slate-300 text-[11px] leading-snug">Video call impersonating Police, CBI, or Customs claiming illegal packages.</span>
-        </button>
 
-        <button onclick="evaluateSymptom('whatsapp-job', this)" data-symptom="whatsapp-job" 
-                class="symptom-btn text-left p-3.5 rounded-xl border border-surface-border bg-surface-card text-slate-300 hover:border-slate-600 transition text-xs flex flex-col justify-between">
-          <span class="font-bold text-sm mb-1 text-white flex items-center gap-1.5">
-            <span>💼</span> WhatsApp "Part-Time Task"
-          </span>
-          <span class="text-slate-400 text-[11px] leading-snug">Like YouTube videos or rate hotels for daily commissions.</span>
+      <!-- Category Filter Tabs: Clean multi-line wrapping, zero horizontal scrollbar -->
+      <div class="flex flex-wrap items-center gap-2 py-4 border-b border-surface-border/50 text-xs" id="category-pills">
+        <button onclick="selectCategory('all')" data-cat="all" class="cat-pill px-3 py-1.5 rounded-lg border border-brand-500 bg-brand-500/10 text-white font-medium transition">
+          All Categories (<span id="count-all">0</span>)
         </button>
-
-        <button onclick="evaluateSymptom('apk-sms', this)" data-symptom="apk-sms" 
-                class="symptom-btn text-left p-3.5 rounded-xl border border-surface-border bg-surface-card text-slate-300 hover:border-slate-600 transition text-xs flex flex-col justify-between">
-          <span class="font-bold text-sm mb-1 text-white flex items-center gap-1.5">
-            <span>📲</span> Electricity / Bank APK
-          </span>
-          <span class="text-slate-400 text-[11px] leading-snug">SMS claiming urgent disconnection or KYC freeze with a direct .apk download.</span>
+        <button onclick="selectCategory('Financial')" data-cat="Financial" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          💳 Financial (<span id="count-financial">0</span>)
         </button>
-
-        <button onclick="evaluateSymptom('trading-group', this)" data-symptom="trading-group" 
-                class="symptom-btn text-left p-3.5 rounded-xl border border-surface-border bg-surface-card text-slate-300 hover:border-slate-600 transition text-xs flex flex-col justify-between">
-          <span class="font-bold text-sm mb-1 text-white flex items-center gap-1.5">
-            <span>📈</span> Telegram Crypto / Stock App
-          </span>
-          <span class="text-slate-400 text-[11px] leading-snug">Invitation to exclusive VIP wealth group with custom trading app.</span>
+        <button onclick="selectCategory('Information')" data-cat="Information" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          🛡️ Information (<span id="count-information">0</span>)
+        </button>
+        <button onclick="selectCategory('Job Scams')" data-cat="Job Scams" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          💼 Job Scams (<span id="count-job">0</span>)
+        </button>
+        <button onclick="selectCategory('Relationship Scams')" data-cat="Relationship Scams" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          ❤️ Relationship (<span id="count-relationship">0</span>)
+        </button>
+        <button onclick="selectCategory('Online Shopping')" data-cat="Online Shopping" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          🛍️ Shopping (<span id="count-shopping">0</span>)
+        </button>
+        <button onclick="selectCategory('Cyber Attacks')" data-cat="Cyber Attacks" class="cat-pill px-3 py-1.5 rounded-lg border border-surface-border bg-surface-card text-slate-300 hover:text-white transition">
+          ⚠️ Cyber Attacks (<span id="count-attacks">0</span>)
         </button>
       </div>
 
-      <!-- Evaluator Verdict Container -->
-      <div id="verdict-container" class="bg-surface-card border border-surface-border rounded-xl p-5 sm:p-6 transition-all">
-        <!-- Injected via JavaScript -->
+      <!-- Matrix Cards Grid -->
+      <div id="matrix-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5">
+        <!-- Injected via JavaScript from full dataset -->
+      </div>
+
+      <!-- Detail Modal / Drawer for In-Depth Emergency Next Action -->
+      <div id="threat-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface-raised border border-surface-border rounded-2xl max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto">
+          <button onclick="closeThreatModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-surface-highlight">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div id="modal-content">
+            <!-- Modal Body Injected Dynamically -->
+          </div>
+        </div>
       </div>
 
     </div>
   </section>
+
   <!-- DAILY SCROLL FEED SECTION -->
   <main id="feed" class="py-10 max-w-6xl mx-auto px-4 sm:px-6 w-full flex-1">
     
@@ -290,74 +304,509 @@
     </div>
   </footer>
   <script>
-    // 1. SYMPTOM DATABASE & INTERACTIVE LOGIC
-    const symptomsDatabase = {
-      'digital-arrest': {
-        risk: 'EXTREME RISK',
-        riskColor: 'text-rose-400 bg-rose-950/60 border-rose-800/80',
-        title: 'Impersonation & Extortion ("Digital Arrest")',
-        summary: 'Scammers pose as Police Officers, Enforcement Directorate (ED), or customs officials over video calls with simulated police backdrops. They claim illegal narcotics or passports were seized in your name and order you to deposit funds into "verification" accounts.',
-        action: '1. Disconnect immediately. Police and judges NEVER conduct trials or arrests over video calls.\n2. Do NOT transfer any money to "court escrow" or "RBI verification accounts".\n3. In India, report instantly to 1930 or cybercrime.gov.in.'
+    // 1. FULL THREAT MATRIX DATABASE (Based on official citizen defense framework + Global Intelligence)
+    const threatMatrixData = [
+      // FINANCIAL
+      {
+        id: "fin-invest",
+        category: "Financial",
+        type: "Investment Scams",
+        means: "Messaging Apps, Social Media (Telegram, WhatsApp)",
+        target: "Impress with high returns and forces you to invest and you lose money in unverified trading portals.",
+        action: "• Immediately report to National Cyber Helpline: Call 1930 (India) or 1799 (SG).\n• File an online report on the National Cyber Crime Reporting Portal (cybercrime.gov.in) & Sanchar Saathi Chakshu Portal.\n• Freeze associated bank account / card transactions immediately.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
       },
-      'whatsapp-job': {
-        risk: 'HIGH RISK',
-        riskColor: 'text-amber-400 bg-amber-950/60 border-amber-800/80',
-        title: 'Prepaid Task & Fake Part-Time Salary',
-        summary: 'Offers ₹2,000–₹5,000 daily for pressing like buttons on YouTube or reviewing hotels. After small initial payouts (₹150–₹400) build trust, victims are moved to Telegram and coerced to deposit thousands into "merchant crypto tasks" to withdraw their balance.',
-        action: '1. No legitimate enterprise pays money for clicking like buttons.\n2. Never transfer money to "unlock" your earned commissions.\n3. Block the contact and report the phone number inside WhatsApp.'
+      {
+        id: "fin-pig-butchering",
+        category: "Financial",
+        type: "Pig Butchering (Sha Zhu Pan)",
+        means: "Dating Apps, LinkedIn, WhatsApp 'Wrong Number' SMS",
+        target: "Scammers spend weeks cultivating fake romance or friendship ('fattening the pig'), then nudge the victim into a manipulated Web3/forex trading portal showing bogus high profits before locking all withdrawals.",
+        action: "• Never pay 'taxes', 'margins', or 'clearance fees' to withdraw funds—money demanded to unlock profits is 100% loss.\n• Immediately preserve all blockchain TXIDs, wallet addresses, and chat history.\n• Report to IC3.gov / 1930 Cyber Cell and notify your bank's fraud desk.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
       },
-      'apk-sms': {
-        risk: 'CRITICAL COMPROMISE',
-        riskColor: 'text-rose-400 bg-rose-950/60 border-rose-800/80',
-        title: 'Malicious Android APK / Banking Trojan',
-        summary: 'SMS warning that your electricity bill, bank KYC, or credit card will be suspended tonight unless you install an updated app via a direct link. Once installed, the APK silently steals OTPs and SMS messages to drain accounts.',
-        action: '1. Never click links that prompt you to download files ending with `.apk`.\n2. If already installed: immediately switch phone to Airplane Mode, remove the SIM, and factory reset.\n3. Contact your bank immediately from a secondary phone to freeze net banking.'
+      {
+        id: "fin-bec",
+        category: "Financial",
+        type: "Executive Impersonation ('Boss Scam' / BEC)",
+        means: "WhatsApp/Email with CEO photo, Spoofed Domain",
+        target: "Scammers pose as the company CEO, Managing Director, or CFO, sending urgent messages to finance personnel demanding instant vendor payments, gift cards, or secret wire transfers.",
+        action: "• Establish strict Dual-Channel Out-of-Band Verification: Always confirm payment modifications via a direct phone call.\n• Check sender domain headers for spoofing (e.g., look for character substitution like @c0mpany.com).\n• Notify company IT security and file a Business Email Compromise complaint with 1930 / FBI IC3.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
       },
-      'trading-group': {
-        risk: 'FINANCIAL TRAP',
-        riskColor: 'text-indigo-400 bg-indigo-950/60 border-indigo-800/80',
-        title: 'Institutional Fake Stock / Crypto Group',
-        summary: 'Added into WhatsApp or Telegram "VIP Wealth Circles" sharing manipulated screenshots of huge stock returns. Victims are instructed to deposit capital onto custom web portals, but all withdrawal requests are blocked unless exorbitant "tax fees" are paid.',
-        action: '1. SEBI and regulated brokerages never conduct institutional wealth trading inside WhatsApp groups.\n2. Never pay additional fees to release funds from an unverified portal.\n3. Report the bank accounts and UPI IDs used in the group to 1930.'
+      {
+        id: "fin-tech-support",
+        category: "Financial",
+        type: "Remote Access / Tech Support Scam",
+        means: "Browser Pop-ups, Search Ads, Toll-Free Numbers",
+        target: "Alarms users with flashing sirens claiming 'Windows Defender virus detected' or 'Bank KYC locked', tricking them into installing remote tools (AnyDesk, TeamViewer) to drain accounts.",
+        action: "• Force-close the browser (press Alt+F4 or kill browser task). Never call the phone number on screen.\n• If remote software was installed, disconnect Wi-Fi immediately, uninstall the software, and reboot.\n• Call bank immediately from another device to freeze net banking credentials.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-electricity",
+        category: "Financial",
+        type: "Electricity & Utility Disconnection Scam",
+        means: "SMS, WhatsApp Messages from 10-digit numbers",
+        target: "Urgent text stating: 'Dear consumer, your electricity will be disconnected tonight at 9:30 PM due to unpaid previous bill. Call power officer immediately.'",
+        action: "• Real utility electricity boards NEVER send SMS from random 10-digit mobile numbers; they use verified official short headers.\n• Never call the mobile number provided in the SMS.\n• Check your billing status exclusively through your official discom mobile app or electricity board website.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-loan-app",
+        category: "Financial",
+        type: "Instant Predatory Loan App Extortion",
+        means: "Play Store links, Third-party APKs, Facebook ads",
+        target: "Offers 5-minute loans with zero collateral, demands full access to Contacts and Photo Gallery, disburses a fractional amount, then blackmails victims with morphed photos sent to relatives.",
+        action: "• Do NOT pay further extortion installments. Paying invites escalating blackmail.\n• Revoke all permissions and uninstall the application immediately.\n• File an urgent complaint with Cyber Police (1930 / cybercrime.gov.in) with payment slips and blackmailer phone numbers.\n• Warn family contacts proactively that your phone was compromised.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "fin-betting",
+        category: "Financial",
+        type: "Betting Scams",
+        means: "Messaging Apps, Social Media ads",
+        target: "Makes you believe you are lucky, displays fabricated winning proofs, and creates gambling addiction traps.",
+        action: "• Never deposit money to unlock claimed betting winnings.\n• Block the promoter and report illegal betting links to Sanchar Saathi Chakshu portal.\n• Report bank UPI handles used by the platform to 1930.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-recovery",
+        category: "Financial",
+        type: "Money Recovery Scams",
+        means: "Online Money Apps, Social Forums, Telegram",
+        target: "Poses as ethical hackers, recovery agents, or lawyers offering to recover previously stolen funds for an upfront fee.",
+        action: "• Never pay any upfront fee. Legitimate police and banks NEVER charge a fee to recover scammed funds.\n• Official recovery is processed only through law enforcement via Cyber Cell (1930).\n• Block and report these recovery handles.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "fin-crypto",
+        category: "Financial",
+        type: "Crypto Scams",
+        means: "Social Media, Fake Trading Platforms",
+        target: "Fake trading platforms, high-return liquidity schemes, or cryptojacking that promises effortless wealth but drains digital wallets.",
+        action: "• Disconnect Web3 wallets from unfamiliar DApps.\n• Never transfer funds to personal or unverified crypto exchange wallets.\n• Report transaction hashes and receiving addresses to cybercrime.gov.in / FBI IC3.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-digital-arrest",
+        category: "Financial",
+        type: "Digital Arrest Scams",
+        means: "Video Calls (Skype, WhatsApp, Zoom)",
+        target: "Fraudsters pose as police or law enforcement officers on video calls, claiming you are part of a money-laundering crime or narcotics package and demanding immediate money transfers to 'verification escrow'.",
+        action: "• Disconnect immediately. Police, CBI, ED, and courts NEVER conduct trials or arrests over video calls.\n• Never transfer money to any 'RBI court clearance' or 'security verification' bank account.\n• Call 1930 immediately to register the incident.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "fin-courier-customs",
+        category: "Financial",
+        type: "Fake Courier / Customs Clearance Trap",
+        means: "Automated Calls (IVR), WhatsApp from 'Customs'",
+        target: "Claims an intercepted DHL/FedEx package sent in your name containing passports and illegal drugs, threatening arrest unless verified with a clearance bond.",
+        action: "• Legitimate international courier companies do not connect you directly to police on Skype or demand UPI bonds.\n• Check courier status only using official tracking numbers on official carrier websites.\n• Report caller numbers directly to the Sanchar Saathi Chakshu portal.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-upi-qr",
+        category: "Financial",
+        type: "UPI and QR Code Scams",
+        means: "Online Transfers, OLX, Marketplace Apps",
+        target: "Tricking users into scanning a QR code or entering their UPI PIN under the false pretense of receiving money rather than sending it.",
+        action: "• Golden Rule: YOU NEVER ENTER A UPI PIN TO RECEIVE MONEY. Entering a PIN always debits your account.\n• Cancel the request immediately if prompted for a PIN.\n• Report the scammer's UPI VPA handle on your payment app and file on 1930.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "fin-donation",
+        category: "Financial",
+        type: "Donation Scams",
+        means: "Online Money Apps, Social Media",
+        target: "Exploits natural disasters, wars, or sick children to make you feel emotional and get you to donate to personal scammer accounts.",
+        action: "• Donate only to verified government funds (like PM CARES or registered Red Cross charities).\n• Check registered NGO NGO-DARPAN portal or official banking details.\n• Do not transfer to personal individual UPI addresses.",
+        badgeColor: "text-sky-400 bg-sky-950/60 border-sky-800"
+      },
+
+      // INFORMATION & IDENTITY
+      {
+        id: "info-quishing",
+        category: "Information",
+        type: "Quishing (QR Code Phishing)",
+        means: "Physical Stickers (Parking meters, Cafés), Invoices, Email attachments",
+        target: "Replaces legitimate payment or menu QR codes with malicious stickers that direct victims to credential-harvesting phishing portals or automated token-stealing payloads.",
+        action: "• Inspect physical QR codes for tampering or stickers pasted over genuine signs.\n• Preview the decoded destination URL before opening; verify official domain structure.\n• Never input passwords, banking PINs, or corporate SSO credentials after scanning a QR code.",
+        badgeColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800"
+      },
+      {
+        id: "info-sim-swap",
+        category: "Information",
+        type: "SIM Swap & eSIM Hijacking",
+        means: "Social Engineering Telecom Staff, Fake KYC SMS, QR eSIM Porting",
+        target: "Fraudsters obtain a duplicate physical SIM or trick victims into scanning an eSIM setup QR code, disabling the victim's phone to intercept all two-factor banking OTPs.",
+        action: "• If your phone suddenly loses cellular signal and shows 'No Service' unexpectedly, contact your telecom carrier immediately from another phone.\n• Never scan unknown QR codes sent via email claiming to be '5G SIM upgrades' or 'eSIM activation'.\n• Set a carrier-level PIN/password for your cellular account.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "info-echallan",
+        category: "Information",
+        type: "Fake Traffic E-Challan Phishing",
+        means: "SMS from 10-digit numbers, WhatsApp alerts",
+        target: "Sends urgent SMS claiming pending traffic fine with vehicle impoundment threats, linking to spoofed domains (e.g. echallan-parivahan.in instead of .gov.in) to harvest card CVVs.",
+        action: "• Official Indian traffic challans arrive only from registered sender IDs (like VK-VAAHAN or AD-TRAFIC), never standard 10-digit mobile numbers.\n• Check fines only by typing 'echallan.parivahan.gov.in' manually into your browser.\n• All legitimate government portals end strictly with '.gov.in'.",
+        badgeColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800"
+      },
+      {
+        id: "info-phishing",
+        category: "Information",
+        type: "Phishing Scams",
+        means: "Emails",
+        target: "Unknown offers, fake tax refund notices, or fake account suspension messages asking you to click credential-harvesting links.",
+        action: "• Never click links or enter passwords from unsolicited emails.\n• Check sender domain (e.g., look for typos like @paypa1.com).\n• Mark as phishing in your email client and delete.",
+        badgeColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800"
+      },
+      {
+        id: "info-identity",
+        category: "Information",
+        type: "Identity Theft & Account Takeover",
+        means: "All possible vectors (Data Leaks, Social Engineering, Sim Swap)",
+        target: "Stealing sensitive personal IDs (Aadhaar, PAN, SSN) to open fake bank accounts, apply for micro-loans, or commit fraud in your name.",
+        action: "• Lock your Aadhaar biometrics immediately on the UIDAI portal/mAadhaar app.\n• Pull your CIBIL/Equifax credit score to check for unauthorized loans taken in your name.\n• File an Identity Theft complaint on cybercrime.gov.in.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "info-sextortion",
+        category: "Information",
+        type: "Sextortion",
+        means: "Video Calls, Social Media",
+        target: "Luring victims into compromising video calls, recording them, or using face-swap morphing, then threatening to expose explicit media to contacts unless ransom is paid.",
+        action: "• DO NOT PAY. Paying invites further blackmails.\n• Block the blackmailer across all channels and deactivate your social media temporarily.\n• Lodge an immediate cyber complaint under IPC/IT Act on cybercrime.gov.in or call 1930.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "info-vishing",
+        category: "Information",
+        type: "Vishing and Smishing",
+        means: "Voice Calls / Text Messages (SMS)",
+        target: "Voice calls (vishing) or text messages (smishing) where fraudsters pose as banks, tech support, or government agents to demand urgent action or OTPs.",
+        action: "• Hang up. Never share OTPs, card CVVs, or internet banking passwords.\n• Call your bank's official number from the back of your credit/debit card.\n• Report fraudulent SMS senders on the Chakshu Portal (sancharsaathi.gov.in).",
+        badgeColor: "text-cyan-400 bg-cyan-950/60 border-cyan-800"
+      },
+
+      // JOB SCAMS
+      {
+        id: "job-wf-home",
+        category: "Job Scams",
+        type: "Work From Home Job Scams",
+        means: "Messaging Apps (Telegram, WhatsApp)",
+        target: "Attracts victims with small easy earnings (reviewing hotels, liking YouTube videos), builds initial trust, and then demands investments to release payments.",
+        action: "• Legitimate companies do not pay for liking videos or rating random links.\n• Never transfer money to 'unlock' earnings or advance salary tiers.\n• Block the sender and report the group on WhatsApp/Telegram.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "job-review-rating",
+        category: "Job Scams",
+        type: "Google Maps & Movie Rating Task Fraud",
+        means: "WhatsApp/Telegram invites, Freelancer portals",
+        target: "Promises ₹2,000–₹5,000 daily for giving 5-star Google Maps reviews or movie ratings. Pays small sums initially (₹150), then traps victims in high-deposit 'prepaid assignment tasks'.",
+        action: "• If an online job requires you to pay your own money to complete tasks, it is an absolute scam.\n• Stop depositing funds immediately. Do not attempt to complete further tasks to retrieve lost balance.\n• Report the beneficiary UPI accounts and Telegram group IDs to 1930.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+      {
+        id: "job-overseas-visa",
+        category: "Job Scams",
+        type: "Fake Overseas Job & Visa Scam",
+        means: "Classifieds, Unregistered Recruitment Agencies",
+        target: "Offers high-paying overseas corporate or oil-rig positions in Canada, UK, or Gulf states, asking for hefty upfront visa fees, medical exam processing, and work permits.",
+        action: "• Verify overseas recruitment agencies against the official eMigrate portal (emigrate.gov.in).\n• Legitimate foreign employers sponsor visas directly and never ask applicants to wire fees to personal accounts.\n• Report bogus agents to the Ministry of External Affairs Protectors of Emigrants.",
+        badgeColor: "text-amber-400 bg-amber-950/60 border-amber-800"
+      },
+
+      // RELATIONSHIP SCAMS
+      {
+        id: "rel-honeytrap",
+        category: "Relationship Scams",
+        type: "Honey Trap",
+        means: "Messaging Apps",
+        target: "Acts friendly, sends personal photos, and lures victims into sharing confidential details, credentials, or explicit videos for blackmail.",
+        action: "• Stop all communication immediately and refrain from sending money.\n• Preserve chat screenshots and account IDs.\n• Report the extortion attempt directly to law enforcement via 1930.",
+        badgeColor: "text-pink-400 bg-pink-950/60 border-pink-800"
+      },
+      {
+        id: "rel-dating",
+        category: "Relationship Scams",
+        type: "Dating Café / Meetup Scam",
+        means: "Dating Apps (Tinder, Bumble)",
+        target: "Builds friendship and insists on meeting in a specific obscure café or restaurant, leaving the victim stuck with an extortionate bill (₹20k–₹1L).",
+        action: "• Choose well-known, public franchise venues for first meetings.\n• If pressured into exorbitant bills, call emergency local police (112).\n• Report the dating profile with photo evidence on the dating app.",
+        badgeColor: "text-pink-400 bg-pink-950/60 border-pink-800"
+      },
+      {
+        id: "rel-fake-relationship",
+        category: "Relationship Scams",
+        type: "Fake Relationship / Romance Scam",
+        means: "Social Media (Instagram, Facebook)",
+        target: "Scammers build fake online relationships over weeks or months, claiming to send overseas gifts or facing fake medical emergencies before asking for money.",
+        action: "• Customs and airport authorities never ask for duty fees to personal bank accounts.\n• Reverse search their profile photos on Google/Yandex Images.\n• Cut off contact and refuse all money transfers.",
+        badgeColor: "text-pink-400 bg-pink-950/60 border-pink-800"
+      },
+      {
+        id: "rel-matrimonial",
+        category: "Relationship Scams",
+        type: "Matrimonial Scams",
+        means: "Matrimonial Websites / Apps",
+        target: "Presents marriage proposals pretending to be affluent NRI professionals, then asks for emergency investments, customs clearance, or business loans before meeting.",
+        action: "• Insist on in-person family meetings before discussing any financial topic.\n• Verify NRI company credentials independently on LinkedIn.\n• Report the profile immediately to the matrimonial platform support.",
+        badgeColor: "text-pink-400 bg-pink-950/60 border-pink-800"
+      },
+
+      // ONLINE SHOPPING
+      {
+        id: "shop-buying-selling",
+        category: "Online Shopping",
+        type: "Duty-Free & Smuggled Goods Trap",
+        means: "eCommerce apps, Instagram Ads",
+        target: "Lures buyers with products that are implausibly cheap, claiming they are confiscated, smuggled, or duty-free luxury electronics.",
+        action: "• If the price is too good to be true, it is 100% a scam.\n• Avoid paying via direct UPI or gift cards; only use verified merchant gateways.\n• Report fraudulent ad profiles to Instagram/Meta.",
+        badgeColor: "text-violet-400 bg-violet-950/60 border-violet-800"
+      },
+      {
+        id: "shop-fake-store",
+        category: "Online Shopping",
+        type: "Fake Store Websites",
+        means: "Fake Store Apps, Search Ads",
+        target: "Cloned online stores offering 80-90% discounts on branded clothing and shoes that never arrive or deliver counterfeit trash.",
+        action: "• Check domain age via whois.com (scam domains are typically days or weeks old).\n• Avoid sites without verifiable physical addresses and GST numbers.\n• Initiate a chargeback with your credit card provider if scammed.",
+        badgeColor: "text-violet-400 bg-violet-950/60 border-violet-800"
+      },
+      {
+        id: "shop-social-group",
+        category: "Online Shopping",
+        type: "Social Media Wholesale Fraud",
+        means: "Social Media Groups (Telegram, Facebook Marketplace)",
+        target: "Selling products at wholesale factory prices, demanding 50% advance UPI payment, and disappearing without delivering.",
+        action: "• Never make advance payments to unverified individual sellers.\n• Use escrow or cash on delivery (COD) with open-box verification.\n• Report the seller's mobile number on the Chakshu Portal.",
+        badgeColor: "text-violet-400 bg-violet-950/60 border-violet-800"
+      },
+      {
+        id: "shop-reshipping",
+        category: "Online Shopping",
+        type: "Reshipping Mule Scam ('Package Inspector')",
+        means: "Remote job boards, classifieds",
+        target: "Hires victims as 'quality inspection package handlers' to receive goods bought with stolen credit cards at their home and reship them internationally, making the victim legally liable for stolen merchandise.",
+        action: "• Never accept packages for forwarding from individuals or companies you have not met in person.\n• Refuse incoming deliveries and return to sender immediately.\n• File an incident report with postal inspection authorities and local cyber police.",
+        badgeColor: "text-violet-400 bg-violet-950/60 border-violet-800"
+      },
+
+      // CYBER ATTACKS & MALWARE
+      {
+        id: "cyber-apks",
+        category: "Cyber Attacks",
+        type: "Malicious APKs Scam",
+        means: "Messaging Apps, Social Media (WhatsApp, SMS)",
+        target: "Urgent message claiming pending traffic fine (RTO Challan.apk), electricity disconnection, bank KYC freeze, or reward points asking to install an APK.",
+        action: "• UNINSTALL THE APK IMMEDIATELY.\n• Switch phone to Airplane Mode, remove the SIM card, and disconnect Wi-Fi.\n• Immediately contact your bank from another phone to freeze net banking & debit cards.\n• Backup personal photos and perform a complete Factory Reset of the device.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "cyber-ransomware",
+        category: "Cyber Attacks",
+        type: "Ransomware",
+        means: "Social Media, Emails, Pirated Software",
+        target: "Malicious software that encrypts computer files, personal photos, and databases, demanding payment (often in cryptocurrency) to restore access.",
+        action: "• Disconnect infected PC from network/LAN immediately to prevent spread.\n• Never pay the ransom; it does not guarantee file recovery.\n• Check NoMoreRansom.org for free decryption tools.\n• Report to national cyber emergency team (CERT-In / IC3).",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "cyber-social-eng",
+        category: "Cyber Attacks",
+        type: "Social Engineering (Emergency Trap)",
+        means: "Social Media, Messaging Apps, Calls",
+        target: "Scammers call claiming your child or family member is injured in an accident or detained by police, manufacturing extreme panic to force instant money transfers.",
+        action: "• NEVER TRUST THE CALL IMMEDIATELY. Pause and do not react to panic.\n• Verify Independently: Hang up and call your family member directly using their saved number.\n• Establish a Family Safe Word: A private passphrase known only to your family.\n• Report cyber fraud to 1930.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "cyber-voice-cloning",
+        category: "Cyber Attacks",
+        type: "AI Voice Cloning & Deepfakes",
+        means: "Calls, Messaging Apps, Social Media",
+        target: "Scammers use AI voice-cloning tools to replicate a relative's appearance and voice using short audio/video clips stolen from public reels and social media.",
+        action: "• Never react to panic. Call the real family member on a secondary known channel.\n• Ask a verification question that only the real person could know.\n• Use your private Family Safe Word.\n• Report the spoofed call to telecom authorities & 1930.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "cyber-wifi-mitm",
+        category: "Cyber Attacks",
+        type: "Public Wi-Fi Rogue AP / Evil Twin Attack",
+        means: "Airport, Hotel, and Metro Public Free Wi-Fi",
+        target: "Attackers broadcast an unencrypted hotspot with identical names (e.g., 'Free_Airport_WiFi') to intercept unencrypted traffic, passwords, and banking sessions via Man-in-the-Middle (MitM).",
+        action: "• Never perform financial transactions or login to sensitive portals on open, password-less public Wi-Fi.\n• Use an encrypted VPN whenever connecting outside trusted home/office networks.\n• Turn off 'Auto-connect to open networks' on your phone and laptop.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
+      },
+      {
+        id: "cyber-hardware-hacking",
+        category: "Cyber Attacks",
+        type: "Malicious Hardware / Pen Drive Attack",
+        means: "Pendrive, Public USB Charging Ports (Juice Jacking)",
+        target: "Installs trojans, keyloggers, and gains root control of laptops, PCs, mobile devices, and webcam/CCTV feeds.",
+        action: "• Never insert random USB drives found in public or sent by post.\n• Use a USB data blocker when charging devices at airports or stations.\n• Run a full offline antivirus scan if suspicious media was plugged in.",
+        badgeColor: "text-rose-400 bg-rose-950/60 border-rose-800"
       }
-    };
+    ];
 
-    function evaluateSymptom(key, triggerBtn = null) {
-      const targetBtn = triggerBtn || document.querySelector(`[data-symptom="${key}"]`);
+    let currentCategoryFilter = "all";
 
-      document.querySelectorAll('.symptom-btn').forEach(btn => {
-        btn.classList.remove('border-brand-500', 'bg-brand-500/10', 'text-white');
-        btn.classList.add('border-surface-border', 'bg-surface-card', 'text-slate-300');
-      });
+    function updateCategoryCounts() {
+      const counts = {
+        all: threatMatrixData.length,
+        financial: threatMatrixData.filter(d => d.category === "Financial").length,
+        information: threatMatrixData.filter(d => d.category === "Information").length,
+        job: threatMatrixData.filter(d => d.category === "Job Scams").length,
+        relationship: threatMatrixData.filter(d => d.category === "Relationship Scams").length,
+        shopping: threatMatrixData.filter(d => d.category === "Online Shopping").length,
+        attacks: threatMatrixData.filter(d => d.category === "Cyber Attacks").length,
+      };
 
-      if (targetBtn) {
-        targetBtn.classList.remove('border-surface-border', 'bg-surface-card', 'text-slate-300');
-        targetBtn.classList.add('border-brand-500', 'bg-brand-500/10', 'text-white');
-      }
-
-      const data = symptomsDatabase[key];
-      const container = document.getElementById('verdict-container');
-      if (!data || !container) return;
-
-      container.innerHTML = `
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded border ${data.riskColor}">
-            ${data.risk}
-          </span>
-          <span class="text-[11px] text-slate-400 font-mono">Pattern Assessment</span>
-        </div>
-        <h4 class="text-lg font-bold text-white mb-2">${data.title}</h4>
-        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">${data.summary}</p>
-        
-        <div class="p-3.5 rounded-lg bg-surface-raised border border-surface-border mt-3">
-          <span class="text-xs font-bold uppercase text-emerald-400 font-mono block mb-1">Immediate Action Required:</span>
-          <p class="text-slate-200 text-xs leading-relaxed whitespace-pre-line font-sans">${data.action}</p>
-        </div>
-      `;
+      document.getElementById('count-all').innerText = counts.all;
+      document.getElementById('count-financial').innerText = counts.financial;
+      document.getElementById('count-information').innerText = counts.information;
+      document.getElementById('count-job').innerText = counts.job;
+      document.getElementById('count-relationship').innerText = counts.relationship;
+      document.getElementById('count-shopping').innerText = counts.shopping;
+      document.getElementById('count-attacks').innerText = counts.attacks;
     }
 
-    // Initialize first symptom
-    evaluateSymptom('digital-arrest');
+    function selectCategory(category) {
+      currentCategoryFilter = category;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.remove('border-surface-border', 'bg-surface-card', 'text-slate-300');
+          btn.classList.add('border-brand-500', 'bg-brand-500/10', 'text-white');
+        } else {
+          btn.classList.remove('border-brand-500', 'bg-brand-500/10', 'text-white');
+          btn.classList.add('border-surface-border', 'bg-surface-card', 'text-slate-300');
+        }
+      });
+      filterMatrix();
+    }
+
+    function filterMatrix() {
+      const searchInput = document.getElementById('matrix-search');
+      const query = (searchInput ? searchInput.value : "").toLowerCase().trim();
+      const container = document.getElementById('matrix-cards-container');
+      if (!container) return;
+
+      const filtered = threatMatrixData.filter(item => {
+        const matchesCategory = currentCategoryFilter === "all" || item.category === currentCategoryFilter;
+        const matchesQuery = !query || 
+          item.type.toLowerCase().includes(query) || 
+          item.category.toLowerCase().includes(query) || 
+          item.means.toLowerCase().includes(query) || 
+          item.target.toLowerCase().includes(query) || 
+          item.action.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 font-mono text-xs">
+            No threat patterns matching "${query}". Try searching for terms like "APK", "Call", or "WhatsApp".
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="bg-surface-card border border-surface-border card-hover rounded-xl p-4 flex flex-col justify-between transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${item.badgeColor}">
+                ${item.category}
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Matrix ID: ${item.id}</span>
+            </div>
+
+            <h3 class="text-sm font-bold text-white mb-1.5 flex items-center gap-1.5">
+              <span>${item.type}</span>
+            </h3>
+
+            <div class="text-[11px] text-slate-400 mb-2.5 font-mono">
+              <span class="text-slate-300">Means / Vector:</span> ${item.means}
+            </div>
+
+            <p class="text-slate-300 text-xs leading-relaxed mb-3 font-sans line-clamp-3">
+              ${item.target}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-surface-border/60 flex items-center justify-between gap-2">
+            <button onclick="openThreatModal('${item.id}')" 
+                    class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+              <span>View Emergency Protocol</span>
+              <span>&rarr;</span>
+            </button>
+            <span class="text-[10px] text-emerald-400 font-mono">Action Guide</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openThreatModal(id) {
+      const item = threatMatrixData.find(d => d.id === id);
+      if (!item) return;
+
+      const modal = document.getElementById('threat-modal');
+      const content = document.getElementById('modal-content');
+      if (!modal || !content) return;
+
+      content.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono uppercase px-2.5 py-1 rounded border ${item.badgeColor}">
+            ${item.category} Threat
+          </span>
+          <span class="text-xs text-slate-400 font-mono">SOP Playbook</span>
+        </div>
+
+        <h3 class="text-xl font-display font-bold text-white mb-2">${item.type}</h3>
+
+        <div class="p-3 bg-surface-card border border-surface-border rounded-xl mb-4 text-xs">
+          <div class="text-slate-400 font-mono mb-1"><strong class="text-slate-200">Delivery Vector:</strong> ${item.means}</div>
+          <div class="text-slate-300 leading-relaxed font-sans mt-2"><strong class="text-slate-200">Mechanics:</strong> ${item.target}</div>
+        </div>
+
+        <div class="p-4 bg-emerald-950/40 border border-emerald-800/80 rounded-xl mb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono block mb-2">Immediate Next Action / Countermeasure:</span>
+          <div class="text-slate-200 text-xs leading-relaxed whitespace-pre-line font-sans">
+            ${item.action}
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 text-[11px] text-slate-400 font-mono border-t border-surface-border">
+          <span>Official Helpline: 1930 / Sanchar Saathi</span>
+          <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">cybercrime.gov.in &rarr;</a>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeThreatModal() {
+      const modal = document.getElementById('threat-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Close modal on click outside
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('threat-modal');
+      if (e.target === modal) {
+        closeThreatModal();
+      }
+    });
+
+    // Initialize the Matrix
+    updateCategoryCounts();
+    filterMatrix();
 
     // 2. TIMELINE FEED INGESTION & FORMATTING
     let fullFeedHistory = [];
