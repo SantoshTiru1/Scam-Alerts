@@ -35,37 +35,50 @@ def make_short_video(headline, summary, audio_path="scam_audio.mp3", output_path
 
 # 3. Upload to YouTube via Official API
 def upload_to_youtube(video_path, headline, summary):
-    creds = Credentials(
-        None,
-        refresh_token=os.getenv("YOUTUBE_REFRESH_TOKEN"),
-        token_uri="https://oauth2.googleapis.com/token",
-        client_id=os.getenv("YOUTUBE_CLIENT_ID"),
-        client_secret=os.getenv("YOUTUBE_CLIENT_SECRET"),
-    )
-    youtube = build("youtube", "v3", credentials=creds)
+    client_id = os.getenv("YOUTUBE_CLIENT_ID")
+    client_secret = os.getenv("YOUTUBE_CLIENT_SECRET")
+    refresh_token = os.getenv("YOUTUBE_REFRESH_TOKEN")
 
-    body = {
-        "snippet": {
-            "title": f"⚠️ Scam Alert: {headline[:65]} #Shorts",
-            "description": (
-                f"{summary}\n\n"
-                f"🛡️ Read all daily regional scam reports:\n"
-                f"https://santoshtiru1.github.io/Scam-Alerts/\n\n"
-                f"#CyberSecurity #ScamAlert #Phishing #Shorts #TechSafety"
-            ),
-            "tags": ["CyberSecurity", "ScamAlert", "Phishing", "Fraud", "Shorts"],
-            "categoryId": "28"  # Science & Technology
-        },
-        "status": {
-            "privacyStatus": "public",
-            "selfDeclaredMadeForKids": False
+    if not all([client_id, client_secret, refresh_token]):
+        print("YouTube tokens not configured in GitHub Secrets. Skipping upload.")
+        return
+
+    try:
+        creds = Credentials(
+            None,
+            refresh_token=refresh_token,
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=client_id,
+            client_secret=client_secret,
+        )
+        youtube = build("youtube", "v3", credentials=creds)
+
+        clean_headline = headline[:65].replace("\n", " ")
+        body = {
+            "snippet": {
+                "title": f"⚠️ Scam Warning: {clean_headline} #Shorts",
+                "description": (
+                    f"{summary}\n\n"
+                    f"🛡️ Read all daily regional reports & threat matrix:\n"
+                    f"https://santoshtiru1.github.io/Scam-Alerts/\n\n"
+                    f"#CyberSecurity #ScamAlert #Phishing #Shorts #TechSafety #India"
+                ),
+                "tags": ["CyberSecurity", "ScamAlert", "Phishing", "Fraud", "Shorts"],
+                "categoryId": "28"
+            },
+            "status": {
+                "privacyStatus": "public",
+                "selfDeclaredMadeForKids": False
+            }
         }
-    }
 
-    media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
-    request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
-    response = request.execute()
-    print("Video published! YouTube ID:", response.get("id"))
+        media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
+        request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
+        response = request.execute()
+        print("SUCCESS: Uploaded to YouTube! Video ID:", response.get("id"))
+    except Exception as e:
+        print(f"YouTube Upload Failed (non-fatal): {e}")
+
 
 def process_youtube_short(day_entry):
     # Pick the top India or North America report as today's Short topic
