@@ -244,64 +244,68 @@ def generate_day_report(target_date):
         }
     return day_entry
 
-def generate_scam_story(day_entry):
+
+def generate_cinematic_story(day_entry):
     """
     Selects the most dangerous/dramatic scam of the day across all 8 regions
-    and prompts Groq to script a gripping, true-crime style 55-second narrative.
+    and prompts Groq to script a gripping, true-crime narrative complete
+    with context-aware AI visual prompts for every scene.
     """
     regions = day_entry.get("regions", {})
     # Prioritize India or high-impact fraud
-    target_region = "India" if "India" in regions else next(iter(regions))
+    target_region = "India" if "India" in regions else next(iter(regions), "Global")
     scam = regions.get(target_region, {})
 
     headline = scam.get("headline", "High-Tech Cyber Trap")
     summary = scam.get("summary", "")
 
     prompt = f"""
-You are an investigative cybercrime documentarian creating a high-retention 55-second YouTube Short script.
-Story Source: {target_region}
+You are an investigative documentary director producing a 55-second YouTube Short about this real-world scam:
+Region: {target_region}
 Headline: {headline}
 Details: {summary}
 
-Write a gripping, suspenseful true-crime micro-story based on this scam.
-Format strictly as JSON with these exact keys:
+Output strictly valid JSON with no markdown wrapping and these exact keys:
 {{
-  "hook": "Single shocking opening sentence (under 14 words) with huge stakes.",
-  "scene_1": "1-2 sentences setting the scene: how the victim received the first contact and why they believed it.",
-  "scene_2": "2 sentences explaining the technical/psychological trap and the moment of panic.",
-  "scene_3": "1 sentence showing the devastating financial or personal outcome.",
-  "defense_rule": "1 punchy golden rule to never fall for this specific threat.",
-  "full_voiceover": "The entire continuous narrative to be read aloud (between 110 and 130 words total)."
+  "title": "Shocking Short Title under 60 chars",
+  "voiceover": "A continuous 120-135 word suspenseful narrative script. Start with an arresting hook. Explain the exact trap and psychological manipulation. End with one strict survival rule.",
+  "image_prompts": [
+    "Cinematic shot, dark mood, tense atmosphere representing the victim receiving the initial call or message, 8k, photorealistic, vertical framing, moody lighting",
+    "Cinematic shot, computer screens with digital transfer codes, cyber fraud operation, dark room, red ambient light, dramatic shadows",
+    "Cinematic shot, distressed person holding phone in disbelief, bank balance screen blurred, intense emotional lighting",
+    "Cinematic shot, official cyber shield badge or law enforcement padlock on digital grid, blue emergency lighting, high resolution"
+  ]
 }}
-Do not include any conversational filler, markdown formatting outside JSON, or quotes. Output raw JSON only.
 """
     try:
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
-                {"role": "system", "content": "You are a master true-crime narrative writer. Output raw JSON only."},
+                {"role": "system", "content": "You are a master true-crime documentary director. Output raw JSON only."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.6,
-            max_tokens=450
+            max_tokens=650
         )
-        raw_text = response.choices[0].message.content.strip()
-        # Clean any backticks if emitted
-        if raw_text.startswith("```"):
-            raw_text = raw_text.split("```")[1]
-            if raw_text.startswith("json"):
-                raw_text = raw_text[4:]
-        return json.loads(raw_text.strip())
+        raw = response.choices[0].message.content.strip()
+        if "```" in raw:
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        return json.loads(raw.strip())
     except Exception as e:
-        print("Story generation notice, using dynamic fallback:", e)
+        print("Fallback story generation notice:", e)
         return {
-            "hook": f"A new cyber trap targeting {target_region} is draining bank accounts in minutes.",
-            "scene_1": f"It begins with an urgent call about {headline[:40]}.",
-            "scene_2": "The fraudsters deploy high-pressure tactics, demanding immediate transfers.",
-            "scene_3": "Victims realize the truth only after their balances hit zero.",
-            "defense_rule": "Official agencies never demand money transfers or OTPs over a call.",
-            "full_voiceover": f"A dangerous cyber attack is targeting citizens today. It starts with an urgent notice regarding {headline[:40]}. Scammers impersonate authority figures, creating intense panic and demanding immediate compliance. Victims lose their life savings before realizing the call was entirely fabricated. Remember: legitimate authorities will never ask you to transfer funds or share secret codes over the phone. Stay vigilant."
+            "title": f"The {headline[:40]} Trap",
+            "voiceover": f"Millions were lost this week to a ruthless new operation. It begins with an urgent alert regarding {headline[:30]}. Fraudsters impersonate senior officials, isolating victims for hours through psychological fear. They demand instant transfers to verify innocence. By the time victims realize what happened, their life savings have vanished into untraceable mule accounts. Remember: legitimate authorities will never demand money transfers or remote access over a phone call.",
+            "image_prompts": [
+                "dark cinematic room, glowing smartphone screen displaying alert, moody lighting, 8k",
+                "shadowy fraudster in hoodie operating multiple laptops, dark cyber underground, red neon",
+                "devastated victim looking at empty bank balance on phone, dramatic shadows",
+                "glowing cybersecurity shield protecting a mobile phone, blue cyber defense theme"
+            ]
         }
+
 
 def main():
     feed_file = "scams.json"
