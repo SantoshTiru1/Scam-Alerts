@@ -343,7 +343,7 @@ def main():
     if history:
         post_to_telegram(history[0])
         post_to_whatsapp(history[0])
-        story_data = generate_scam_story(history[0])
+        story_data = generate_cinematic_story(history[0])
         process_youtube_short(history[0], story_data)
 
 
