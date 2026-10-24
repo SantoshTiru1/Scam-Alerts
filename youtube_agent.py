@@ -77,8 +77,7 @@ def upload_to_youtube(video_path, headline, summary):
         response = request.execute()
         print("SUCCESS: Uploaded to YouTube! Video ID:", response.get("id"))
     except Exception as e:
-        print(f"YouTube Upload Failed (non-fatal): {e}")
-
+        print(f"⚠️ YouTube Upload Error (non-fatal): {e}")
 
 def process_youtube_short(day_entry):
     # Pick the top India or North America report as today's Short topic
