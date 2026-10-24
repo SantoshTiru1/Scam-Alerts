@@ -1,129 +1,140 @@
 import os
+import re
+import urllib.parse
 import asyncio
 import subprocess
-import textwrap
+import requests
 import edge_tts
-from PIL import Image, ImageDraw, ImageFont
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
-async def generate_voiceover(text, output_file="scam_audio.mp3"):
-    """Generates a steady, deep documentary narration voiceover."""
-    communicate = edge_tts.Communicate(text, "en-US-ChristopherNeural", rate="-2%", pitch="-3Hz")
-    await communicate.save(output_file)
+# -------------------------------------------------------------
+# 1. Download AI Imagery (100% Free, No API Key via Pollinations)
+# -------------------------------------------------------------
+def fetch_ai_image(prompt, filename, width=1080, height=1920):
+    """Fetches high-quality cinematic 9:16 vertical images."""
+    clean_prompt = urllib.parse.quote(f"{prompt}, 9:16 vertical aspect ratio, dark cinematic documentary style, film grain, hyperrealistic, dramatic volumetric lighting")
+    url = f"https://image.pollinations.ai/prompt/{clean_prompt}?width={width}&height={height}&nologo=true&seed={hash(prompt) % 10000}"
+    try:
+        res = requests.get(url, timeout=35)
+        if res.status_code == 200:
+            with open(filename, "wb") as f:
+                f.write(res.content)
+            print(f"Downloaded scene image: {filename}")
+            return True
+    except Exception as e:
+        print(f"Image fetch error: {e}")
+    return False
 
-def get_audio_duration(audio_path="scam_audio.mp3"):
-    cmd = [
-        "ffprobe", "-v", "error", "-show_entries", "format=duration",
-        "-of", "default=noprint_wrappers=1:nokey=1", audio_path
-    ]
+# -------------------------------------------------------------
+# 2. Voiceover + Subtitle Generation
+# -------------------------------------------------------------
+async def generate_narration_with_subtitles(text, audio_out="scam_audio.mp3", srt_out="captions.vtt"):
+    """Generates Edge-TTS speech and aligned subtitle timestamps."""
+    communicate = edge_tts.Communicate(text, "en-US-ChristopherNeural", rate="-2%", pitch="-2Hz")
+    submaker = edge_tts.SubMaker()
+    
+    with open(audio_out, "wb") as file:
+        async for chunk in communicate.stream():
+            if chunk["type"] == "audio":
+                file.write(chunk["data"])
+            elif chunk["type"] == "WordBoundary":
+                submaker.feed(chunk)
+                
+    with open(srt_out, "w", encoding="utf-8") as file:
+        file.write(submaker.get_srt())
+    print("Audio & word subtitles generated.")
+
+def get_duration(media_path):
+    cmd = ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", media_path]
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     try:
         return float(res.stdout.strip())
     except Exception:
-        return 50.0
+        return 55.0
 
-def draw_story_card(tag, main_text, sub_text, rule_text, output_path, accent_color=(239, 68, 68)):
-    """Renders a 1080x1920 high-contrast cinematic typography card."""
-    width, height = 1080, 1920
-    img = Image.new("RGB", (width, height), color=(10, 15, 26))
-    draw = ImageDraw.Draw(img)
+# -------------------------------------------------------------
+# 3. Cinematic Video Assembly (Ken Burns Zoom + Burned Captions)
+# -------------------------------------------------------------
+def assemble_cinematic_short(image_files, audio_file="scam_audio.mp3", srt_file="captions.vtt", output_video="scam_short.mp4"):
+    total_duration = get_duration(audio_file)
+    num_images = len(image_files)
+    clip_duration = total_duration / max(num_images, 1)
 
-    # Ambient border glow
-    draw.rectangle([(0, 0), (width, 28)], fill=accent_color)
-    draw.rounded_rectangle([(50, 100), (1030, 1820)], radius=32, outline=(30, 41, 59), width=3)
+    # Step A: Convert each image to a zooming 1080x1920 clip (Ken Burns effect)
+    clip_names = []
+    for i, img_path in enumerate(image_files):
+        clip_name = f"clip_{i}.mp4"
+        clip_names.append(clip_name)
+        # Ken Burns zoom-in filter: zooms from 1.0 to 1.15 smoothly
+        cmd = [
+            "ffmpeg", "-y",
+            "-loop", "1", "-i", img_path,
+            "-t", f"{clip_duration:.2f}",
+            "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+                   "zoompan=z='min(zoom+0.0008,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=125:s=1080x1920:fps=30",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p",
+            clip_name
+        ]
+        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    try:
-        font_tag = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 36)
-        font_main = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 62)
-        font_sub = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 44)
-        font_rule = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 38)
-    except Exception:
-        font_tag = font_main = font_sub = font_rule = ImageFont.load_default()
+    # Step B: Concat visual clips together
+    with open("clips.txt", "w") as f:
+        for c in clip_names:
+            f.write(f"file '{c}'\n")
 
-    # Chapter Tag
-    draw.rounded_rectangle([(90, 150), (450, 220)], radius=12, fill=accent_color)
-    draw.text((115, 166), tag, fill=(255, 255, 255), font=font_tag)
-
-    # Main Dramatic Text
-    wrapped_main = textwrap.fill(main_text, width=24)
-    draw.text((90, 320), wrapped_main, fill=(255, 255, 255), font=font_main, spacing=18)
-
-    # Narrative Breakdown
-    draw.line([(90, 720), (990, 720)], fill=(51, 65, 85), width=2)
-    wrapped_sub = textwrap.fill(sub_text, width=32)
-    draw.text((90, 780), wrapped_sub, fill=(203, 213, 225), font=font_sub, spacing=20)
-
-    # Bottom Defense Card
-    if rule_text:
-        draw.rounded_rectangle([(90, 1480), (990, 1720)], radius=24, fill=(19, 27, 46), outline=(56, 189, 248), width=3)
-        draw.text((130, 1520), "🛡️ THE SURVIVAL RULE:", fill=(56, 189, 248), font=font_tag)
-        wrapped_rule = textwrap.fill(rule_text, width=34)
-        draw.text((130, 1580), wrapped_rule, fill=(248, 250, 252), font=font_rule, spacing=14)
-
-    img.save(output_path)
-
-def render_cinematic_short(story, audio_path="scam_audio.mp3", output_video="scam_short.mp4"):
-    total_sec = get_audio_duration(audio_path)
-    part_sec = total_sec / 3.0
-
-    # Scene 1: The Hook & Opening
-    draw_story_card(
-        tag="🚨 CRITICAL INCIDENT",
-        main_text=story.get("hook", "A New Cyber Trap Unfolds"),
-        sub_text=story.get("scene_1", ""),
-        rule_text="",
-        output_path="scene1.png",
-        accent_color=(239, 68, 68) # Red
-    )
-
-    # Scene 2: The Trap & Execution
-    draw_story_card(
-        tag="⚠️ HOW THE TRAP WORKED",
-        main_text="The Pressure & Panic",
-        sub_text=story.get("scene_2", "") + "\n\n" + story.get("scene_3", ""),
-        rule_text="",
-        output_path="scene2.png",
-        accent_color=(245, 158, 11) # Amber
-    )
-
-    # Scene 3: The Fallout & Defense Rule
-    draw_story_card(
-        tag="🛡️ ESSENTIAL DEFENSE",
-        main_text="Don't Be Next",
-        sub_text=story.get("scene_3", "Never trust unsolicited urgent communications."),
-        rule_text=story.get("defense_rule", "Verify through official portals before sending money."),
-        output_path="scene3.png",
-        accent_color=(14, 165, 233) # Cyan
-    )
-
-    # Concat file for FFmpeg
-    with open("scenes.txt", "w") as f:
-        f.write(f"file 'scene1.png'\nduration {part_sec:.2f}\n")
-        f.write(f"file 'scene2.png'\nduration {part_sec:.2f}\n")
-        f.write(f"file 'scene3.png'\nduration {part_sec:.2f}\n")
-        f.write("file 'scene3.png'\n")
-
-    cmd = [
+    cmd_concat = [
         "ffmpeg", "-y",
-        "-f", "concat", "-safe", "0", "-i", "scenes.txt",
-        "-i", audio_path,
-        "-c:v", "libx264", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", "-b:a", "192k",
-        "-shortest",
-        output_video
+        "-f", "concat", "-safe", "0", "-i", "clips.txt",
+        "-c", "copy", "visual_track.mp4"
     ]
-    subprocess.run(cmd, check=True)
-    print(f"Rendered {total_sec:.1f}s story video successfully.")
+    subprocess.run(cmd_concat, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-def upload_to_youtube(video_path, story):
+    # Step C: Mix Audio (Narration + Ambient BGM) and Burn Styled Center Subtitles
+    has_ambient = os.path.exists("assets/ambient.mp3")
+    
+    # Subtitle styling: bold yellow-white font, centered, uppercase, black stroke
+    subtitle_filter = (
+        f"subtitles={srt_file}:force_style='Alignment=10,FontSize=22,FontName=DejaVu Sans,"
+        f"Bold=1,PrimaryColour=&H0000FFFF,OutlineColour=&H00000000,BorderStyle=3,Outline=2'"
+    )
+
+    if has_ambient:
+        cmd_final = [
+            "ffmpeg", "-y",
+            "-i", "visual_track.mp4",
+            "-i", audio_file,
+            "-i", "assets/ambient.mp3",
+            "-filter_complex",
+            f"[0:v]{subtitle_filter}[v];[2:a]volume=0.12[bg];[1:a][bg]amix=inputs=2:duration=first[a]",
+            "-map", "[v]", "-map", "[a]",
+            "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
+            "-shortest", output_video
+        ]
+    else:
+        cmd_final = [
+            "ffmpeg", "-y",
+            "-i", "visual_track.mp4",
+            "-i", audio_file,
+            "-vf", subtitle_filter,
+            "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
+            "-shortest", output_video
+        ]
+
+    subprocess.run(cmd_final, check=True)
+    print("Cinematic Short assembled with Ken Burns & bold captions!")
+
+# -------------------------------------------------------------
+# 4. YouTube Upload Handler
+# -------------------------------------------------------------
+def upload_to_youtube(video_path, title, script):
     client_id = os.getenv("YOUTUBE_CLIENT_ID")
     client_secret = os.getenv("YOUTUBE_CLIENT_SECRET")
     refresh_token = os.getenv("YOUTUBE_REFRESH_TOKEN")
 
     if not all([client_id, client_secret, refresh_token]):
-        print("YouTube tokens missing in GitHub Secrets. Skipping.")
+        print("YouTube tokens missing. Skipping upload.")
         return
 
     try:
@@ -136,20 +147,11 @@ def upload_to_youtube(video_path, story):
         )
         youtube = build("youtube", "v3", credentials=creds)
 
-        title = f"⚠️ {story.get('hook')[:70]} #Shorts"
-        description = (
-            f"{story.get('full_voiceover')}\n\n"
-            f"🛡️ Matrix Rule: {story.get('defense_rule')}\n\n"
-            f"Explore full daily threat radar & live reporting tools:\n"
-            f"https://santoshtiru1.github.io/Scam-Alerts/\n\n"
-            f"#ScamAlert #CyberSecurity #TrueCrime #TechSafety #Shorts"
-        )
-
         body = {
             "snippet": {
-                "title": title,
-                "description": description,
-                "tags": ["CyberSecurity", "ScamAlert", "Phishing", "TrueCrime", "Shorts"],
+                "title": f"⚠️ {title[:65]} #Shorts",
+                "description": f"{script}\n\n🛡️ Real-time cyber threats & prevention portal:\nhttps://santoshtiru1.github.io/Scam-Alerts/\n\n#CyberSecurity #ScamAlert #TrueCrime #Shorts",
+                "tags": ["CyberSecurity", "ScamAlert", "TrueCrime", "Shorts"],
                 "categoryId": "28"
             },
             "status": {
@@ -161,26 +163,45 @@ def upload_to_youtube(video_path, story):
         media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
         request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
         res = request.execute()
-        print("SUCCESS: Published Documentary Short to YouTube! Video ID:", res.get("id"))
+        print("SUCCESS: Published Documentary Short! ID:", res.get("id"))
     except Exception as e:
-        print(f"YouTube Upload Failed (non-fatal): {e}")
+        print(f"YouTube Upload non-fatal notice: {e}")
 
+# -------------------------------------------------------------
+# 5. Pipeline Orchestrator
+# -------------------------------------------------------------
 def process_youtube_short(day_entry, story=None):
     if not story:
         story = {
-            "hook": "Millions Lost to Digital Arrest Scams This Week.",
-            "scene_1": "Victims receive a video call from someone claiming to be federal police.",
-            "scene_2": "They display forged arrest warrants and order the victim to stay on camera.",
-            "scene_3": "Life savings are wired to 'safe RBI clearing accounts' that vanish instantly.",
-            "defense_rule": "No law enforcement agency conducts arrests or court hearings over Skype.",
-            "full_voiceover": "Millions of dollars were drained this week by organized digital arrest syndicates. Victims receive an urgent video call from fraudsters wearing forged police uniforms, brandishing fake warrants. Under intense psychological intimidation, victims are coerced into transferring their life savings to so-called verification accounts. Remember: real police and judicial courts will never arrest you over a video call or demand bank transfers to clear your name. Stay safe and share this warning."
+            "title": "Digital Arrest Syndicate Exposed",
+            "voiceover": "Millions of dollars were drained this week by organized digital arrest syndicates. Victims receive an urgent video call from fraudsters wearing forged police uniforms, brandishing fake warrants. Under intense psychological intimidation, victims are coerced into transferring their life savings to so-called verification accounts. Remember: real police and judicial courts will never arrest you over a video call or demand bank transfers to clear your name. Stay safe and share this warning.",
+            "image_prompts": [
+                "dark room, person on video call looking terrified, police uniform visible on screen, moody lighting",
+                "close up of fake legal document with arrest warrant stamp, dramatic shadows, cinematic",
+                "wire transfer confirmed screen on smartphone, empty savings account, devastating mood",
+                "modern digital cybercrime defense lock, glowing blue holographic shield, 8k"
+            ]
         }
 
-    print("Step 1: Generating 55s narrative narration...")
-    asyncio.run(generate_voiceover(story.get("full_voiceover")))
+    prompts = story.get("image_prompts", [])
+    downloaded_images = []
+    
+    print("Generating scene imagery...")
+    for idx, prompt in enumerate(prompts):
+        img_file = f"scene_{idx}.jpg"
+        if fetch_ai_image(prompt, img_file):
+            downloaded_images.append(img_file)
 
-    print("Step 2 & 3: Rendering multi-scene story video...")
-    render_cinematic_short(story)
+    if not downloaded_images:
+        print("Fallback image generation...")
+        fetch_ai_image("cyber crime warning digital screen", "scene_0.jpg")
+        downloaded_images = ["scene_0.jpg"]
 
-    print("Step 4: Publishing to YouTube Shorts...")
-    upload_to_youtube("scam_short.mp4", story)
+    print("Synthesizing voiceover and subtitles...")
+    asyncio.run(generate_narration_with_subtitles(story.get("voiceover", "")))
+
+    print("Rendering Ken Burns video and burning captions...")
+    assemble_cinematic_short(downloaded_images)
+
+    print("Uploading to YouTube...")
+    upload_to_youtube("scam_short.mp4", story.get("title", "Cyber Scam Warning"), story.get("voiceover", ""))
