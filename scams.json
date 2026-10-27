@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-26 06:21 UTC",
+  "updated_at": "2026-10-27 06:20 UTC",
   "history": [
+    {
+      "date": "2026-10-27",
+      "regions": {
+        "North America": {
+          "headline": "I work in cybersecurity, but my mom lost $3,000 to online scams. Now, I do 3 things to keep her safe. - Business Insider",
+          "summary": "I work in cybersecurity, but my mom lost $3,000 to online scams. Now, I do 3 things to keep her safe.\u00a0\u00a0Business Insider",
+          "source": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPaGpIUjdZdnhOQU5sNnR0bnFDd2xwRnRrQlF4QzljYzZlTXAtUU4zM0JHRGJsaV9BbEN0Vzc3b1JIUnB2MnY2bEc5anRqZWQ0NHp3SHZHSGxWNGNHbEFCZ1BhT0JBUjJ0WlFsUDliV0NNS0JMZkh2MUx5NTYzMFVEdmc2WU96MVJfMy1hYkluYw?oc=5"
+        },
+        "South America": {
+          "headline": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats - Industrial Cyber",
+          "summary": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats\u00a0\u00a0Industrial Cyber",
+          "source": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNSm1Mb2kzYTJvd2F6Zld5U01VNHdqdlpQb2pRcllBZzAyVldEN292UkwzaHV6VmlpOGowaHF4RHlvbEtocDAyNDJEQ0xaUFJET2JHWFl3UENBajJsbFNvSXNRR18yR0ZId2RkWjE3Qjc4bDVJYVNDVkJnVjRqOGh2SGpjQlNhLUhOR1JKTzNLUVdDWVhYU0dmd0pfWU1USnJ4dWpOSzdXY2Q2NFVNcHJlWHkxOGRZX2pLYzd1QTZ5U2RSanFuNFBQQjFwM3ZPNEZwUVJvUVFobWlSZDI1OGRGaFl3?oc=5"
+        },
+        "Europe": {
+          "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
+          "summary": "Booking.com under investigation by EU regulators over fake listings and scams | European Union\u00a0\u00a0The Guardian",
+          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVF5LVJ5UEZDWkVCT21KTzdrV2ZDNmt0MWdxalNuTTJkV2JjeUROTDgtQ01mWEwzeHBEbXNBTnlYYmVWV01tMmRPODducGFZV0RDeXBlLWlGNXRlTkh2YW5lWkRtTHRRbmh4aERFYld6Zl9xUjJLQTFFNmFaQVNGcWttRmNQYkxCY1BDUk1wekFJQkZOMWVQRnd4aTl4bXZnZVpXak5DVnFqV1BMNzNv?oc=5"
+        },
+        "India": {
+          "headline": "E-Challan Scam: How One Download Turns Dangerous - The420.in",
+          "summary": "E-Challan Scam: How One Download Turns Dangerous\u00a0\u00a0The420.in",
+          "source": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9VMVFXU3NpN05HT1FLUTZ6RjBXQTRCTzU3cWFyLXhYWWxpSVh0UHdFYzN1dExaZ1pXbUhrY0hEUkw3N3hHd29PNVZUQS1qbWxCR1o5X2hCSUJpZGVSRTdJTkVWTHVoOVk?oc=5"
+        },
+        "Singapore": {
+          "headline": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results - Singapore Police Force",
+          "summary": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlpaTlR1eG1PUzNRaEpSajdSMDFoYks4ZzVBU2QyaHFueDZNMVY4UzlueVpqbGdGc1V6bHRrSzZvUVJJdm5JTkpuLXUtYWZtOFBCTVlXa2VoN0w3Z0R4OHVVd3pWNEU5YnhqS1VOam84Rno3ZjVwQ1NFTWVuMzJVZWpmVl96TzdzYVZaY1A5MHRHWXVGcEhNUjB6dlZSTkJUN010MFFjNlY3LThhRlEwMS1LMjVXNHpBUWpJUzJmWGRSV3NNY2Z0b0RQdmpLOVMtZ21ra0p3?oc=5"
+        },
+        "China": {
+          "headline": "Finance Crimes Agency Will Examine China-Linked Scam Networks - Legis1",
+          "summary": "Finance Crimes Agency Will Examine China-Linked Scam Networks\u00a0\u00a0Legis1",
+          "source": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBNREdpWkFwOE5DbjY3SXlpNGt1S2daWENqMHQyYkFxQjB4LVV6N2J3V3ZhUU01VkpFcEJoU0xyU1NEMDhrVlVjVEFCX08xSGgwb3JFNTkxektoS09HdS16SmdFSk10bkFvQVRXTUd2U25Wa2N5cC1SZ2NOd2hSdw?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "Cybersecurity CEO Indicted for Allegedly Scamming Millions From Ransomware Victims - ProPublica",
+          "summary": "Cybersecurity CEO Indicted for Allegedly Scamming Millions From Ransomware Victims\u00a0\u00a0ProPublica",
+          "source": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPYlJubWFTUG93SGdqX0RQUlIwcEJ3RW84Yzk1NGsxTGMxTnFDUnhVal80ZTRGcmlpUW1xOWFxOC1DODRWSVgxRmF3S242Uy1IcUhhYTJUemFfNVk0MHViZFBkUjdqRzVveWlFVmhmVk5DMjNRSDdwdUgxS1dXeXFDQXhDcG5XNzhvOHpF?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-26",
       "regions": {
