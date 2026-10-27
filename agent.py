@@ -1,7 +1,7 @@
 import os
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import urllib.parse
 import xml.etree.ElementTree as ET
 import requests
@@ -358,7 +358,7 @@ def main():
     
     now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
     today_str = now.strftime("%Y-%m-%d")
-    yesterday = now - timedelta(days=1)
+    yesterday = now - datetime.timedelta(days=1)
     yesterday_str = yesterday.strftime("%Y-%m-%d")
 
     existing_dates = {item.get("date") for item in history}
