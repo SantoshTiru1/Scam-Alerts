@@ -1,13 +1,14 @@
 import os
 import json
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 import urllib.parse
 import xml.etree.ElementTree as ET
 import requests
 from bs4 import BeautifulSoup
 from groq import Groq
 from youtube_agent import process_youtube_short
+
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
@@ -354,7 +355,8 @@ def main():
         except Exception as e:
             print(f"File read notice: {e}")
 
-    now = datetime.utcnow()
+    
+    now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
     today_str = now.strftime("%Y-%m-%d")
     yesterday = now - timedelta(days=1)
     yesterday_str = yesterday.strftime("%Y-%m-%d")
