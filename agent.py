@@ -245,46 +245,69 @@ def generate_day_report(target_date):
     return day_entry
 
 
-def generate_cinematic_story(day_entry):
+import random
+import datetime
+
+def select_daily_featured_scam(day_entry):
     """
-    Selects the most dangerous/dramatic scam of the day across all 8 regions
-    and prompts Groq to script a gripping, true-crime narrative complete
-    with context-aware AI visual prompts for every scene.
+    Rotates daily across the 8 regions or threat vectors so the video 
+    never covers the same topic two days in a row.
     """
     regions = day_entry.get("regions", {})
-    # Prioritize India or high-impact fraud
-    target_region = "India" if "India" in regions else next(iter(regions), "Global")
-    scam = regions.get(target_region, {})
+    if not regions:
+        return "Global", "AI Voice Clone Ransom", "Scammers use 3-second voice samples from social media to fake kidnappings and demand instant crypto or UPI ransoms."
 
-    headline = scam.get("headline", "High-Tech Cyber Trap")
+    # Rotate based on the day of the year or random shuffle
+    available_regions = list(regions.keys())
+    day_num = datetime.datetime.now().timetuple().tm_yday
+    chosen_region = available_regions[day_num % len(available_regions)]
+    scam = regions.get(chosen_region, {})
+
+    headline = scam.get("headline", "Emerging Cyber Threat")
     summary = scam.get("summary", "")
+    return chosen_region, headline, summary
+
+
+def generate_cinematic_story(day_entry):
+    target_region, headline, summary = select_daily_featured_scam(day_entry)
+    
+    # 5 diverse narrative themes to prevent repetitive plots
+    themes = [
+        "Financial Trap & Mule Accounts",
+        "Deepfake Identity Theft & Impersonation",
+        "Malicious APK & WhatsApp Job Scam",
+        "Digital Arrest & Police Intimidation",
+        "Phishing & Banking OTP Hijack"
+    ]
+    current_theme = random.choice(themes)
 
     prompt = f"""
-You are an investigative documentary director producing a 55-second YouTube Short about this real-world scam:
+You are an investigative true-crime writer scripting a gripping 50-second YouTube Short based on today's cyber alert.
+Focus Theme: {current_theme}
 Region: {target_region}
-Headline: {headline}
+Incident: {headline}
 Details: {summary}
 
-Output strictly valid JSON with no markdown wrapping and these exact keys:
+Requirements:
+1. Start with an immediate shocking 1-sentence hook.
+2. Tell a realistic narrative story showing how the scam unfolded.
+3. NEVER repeat phrases like "Millions were lost this week".
+4. Give 4 precise, highly visual, 2-word stock video search queries for Pixabay.
+5. Strictly valid JSON output with these exact keys:
 {{
-  "title": "Shocking Short Title under 60 chars",
-  "voiceover": "A continuous 120-135 word suspenseful narrative script. Start with an arresting hook. Explain the exact trap and psychological manipulation. End with one strict survival rule.",
-  "image_prompts": [
-    "Cinematic shot, dark mood, tense atmosphere representing the victim receiving the initial call or message, 8k, photorealistic, vertical framing, moody lighting",
-    "Cinematic shot, computer screens with digital transfer codes, cyber fraud operation, dark room, red ambient light, dramatic shadows",
-    "Cinematic shot, distressed person holding phone in disbelief, bank balance screen blurred, intense emotional lighting",
-    "Cinematic shot, official cyber shield badge or law enforcement padlock on digital grid, blue emergency lighting, high resolution"
-  ]
+  "title": "Shocking title under 60 chars",
+  "voiceover": "115 to 130 words of natural, suspenseful story. No bullet points or robotic text.",
+  "video_queries": ["query1", "query2", "query3", "query4"]
 }}
 """
     try:
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
-                {"role": "system", "content": "You are a master true-crime documentary director. Output raw JSON only."},
+                {"role": "system", "content": "You are a master true-crime documentary scriptwriter. Respond in raw JSON only."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.6,
+            temperature=0.75, # Higher temperature ensures fresh storytelling every run
             max_tokens=650
         )
         raw = response.choices[0].message.content.strip()
@@ -292,19 +315,30 @@ Output strictly valid JSON with no markdown wrapping and these exact keys:
             raw = raw.split("```")[1]
             if raw.startswith("json"):
                 raw = raw[4:]
-        return json.loads(raw.strip())
+        data = json.loads(raw.strip())
+        return data
     except Exception as e:
-        print("Fallback story generation notice:", e)
-        return {
-            "title": f"The {headline[:40]} Trap",
-            "voiceover": f"Millions were lost this week to a ruthless new operation. It begins with an urgent alert regarding {headline[:30]}. Fraudsters impersonate senior officials, isolating victims for hours through psychological fear. They demand instant transfers to verify innocence. By the time victims realize what happened, their life savings have vanished into untraceable mule accounts. Remember: legitimate authorities will never demand money transfers or remote access over a phone call.",
-            "image_prompts": [
-                "dark cinematic room, glowing smartphone screen displaying alert, moody lighting, 8k",
-                "shadowy fraudster in hoodie operating multiple laptops, dark cyber underground, red neon",
-                "devastated victim looking at empty bank balance on phone, dramatic shadows",
-                "glowing cybersecurity shield protecting a mobile phone, blue cyber defense theme"
-            ]
-        }
+        print("Groq story parsing notice, generating dynamic backup:", e)
+        # Dynamic fallback pool that changes each time instead of 1 static script
+        fallback_pool = [
+            {
+                "title": f"The New {target_region} APK Trap",
+                "voiceover": f"A seemingly innocent job offer on messaging apps is secretly emptying bank balances across {target_region}. Victims click a link promising daily tasks and download a malicious Android file disguised as a work portal. The moment permissions are granted, remote hackers read two-factor authentication codes and drain savings accounts before the victim realizes anything is wrong. Never install APK files from unknown senders or chat groups.",
+                "video_queries": ["smartphone texting", "hacker coding", "money transfer", "police siren"]
+            },
+            {
+                "title": f"AI Voice Cloning Fraud Exposed",
+                "voiceover": f"Imagine receiving a desperate call from your family member begging for urgent hospital money, using their exact voice and emotional tone. In {target_region}, criminal syndicates are extracting short audio samples from public videos, cloning voices with artificial intelligence, and staging fake emergency calls. Families transfer emergency funds within minutes under extreme panic. Always pause, hang up, and call your loved one back directly on their trusted number.",
+                "video_queries": ["sound wave audio", "phone call crying", "bank app screen", "cyber shield digital"]
+            },
+            {
+                "title": f"The Fake Courier Customs Trap",
+                "voiceover": f"It begins with a text stating an international parcel has been seized with illegal contraband in {target_region}. Within minutes, a spoofed video call connects you to a fake customs agent demanding a clearance fee into a reserve account. The callers deploy counterfeit badges and official seals to simulate a live investigation. Real customs departments and federal police never demand immediate money transfers over phone calls.",
+                "video_queries": ["shipping box warehouse", "security surveillance screen", "stressed person phone", "cyber security lock"]
+            }
+        ]
+        return random.choice(fallback_pool)
+
 
 
 def main():
