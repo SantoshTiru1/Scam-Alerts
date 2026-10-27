@@ -268,36 +268,29 @@ def select_daily_featured_scam(day_entry):
     summary = scam.get("summary", "")
     return chosen_region, headline, summary
 
-
 def generate_cinematic_story(day_entry):
     target_region, headline, summary = select_daily_featured_scam(day_entry)
-    
-    # 5 diverse narrative themes to prevent repetitive plots
-    themes = [
-        "Financial Trap & Mule Accounts",
-        "Deepfake Identity Theft & Impersonation",
-        "Malicious APK & WhatsApp Job Scam",
-        "Digital Arrest & Police Intimidation",
-        "Phishing & Banking OTP Hijack"
-    ]
-    current_theme = random.choice(themes)
 
     prompt = f"""
-You are an investigative true-crime writer scripting a gripping 50-second YouTube Short based on today's cyber alert.
-Focus Theme: {current_theme}
-Region: {target_region}
-Incident: {headline}
-Details: {summary}
+You are the scriptwriter for a high-retention true-crime cyber mini-series.
+Every episode features two recurring characters:
+- Vikram: Cyber intelligence investigator.
+- Maya: Investigative cyber reporter.
+Today, they are tracking a real incident that just struck {target_region}.
 
-Requirements:
-1. Start with an immediate shocking 1-sentence hook.
-2. Tell a realistic narrative story showing how the scam unfolded.
-3. NEVER repeat phrases like "Millions were lost this week".
-4. Give 4 precise, highly visual, 2-word stock video search queries for Pixabay.
-5. Strictly valid JSON output with these exact keys:
+Threat Vector: {headline}
+Specific Context: {summary}
+
+Scripting Rules:
+1. Script a 115 to 130-word, 50-second continuous suspense story featuring Vikram and Maya.
+2. Hook: Start immediately with the crisis (e.g., Vikram tracing a vanishing balance or Maya intercepting an urgent distress signal).
+3. Progression: Show how the syndicate trapped the victim and the psychological trick used.
+4. Climax & Defense: Vikram and Maya isolate the exact red flag and deliver the golden survival rule.
+5. Provide 4 precise 2-to-3 word Pixabay stock video search queries matching each phase of the story.
+6. Output strictly valid JSON with no markdown wrapping:
 {{
-  "title": "Shocking title under 60 chars",
-  "voiceover": "115 to 130 words of natural, suspenseful story. No bullet points or robotic text.",
+  "title": "Dramatic Title with Character Focus under 60 chars",
+  "voiceover": "115-130 words of pure spoken dialogue and narration. No bullet points or narrator stage directions.",
   "video_queries": ["query1", "query2", "query3", "query4"]
 }}
 """
@@ -305,10 +298,10 @@ Requirements:
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
-                {"role": "system", "content": "You are a master true-crime documentary scriptwriter. Respond in raw JSON only."},
+                {"role": "system", "content": "You are a master true-crime narrative writer. Output raw JSON only."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.75, # Higher temperature ensures fresh storytelling every run
+            temperature=0.75,
             max_tokens=650
         )
         raw = response.choices[0].message.content.strip()
@@ -319,26 +312,27 @@ Requirements:
         data = json.loads(raw.strip())
         return data
     except Exception as e:
-        print("Groq story parsing notice, generating dynamic backup:", e)
-        # Dynamic fallback pool that changes each time instead of 1 static script
-        fallback_pool = [
+        print("Fallback story generation notice:", e)
+        # Dynamic fallback pool preserving the recurring characters
+        fallback_stories = [
             {
-                "title": f"The New {target_region} APK Trap",
-                "voiceover": f"A seemingly innocent job offer on messaging apps is secretly emptying bank balances across {target_region}. Victims click a link promising daily tasks and download a malicious Android file disguised as a work portal. The moment permissions are granted, remote hackers read two-factor authentication codes and drain savings accounts before the victim realizes anything is wrong. Never install APK files from unknown senders or chat groups.",
-                "video_queries": ["smartphone texting", "hacker coding", "money transfer", "police siren"]
+                "title": f"Vikram & Maya: The {target_region} Digital Arrest",
+                "voiceover": f"At midnight, Maya received a frantic call. A teacher in {target_region} was on a six-hour video call with men in forged police uniforms, threatening an immediate warrant. Vikram tracked the IP address and found the entire precinct was a mock studio operated by a cyber cartel. Before Vikram could cut the feed, fear forced a transfer of forty thousand dollars. Vikram's golden rule is simple: real law enforcement never issues arrest warrants over video calls or demands money to verify innocence.",
+                "video_queries": ["detective office night", "laptop cyber attack", "worried phone call", "police flashing lights"]
             },
             {
-                "title": f"AI Voice Cloning Fraud Exposed",
-                "voiceover": f"Imagine receiving a desperate call from your family member begging for urgent hospital money, using their exact voice and emotional tone. In {target_region}, criminal syndicates are extracting short audio samples from public videos, cloning voices with artificial intelligence, and staging fake emergency calls. Families transfer emergency funds within minutes under extreme panic. Always pause, hang up, and call your loved one back directly on their trusted number.",
-                "video_queries": ["sound wave audio", "phone call crying", "bank app screen", "cyber shield digital"]
+                "title": f"Vikram & Maya: The Voice Clone Ambush",
+                "voiceover": f"Vikram's phone lit up with an audio alert. Maya had just intercepted an urgent distress call where an elderly father was told his son was kidnapped. The voice crying for help matched his son's exact pitch and inflection. Vikram analyzed the sound waves and detected an AI neural model running on a three-second voice sample scraped from social media. Maya stopped the wire transfer seconds before completion. Remember: when an emergency demands instant funds, hang up and call your loved one directly.",
+                "video_queries": ["audio waveform screen", "stressed elderly person phone", "hacker coding screen", "digital shield cyber"]
             },
             {
-                "title": f"The Fake Courier Customs Trap",
-                "voiceover": f"It begins with a text stating an international parcel has been seized with illegal contraband in {target_region}. Within minutes, a spoofed video call connects you to a fake customs agent demanding a clearance fee into a reserve account. The callers deploy counterfeit badges and official seals to simulate a live investigation. Real customs departments and federal police never demand immediate money transfers over phone calls.",
-                "video_queries": ["shipping box warehouse", "security surveillance screen", "stressed person phone", "cyber security lock"]
+                "title": f"Vikram & Maya: The Malicious Job APK",
+                "voiceover": f"Maya was investigating a suspicious job offer promising daily earnings for rating videos in {target_region}. The target was instructed to download a private support application. Vikram inspected the file package and discovered an aggressive trojan designed to hijack incoming one-time passwords and drain bank balances silently in the background. Maya alerted the target just as unauthorized transfers initiated. Vikram warns: never install APK files sent through messaging groups or unofficial links.",
+                "video_queries": ["smartphone texting dark", "data matrix code", "bank transfer screen", "security cyber lock"]
             }
         ]
-        return random.choice(fallback_pool)
+        return random.choice(fallback_stories)
+
 
 
 
