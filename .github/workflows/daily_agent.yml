@@ -20,10 +20,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install system dependencies (FFmpeg, LibASS & Fonts)
+      - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg fonts-dejavu-core libass-dev
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
 
       - name: Install Python dependencies
         run: |
