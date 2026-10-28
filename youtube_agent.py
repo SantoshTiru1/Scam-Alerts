@@ -12,7 +12,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # -------------------------------------------------------------
-# 1. Studio Anchor Cards Generator (Fallback Safeguard)
+# 1. Studio Anchor Cards Generator
 # -------------------------------------------------------------
 def ensure_studio_anchors():
     os.makedirs("assets", exist_ok=True)
@@ -20,12 +20,22 @@ def ensure_studio_anchors():
     vikram_path = "assets/vikram_studio.png"
 
     if not os.path.exists(maya_path) or not os.path.exists(vikram_path):
-        from build_studio_assets import make_studio_portrait
-        make_studio_portrait("MAYA", "CRIME DESK // INVESTIGATOR", (245, 158, 11), maya_path)
-        make_studio_portrait("VIKRAM", "THREAT INTEL // ANALYST", (14, 165, 233), vikram_path)
+        try:
+            from build_studio_assets import make_studio_portrait
+            make_studio_portrait("MAYA", "CRIME DESK // INVESTIGATOR", (245, 158, 11), maya_path)
+            make_studio_portrait("VIKRAM", "THREAT INTEL // ANALYST", (14, 165, 233), vikram_path)
+        except Exception:
+            # Fallback inline generation if build_studio_assets is absent
+            for path, name, role, color in [(maya_path, "MAYA", "INVESTIGATOR", (245, 158, 11)),
+                                            (vikram_path, "VIKRAM", "CYBER INTEL", (14, 165, 233))]:
+                img = Image.new("RGBA", (440, 500), (15, 23, 42, 240))
+                draw = ImageDraw.Draw(img)
+                draw.rounded_rectangle([(10, 10), (430, 490)], radius=20, outline=color, width=4)
+                draw.text((220, 250), name, fill=(255, 255, 255), anchor="mm")
+                img.save(path, "PNG")
 
 # -------------------------------------------------------------
-# 2. Stock B-Roll Footage Retriever (Pixabay)
+# 2. Stock Footage Retriever (Pixabay)
 # -------------------------------------------------------------
 def fetch_pixabay_video(query, output_filename):
     api_key = os.getenv("PIXABAY_API_KEY")
@@ -55,7 +65,7 @@ def fetch_pixabay_video(query, output_filename):
     return False
 
 # -------------------------------------------------------------
-# 3. Audio & Centered Karaoke Subtitles
+# 3. Audio & Subtitles
 # -------------------------------------------------------------
 def ms_to_ass(ms):
     cs = int((ms % 1000) / 10)
@@ -71,7 +81,6 @@ async def render_dialogue_audio(dialogue_list):
         "Vikram": "en-US-ChristopherNeural"
     }
 
-    # Alignment=5 anchors subtitles exactly in the vertical and horizontal center
     ass_header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -157,7 +166,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     return current_time_ms / 1000.0, speaker_timeline
 
 # -------------------------------------------------------------
-# 4. Broadcast Studio Video Compositor
+# 4. Assembling Broadcast Studio Video
 # -------------------------------------------------------------
 def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_video="scam_short.mp4"):
     ensure_studio_anchors()
@@ -181,31 +190,14 @@ def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_
             f.write(f"file '{c}'\n")
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "base_video.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    # Dynamic Spotlight Logic:
-    # Whichever anchor is currently speaking maintains full brightness (alpha=1.0).
-    # The listening anchor is dimmed (alpha=0.45) with a subtle blur effect.
-    maya_speaking_conds = []
-    vikram_speaking_conds = []
-    for s_start, s_end, speaker in speaker_timeline:
-        cond = f"between(t,{s_start:.2f},{s_end:.2f})"
-        if speaker == "Maya":
-            maya_speaking_conds.append(cond)
-        elif speaker == "Vikram":
-            vikram_speaking_conds.append(cond)
-
-    maya_is_speaking = "+".join(maya_speaking_conds) if maya_speaking_conds else "0"
-    vikram_is_speaking = "+".join(vikram_speaking_conds) if vikram_speaking_conds else "0"
-
-    # Compositor Filter Graph:
-    # - Top Cyber Radar Banner
-    # - Bottom Anchor Deck: Maya (x=60, y=1340), Vikram (x=580, y=1340)
-    # - Center Kinetic Karaoke Subtitles
+    # Clean, robust filter graph:
+    # Scale anchor portraits to 440x500 and overlay Maya at (x=60, y=1340) and Vikram at (x=580, y=1340)
     filter_graph = (
-        f"[1:v]format=rgba,colorchannelmixer=aa='if({maya_is_speaking}, 1.0, 0.45)'[maya_dyn];"
-        f"[2:v]format=rgba,colorchannelmixer=aa='if({vikram_is_speaking}, 1.0, 0.45)'[vikram_dyn];"
-        f"[0:v][maya_dyn]overlay=60:1340[v_m];"
-        f"[v_m][vikram_dyn]overlay=580:1340[v_anchors];"
-        f"[v_anchors]ass=subtitles.ass[vfinal]"
+        "[1:v]scale=440:500[maya];"
+        "[2:v]scale=440:500[vikram];"
+        "[0:v][maya]overlay=60:1340[vmaya];"
+        "[vmaya][vikram]overlay=580:1340[vdeck];"
+        "[vdeck]ass=subtitles.ass[vfinal]"
     )
 
     ambient_path = "assets/ambient.mp3" if os.path.exists("assets/ambient.mp3") else "ambient.mp3"
