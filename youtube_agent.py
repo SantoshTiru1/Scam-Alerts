@@ -12,42 +12,25 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # -------------------------------------------------------------
-# 1. Avatars & Character Card Generator
+# 1. Studio Anchor Cards Generator (Fallback Safeguard)
 # -------------------------------------------------------------
-def ensure_character_avatars():
-    """Generates clean circular character badges if custom assets aren't in assets/."""
+def ensure_studio_anchors():
     os.makedirs("assets", exist_ok=True)
-    
-    characters = [
-        ("assets/vikram.png", "VIKRAM", "CYBER INTEL", (14, 165, 233)), # Cyan
-        ("assets/maya.png", "MAYA", "INVESTIGATOR", (245, 158, 11))      # Amber
-    ]
-    
-    for path, name, role, color in characters:
-        if not os.path.exists(path):
-            img = Image.new("RGBA", (240, 240), (0, 0, 0, 0))
-            draw = ImageDraw.Draw(img)
-            draw.ellipse([(10, 10), (230, 230)], fill=(15, 23, 42, 230), outline=color, width=6)
-            draw.ellipse([(25, 25), (215, 215)], outline=(255, 255, 255, 160), width=2)
-            
-            try:
-                font_name = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 34)
-                font_role = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 18)
-            except Exception:
-                font_name = font_role = ImageFont.load_default()
-                
-            draw.text((120, 95), name, fill=(255, 255, 255), font=font_name, anchor="mm")
-            draw.text((120, 135), role, fill=color, font=font_role, anchor="mm")
-            img.save(path, "PNG")
-            print(f"Generated default character avatar: {path}")
+    maya_path = "assets/maya_studio.png"
+    vikram_path = "assets/vikram_studio.png"
+
+    if not os.path.exists(maya_path) or not os.path.exists(vikram_path):
+        from build_studio_assets import make_studio_portrait
+        make_studio_portrait("MAYA", "CRIME DESK // INVESTIGATOR", (245, 158, 11), maya_path)
+        make_studio_portrait("VIKRAM", "THREAT INTEL // ANALYST", (14, 165, 233), vikram_path)
 
 # -------------------------------------------------------------
-# 2. Stock Footage Retriever (Pixabay)
+# 2. Stock B-Roll Footage Retriever (Pixabay)
 # -------------------------------------------------------------
 def fetch_pixabay_video(query, output_filename):
     api_key = os.getenv("PIXABAY_API_KEY")
     if not api_key:
-        print("PIXABAY_API_KEY missing.")
+        print("PIXABAY_API_KEY missing in Secrets.")
         return False
 
     url = "https://pixabay.com/api/videos/"
@@ -72,7 +55,7 @@ def fetch_pixabay_video(query, output_filename):
     return False
 
 # -------------------------------------------------------------
-# 3. Multi-Speaker Audio & ASS Subtitle Synthesizer
+# 3. Audio & Centered Karaoke Subtitles
 # -------------------------------------------------------------
 def ms_to_ass(ms):
     cs = int((ms % 1000) / 10)
@@ -83,15 +66,12 @@ def ms_to_ass(ms):
     return f"{h}:{m:02d}:{s:02d}.{cs:02d}"
 
 async def render_dialogue_audio(dialogue_list):
-    """
-    Synthesizes each character's lines with distinct Edge-TTS voices
-    and formats karaoke dialogues placed in the center of the 1080x1920 video.
-    """
     voices = {
         "Maya": "en-US-JennyNeural",
         "Vikram": "en-US-ChristopherNeural"
     }
 
+    # Alignment=5 anchors subtitles exactly in the vertical and horizontal center
     ass_header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -99,8 +79,8 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: MayaCenter,DejaVu Sans,68,&H0000D7FF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
-Style: VikramCenter,DejaVu Sans,68,&H00FFFF00,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
+Style: MayaCenter,DejaVu Sans,66,&H0000D7FF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
+Style: VikramCenter,DejaVu Sans,66,&H00FFFF00,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -114,13 +94,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         speaker = item.get("speaker", "Maya")
         text = item.get("text", "")
         voice = voices.get(speaker, "en-US-ChristopherNeural")
-        
+
         line_file = f"line_{idx}.mp3"
         line_audio_files.append(line_file)
-        
+
         communicate = edge_tts.Communicate(text, voice, rate="+2%", pitch="-2Hz")
         submaker = edge_tts.SubMaker()
-        
+
         with open(line_file, "wb") as f:
             async for chunk in communicate.stream():
                 if chunk["type"] == "audio":
@@ -139,7 +119,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
         style_name = "MayaCenter" if speaker == "Maya" else "VikramCenter"
         speaker_badge_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
-        
+
         blocks = re.split(r'\n\s*\n', submaker.get_srt().strip())
         for b in blocks:
             lines = b.split('\n')
@@ -158,7 +138,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                         f"{{{speaker_badge_color}\\fs42\\b1}}[ {speaker} ]\\N"
                         f"{{\\r{style_name}\\fs72\\t(0,70,\\fscx112\\fscy112)\\t(70,140,\\fscx100\\fscy100)}}{word}"
                     )
-                    
                     events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},{style_name},,0,0,0,,{center_dialogue}")
 
         current_time_ms += line_duration_ms
@@ -166,7 +145,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     with open("audio_concat.txt", "w") as f:
         for a in line_audio_files:
             f.write(f"file '{a}'\n")
-            
+
     subprocess.run(
         ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
@@ -178,10 +157,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     return current_time_ms / 1000.0, speaker_timeline
 
 # -------------------------------------------------------------
-# 4. Short Assembly with Overlays & Center Subtitles
+# 4. Broadcast Studio Video Compositor
 # -------------------------------------------------------------
-def assemble_character_short(video_clips, total_duration, speaker_timeline, output_video="scam_short.mp4"):
-    ensure_character_avatars()
+def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_video="scam_short.mp4"):
+    ensure_studio_anchors()
     clip_dur = total_duration / len(video_clips)
 
     prepared_clips = []
@@ -202,44 +181,63 @@ def assemble_character_short(video_clips, total_duration, speaker_timeline, outp
             f.write(f"file '{c}'\n")
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "base_video.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    avatar_filter = (
-        "[0:v][1:v]overlay=60:1480[v1];"
-        "[v1][2:v]overlay=780:1480[v2];"
-        "[v2]ass=subtitles.ass[vfinal]"
+    # Dynamic Spotlight Logic:
+    # Whichever anchor is currently speaking maintains full brightness (alpha=1.0).
+    # The listening anchor is dimmed (alpha=0.45) with a subtle blur effect.
+    maya_speaking_conds = []
+    vikram_speaking_conds = []
+    for s_start, s_end, speaker in speaker_timeline:
+        cond = f"between(t,{s_start:.2f},{s_end:.2f})"
+        if speaker == "Maya":
+            maya_speaking_conds.append(cond)
+        elif speaker == "Vikram":
+            vikram_speaking_conds.append(cond)
+
+    maya_is_speaking = "+".join(maya_speaking_conds) if maya_speaking_conds else "0"
+    vikram_is_speaking = "+".join(vikram_speaking_conds) if vikram_speaking_conds else "0"
+
+    # Compositor Filter Graph:
+    # - Top Cyber Radar Banner
+    # - Bottom Anchor Deck: Maya (x=60, y=1340), Vikram (x=580, y=1340)
+    # - Center Kinetic Karaoke Subtitles
+    filter_graph = (
+        f"[1:v]format=rgba,colorchannelmixer=aa='if({maya_is_speaking}, 1.0, 0.45)'[maya_dyn];"
+        f"[2:v]format=rgba,colorchannelmixer=aa='if({vikram_is_speaking}, 1.0, 0.45)'[vikram_dyn];"
+        f"[0:v][maya_dyn]overlay=60:1340[v_m];"
+        f"[v_m][vikram_dyn]overlay=580:1340[v_anchors];"
+        f"[v_anchors]ass=subtitles.ass[vfinal]"
     )
 
     ambient_path = "assets/ambient.mp3" if os.path.exists("assets/ambient.mp3") else "ambient.mp3"
     has_ambient = os.path.exists(ambient_path)
 
+    base_inputs = [
+        "ffmpeg", "-y",
+        "-i", "base_video.mp4",
+        "-i", "assets/maya_studio.png",
+        "-i", "assets/vikram_studio.png",
+        "-i", "dialogue_master.mp3"
+    ]
+
     if has_ambient:
-        cmd_final = [
-            "ffmpeg", "-y",
-            "-i", "base_video.mp4",
-            "-i", "assets/maya.png",
-            "-i", "assets/vikram.png",
-            "-i", "dialogue_master.mp3",
+        cmd_final = base_inputs + [
             "-stream_loop", "-1", "-i", ambient_path,
             "-filter_complex",
-            f"{avatar_filter};[4:a]volume=0.10[bg];[3:a][bg]amix=inputs=2:duration=first[afinal]",
+            f"{filter_graph};[4:a]volume=0.10[bg];[3:a][bg]amix=inputs=2:duration=first[afinal]",
             "-map", "[vfinal]", "-map", "[afinal]",
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
         ]
     else:
-        cmd_final = [
-            "ffmpeg", "-y",
-            "-i", "base_video.mp4",
-            "-i", "assets/maya.png",
-            "-i", "assets/vikram.png",
-            "-i", "dialogue_master.mp3",
-            "-filter_complex", avatar_filter,
+        cmd_final = base_inputs + [
+            "-filter_complex", filter_graph,
             "-map", "[vfinal]", "-map", "3:a",
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Multi-character Short assembled successfully!")
+    print("Dual-Anchor Studio Short assembled successfully!")
 
 # -------------------------------------------------------------
 # 5. YouTube Upload Handler
@@ -284,7 +282,7 @@ def upload_to_youtube(video_path, title, description):
         media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
         request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
         res = request.execute()
-        print("SUCCESS: Published Character Short! Video ID:", res.get("id"))
+        print("SUCCESS: Published Dual-Anchor Short! Video ID:", res.get("id"))
     except Exception as e:
         print(f"YouTube Upload notice (non-fatal): {e}")
 
@@ -298,8 +296,8 @@ def process_youtube_short(day_entry, story):
 
     queries = story.get("video_queries", ["smartphone call dark", "hacker coding screen", "stressed person phone", "police lights night"])
     video_clips = []
-    
-    print("Step 1: Downloading dynamic background stock footage...")
+
+    print("Step 1: Downloading 4K background B-roll footage...")
     for idx, q in enumerate(queries):
         clip = f"clip_{idx}.mp4"
         if fetch_pixabay_video(q, clip):
@@ -317,11 +315,11 @@ def process_youtube_short(day_entry, story):
         print("No stock footage available. Skipping video build.")
         return
 
-    print("Step 2: Synthesizing multi-character dialogue voices and subtitles...")
+    print("Step 2: Synthesizing character dialogue & center subtitles...")
     total_dur, timeline = asyncio.run(render_dialogue_audio(story["dialogue"]))
 
-    print("Step 3: Overlaying character badges, centered subtitles, and ambient track...")
-    assemble_character_short(video_clips, total_dur, timeline)
+    print("Step 3: Rendering Dual-Anchor broadcast deck & dynamic lighting...")
+    assemble_studio_short(video_clips, total_dur, timeline)
 
     full_transcript = " ".join([f"{item['speaker']}: {item['text']}" for item in story["dialogue"]])
     print("Step 4: Uploading to YouTube...")
