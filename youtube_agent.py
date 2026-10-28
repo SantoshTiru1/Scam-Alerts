@@ -86,13 +86,14 @@ def ms_to_ass(ms):
 async def render_dialogue_audio(dialogue_list):
     """
     Synthesizes each character's lines with distinct Edge-TTS voices
-    and computes synchronized dialogue segments.
+    and formats karaoke dialogues placed strictly in the dead center of the 1080x1920 video.
     """
     voices = {
         "Maya": "en-US-JennyNeural",
         "Vikram": "en-US-ChristopherNeural"
     }
 
+    # Alignment=5 places the subtitle exactly at the center (x=540, y=960)
     ass_header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -100,8 +101,8 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: MayaStyle,DejaVu Sans,64,&H0000D7FF,&H0000FFFF,&H00000000,&H90000000,1,0,0,0,100,100,0,0,1,5,3,2,50,50,780,1
-Style: VikramStyle,DejaVu Sans,64,&H00FFFF00,&H0000FFFF,&H00000000,&H90000000,1,0,0,0,100,100,0,0,1,5,3,2,50,50,780,1
+Style: MayaCenter,DejaVu Sans,68,&H0000D7FF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
+Style: VikramCenter,DejaVu Sans,68,&H00FFFF00,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -109,7 +110,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     events = []
     line_audio_files = []
     current_time_ms = 0
-    speaker_timeline = [] # (start_sec, end_sec, speaker_name)
+    speaker_timeline = []
 
     for idx, item in enumerate(dialogue_list):
         speaker = item.get("speaker", "Maya")
@@ -129,20 +130,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 elif chunk["type"] == "WordBoundary":
                     submaker.feed(chunk)
 
-        # Get audio duration
+        # Get audio segment duration
         cmd = ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", line_file]
         dur_res = subprocess.run(cmd, stdout=subprocess.PIPE, text=True)
         line_duration_sec = float(dur_res.stdout.strip())
         line_duration_ms = int(line_duration_sec * 1000)
 
-        # Record timeline for visual speaker highlighting
         start_s = current_time_ms / 1000.0
         end_s = (current_time_ms + line_duration_ms) / 1000.0
         speaker_timeline.append((start_s, end_s, speaker))
 
-        # Parse word timings into character-tagged ASS events
-        style_name = "MayaStyle" if speaker == "Maya" else "VikramStyle"
-        tag_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
+        # Assign speaker tag colors (Maya = Amber, Vikram = Cyan)
+        style_name = "MayaCenter" if speaker == "Maya" else "VikramCenter"
+        speaker_badge_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
         
         blocks = re.split(r'\n\s*\n', submaker.get_srt().strip())
         for b in blocks:
@@ -155,24 +155,36 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     g = [int(x) for x in m.groups()]
                     w_start = current_time_ms + (g[0]*3600000 + g[1]*60000 + g[2]*1000 + g[3])
                     w_end = current_time_ms + (g[4]*3600000 + g[5]*60000 + g[6]*1000 + g[7])
-                    if w_end - w_start < 260:
-                        w_end = w_start + 260
+                    if w_end - w_start < 250:
+                        w_end = w_start + 250
+
+                    # Displays: [SPEAKER TAG] on top, with the animated spoken word right below in the center
+                    center_dialogue = (
+                        f"{{{speaker_badge_color}\\fs42\\b1}[ {speaker} ]\\N}}"
+                        f"{{\\r{style_name}\\fs72\\t(0,70,\\fscx112\\fscy112)\\t(70,140,\\fscx100\\fscy100)}}{word}"
+                    )
                     
-                    sub_str = f"{{{tag_color}\\b1}}{speaker}: {{\\r{style_name}\\t(0,70,\\fscx110\\fscy110)\\t(70,140,\\fscx100\\fscy100)}}{word}"
-                    events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},{style_name},,0,0,0,,{sub_str}")
+                    events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},{style_name},,0,0,0,,{center_dialogue}")
 
         current_time_ms += line_duration_ms
 
-    # Combine audio lines into one master dialog track
+    # Combine dialogue audio segments into master track
     with open("audio_concat.txt", "w") as f:
         for a in line_audio_files:
             f.write(f"file '{a}'\n")
-    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            
+    subprocess.run(
+        ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+    )
 
     with open("subtitles.ass", "w", encoding="utf-8") as f:
         f.write(ass_header + "\n".join(events) + "\n")
 
     return current_time_ms / 1000.0, speaker_timeline
+
+
+
 
 # -------------------------------------------------------------
 # 4. Cinematic Short Assembly with Character HUD Overlays
