@@ -123,6 +123,7 @@ def fetch_scam_for_region(region):
         "url": "https://thehackernews.com"
     }
 
+
 def summarize_scam(region, news_item):
     prompt = f"""
 You are a cybersecurity threat analyst.
@@ -147,4 +148,7 @@ Structure:
             temperature=0.3,
             max_tokens=220
         )
-        return response.choices[0].message.content
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"LLM Error for {region}: {e}")
+        return news_item.get("body", "Summary currently unavailable.")
