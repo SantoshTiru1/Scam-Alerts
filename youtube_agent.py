@@ -27,7 +27,6 @@ def ensure_character_avatars():
         if not os.path.exists(path):
             img = Image.new("RGBA", (240, 240), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
-            # Outer circular badge with glow
             draw.ellipse([(10, 10), (230, 230)], fill=(15, 23, 42, 230), outline=color, width=6)
             draw.ellipse([(25, 25), (215, 215)], outline=(255, 255, 255, 160), width=2)
             
@@ -86,14 +85,13 @@ def ms_to_ass(ms):
 async def render_dialogue_audio(dialogue_list):
     """
     Synthesizes each character's lines with distinct Edge-TTS voices
-    and formats karaoke dialogues placed strictly in the dead center of the 1080x1920 video.
+    and formats karaoke dialogues placed in the center of the 1080x1920 video.
     """
     voices = {
         "Maya": "en-US-JennyNeural",
         "Vikram": "en-US-ChristopherNeural"
     }
 
-    # Alignment=5 places the subtitle exactly at the center (x=540, y=960)
     ass_header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -130,7 +128,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 elif chunk["type"] == "WordBoundary":
                     submaker.feed(chunk)
 
-        # Get audio segment duration
         cmd = ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", line_file]
         dur_res = subprocess.run(cmd, stdout=subprocess.PIPE, text=True)
         line_duration_sec = float(dur_res.stdout.strip())
@@ -140,7 +137,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         end_s = (current_time_ms + line_duration_ms) / 1000.0
         speaker_timeline.append((start_s, end_s, speaker))
 
-        # Assign speaker tag colors (Maya = Amber, Vikram = Cyan)
         style_name = "MayaCenter" if speaker == "Maya" else "VikramCenter"
         speaker_badge_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
         
@@ -158,9 +154,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     if w_end - w_start < 250:
                         w_end = w_start + 250
 
-                    # Displays: [SPEAKER TAG] on top, with the animated spoken word right below in the center
                     center_dialogue = (
-                        f"{{{speaker_badge_color}\\fs42\\b1}[ {speaker} ]\\N}}"
+                        f"{{{speaker_badge_color}\\fs42\\b1}}[ {speaker} ]\\N"
                         f"{{\\r{style_name}\\fs72\\t(0,70,\\fscx112\\fscy112)\\t(70,140,\\fscx100\\fscy100)}}{word}"
                     )
                     
@@ -168,7 +163,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
         current_time_ms += line_duration_ms
 
-    # Combine dialogue audio segments into master track
     with open("audio_concat.txt", "w") as f:
         for a in line_audio_files:
             f.write(f"file '{a}'\n")
@@ -183,17 +177,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     return current_time_ms / 1000.0, speaker_timeline
 
-
-
-
 # -------------------------------------------------------------
-# 4. Cinematic Short Assembly with Character HUD Overlays
+# 4. Short Assembly with Overlays & Center Subtitles
 # -------------------------------------------------------------
 def assemble_character_short(video_clips, total_duration, speaker_timeline, output_video="scam_short.mp4"):
     ensure_character_avatars()
     clip_dur = total_duration / len(video_clips)
 
-    # Prepare background video clips (1080x1920)
     prepared_clips = []
     for idx, raw_clip in enumerate(video_clips):
         processed_clip = f"prep_{idx}.mp4"
@@ -212,8 +202,6 @@ def assemble_character_short(video_clips, total_duration, speaker_timeline, outp
             f.write(f"file '{c}'\n")
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "base_video.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    # Overlay Avatars: Maya on bottom-left (x=60, y=1480), Vikram on bottom-right (x=780, y=1480)
-    # Both characters stay visibly on screen throughout the dialogue
     avatar_filter = (
         "[0:v][1:v]overlay=60:1480[v1];"
         "[v1][2:v]overlay=780:1480[v2];"
@@ -251,7 +239,7 @@ def assemble_character_short(video_clips, total_duration, speaker_timeline, outp
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Multi-character Short assembled with visible avatars and alternating voices!")
+    print("Multi-character Short assembled successfully!")
 
 # -------------------------------------------------------------
 # 5. YouTube Upload Handler
@@ -332,7 +320,7 @@ def process_youtube_short(day_entry, story):
     print("Step 2: Synthesizing multi-character dialogue voices and subtitles...")
     total_dur, timeline = asyncio.run(render_dialogue_audio(story["dialogue"]))
 
-    print("Step 3: Overlaying character badges, kinetic subtitles, and ambient track...")
+    print("Step 3: Overlaying character badges, centered subtitles, and ambient track...")
     assemble_character_short(video_clips, total_dur, timeline)
 
     full_transcript = " ".join([f"{item['speaker']}: {item['text']}" for item in story["dialogue"]])
