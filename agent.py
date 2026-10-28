@@ -12,8 +12,12 @@ from youtube_agent import process_youtube_short
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-# Fast, stable inference model
+# Change this:
 MODEL_NAME = "llama-3.1-8b-instant"
+
+# To this active production model:
+MODEL_NAME = "llama-3.3-70b-versatile"
+
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
