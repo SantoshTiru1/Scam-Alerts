@@ -12,39 +12,101 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # -------------------------------------------------------------
-# 1. Studio Anchor Cards Generator
+# 1. Procedural Stickman Character Engine ("The Ink Explainer" Style)
 # -------------------------------------------------------------
-def ensure_studio_anchors():
+def ensure_stickman_characters():
+    """Generates clean, high-contrast expressive stickman characters."""
     os.makedirs("assets", exist_ok=True)
-    maya_path = "assets/maya_studio.png"
-    vikram_path = "assets/vikram_studio.png"
-
-    if not os.path.exists(maya_path) or not os.path.exists(vikram_path):
+    
+    # 1. Maya Stickman (Reporter with headset & mic)
+    maya_file = "assets/maya_stickman.png"
+    if not os.path.exists(maya_file):
+        img = Image.new("RGBA", (400, 520), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        
+        # Head (Bold White fill, Black stroke)
+        d.ellipse([(140, 40), (260, 160)], fill=(255, 255, 255), outline=(15, 23, 42), width=8)
+        # Headset band & on-ear mic
+        d.arc([(130, 30), (270, 160)], start=200, end=340, fill=(245, 158, 11), width=8)
+        d.ellipse([(130, 95), (150, 125)], fill=(245, 158, 11))
+        d.line([(140, 110), (190, 140)], fill=(245, 158, 11), width=5)
+        d.ellipse([(185, 135), (195, 145)], fill=(239, 68, 68))
+        
+        # Expressive Eyes & Smile
+        d.ellipse([(175, 85), (190, 105)], fill=(15, 23, 42))
+        d.ellipse([(220, 85), (235, 105)], fill=(15, 23, 42))
+        d.arc([(180, 110), (225, 135)], start=10, end=170, fill=(15, 23, 42), width=6)
+        
+        # Body Spine
+        d.line([(200, 160), (200, 340)], fill=(15, 23, 42), width=10)
+        
+        # Arms (Explaining gesture pointing toward center)
+        d.line([(200, 200), (270, 240), (340, 210)], fill=(15, 23, 42), width=8)
+        d.line([(200, 200), (140, 260)], fill=(15, 23, 42), width=8)
+        
+        # Legs
+        d.line([(200, 340), (150, 470)], fill=(15, 23, 42), width=10)
+        d.line([(200, 340), (250, 470)], fill=(15, 23, 42), width=10)
+        
+        # Name Plate Card
+        d.rounded_rectangle([(70, 460), (330, 510)], radius=12, fill=(245, 158, 11), outline=(15, 23, 42), width=4)
         try:
-            from build_studio_assets import make_studio_portrait
-            make_studio_portrait("MAYA", "CRIME DESK // INVESTIGATOR", (245, 158, 11), maya_path)
-            make_studio_portrait("VIKRAM", "THREAT INTEL // ANALYST", (14, 165, 233), vikram_path)
+            f = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
         except Exception:
-            # Fallback inline generation if build_studio_assets is absent
-            for path, name, role, color in [(maya_path, "MAYA", "INVESTIGATOR", (245, 158, 11)),
-                                            (vikram_path, "VIKRAM", "CYBER INTEL", (14, 165, 233))]:
-                img = Image.new("RGBA", (440, 500), (15, 23, 42, 240))
-                draw = ImageDraw.Draw(img)
-                draw.rounded_rectangle([(10, 10), (430, 490)], radius=20, outline=color, width=4)
-                draw.text((220, 250), name, fill=(255, 255, 255), anchor="mm")
-                img.save(path, "PNG")
+            f = ImageFont.load_default()
+        d.text((200, 485), "MAYA", fill=(15, 23, 42), font=f, anchor="mm")
+        img.save(maya_file, "PNG")
+
+    # 2. Vikram Stickman (Cyber Detective with glasses & tie)
+    vikram_file = "assets/vikram_stickman.png"
+    if not os.path.exists(vikram_file):
+        img = Image.new("RGBA", (400, 520), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        
+        # Head
+        d.ellipse([(140, 40), (260, 160)], fill=(255, 255, 255), outline=(15, 23, 42), width=8)
+        
+        # Cyber Tech Glasses
+        d.rectangle([(160, 80), (195, 105)], fill=(14, 165, 233), outline=(15, 23, 42), width=5)
+        d.rectangle([(210, 80), (245, 105)], fill=(14, 165, 233), outline=(15, 23, 42), width=5)
+        d.line([(195, 92), (210, 92)], fill=(15, 23, 42), width=5)
+        
+        # Smirk
+        d.arc([(180, 115), (225, 135)], start=10, end=160, fill=(15, 23, 42), width=6)
+        
+        # Body Spine & Tie
+        d.line([(200, 160), (200, 340)], fill=(15, 23, 42), width=10)
+        d.polygon([(193, 175), (207, 175), (212, 250), (200, 270), (188, 250)], fill=(14, 165, 233))
+        
+        # Arms (Holding magnifying glass / investigating)
+        d.line([(200, 200), (130, 230), (70, 200)], fill=(15, 23, 42), width=8)
+        d.line([(200, 200), (260, 250)], fill=(15, 23, 42), width=8)
+        # Magnifying glass circle
+        d.ellipse([(50, 175), (90, 215)], fill=(14, 165, 233, 120), outline=(15, 23, 42), width=5)
+        
+        # Legs
+        d.line([(200, 340), (150, 470)], fill=(15, 23, 42), width=10)
+        d.line([(200, 340), (250, 470)], fill=(15, 23, 42), width=10)
+        
+        # Name Plate Card
+        d.rounded_rectangle([(70, 460), (330, 510)], radius=12, fill=(14, 165, 233), outline=(15, 23, 42), width=4)
+        try:
+            f = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
+        except Exception:
+            f = ImageFont.load_default()
+        d.text((200, 485), "VIKRAM", fill=(15, 23, 42), font=f, anchor="mm")
+        img.save(vikram_file, "PNG")
 
 # -------------------------------------------------------------
-# 2. Stock Footage Retriever (Pixabay)
+# 2. Pixabay Stock Footage
 # -------------------------------------------------------------
 def fetch_pixabay_video(query, output_filename):
     api_key = os.getenv("PIXABAY_API_KEY")
     if not api_key:
-        print("PIXABAY_API_KEY missing in Secrets.")
         return False
 
     url = "https://pixabay.com/api/videos/"
-    params = {"key": api_key, "q": query, "video_type": "all", "per_page": 10, "safesearch": "true"}
+    params = {"key": api_key, "q": query, "video_type": "all", "per_page": 8, "safesearch": "true"}
     try:
         res = requests.get(url, params=params, timeout=20)
         if res.status_code == 200:
@@ -61,7 +123,7 @@ def fetch_pixabay_video(query, output_filename):
                                 f.write(v_res.content)
                             return True
     except Exception as e:
-        print(f"Pixabay fetch notice: {e}")
+        print(f"Pixabay fetch error: {e}")
     return False
 
 # -------------------------------------------------------------
@@ -81,6 +143,7 @@ async def render_dialogue_audio(dialogue_list):
         "Vikram": "en-US-ChristopherNeural"
     }
 
+    # Center-aligned, high readability text
     ass_header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -88,8 +151,8 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: MayaCenter,DejaVu Sans,66,&H0000D7FF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
-Style: VikramCenter,DejaVu Sans,66,&H00FFFF00,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,3,5,60,60,0,1
+Style: MayaStyle,DejaVu Sans,68,&H0000FFFF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,4,5,60,60,0,1
+Style: VikramStyle,DejaVu Sans,68,&H00FFFF00,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,4,4,5,60,60,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -97,7 +160,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     events = []
     line_audio_files = []
     current_time_ms = 0
-    speaker_timeline = []
 
     for idx, item in enumerate(dialogue_list):
         speaker = item.get("speaker", "Maya")
@@ -107,7 +169,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         line_file = f"line_{idx}.mp3"
         line_audio_files.append(line_file)
 
-        communicate = edge_tts.Communicate(text, voice, rate="+2%", pitch="-2Hz")
+        communicate = edge_tts.Communicate(text, voice, rate="+3%", pitch="-1Hz")
         submaker = edge_tts.SubMaker()
 
         with open(line_file, "wb") as f:
@@ -122,12 +184,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         line_duration_sec = float(dur_res.stdout.strip())
         line_duration_ms = int(line_duration_sec * 1000)
 
-        start_s = current_time_ms / 1000.0
-        end_s = (current_time_ms + line_duration_ms) / 1000.0
-        speaker_timeline.append((start_s, end_s, speaker))
-
-        style_name = "MayaCenter" if speaker == "Maya" else "VikramCenter"
-        speaker_badge_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
+        style_name = "MayaStyle" if speaker == "Maya" else "VikramStyle"
+        tag_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
 
         blocks = re.split(r'\n\s*\n', submaker.get_srt().strip())
         for b in blocks:
@@ -140,12 +198,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     g = [int(x) for x in m.groups()]
                     w_start = current_time_ms + (g[0]*3600000 + g[1]*60000 + g[2]*1000 + g[3])
                     w_end = current_time_ms + (g[4]*3600000 + g[5]*60000 + g[6]*1000 + g[7])
-                    if w_end - w_start < 250:
-                        w_end = w_start + 250
+                    if w_end - w_start < 260:
+                        w_end = w_start + 260
 
                     center_dialogue = (
-                        f"{{{speaker_badge_color}\\fs42\\b1}}[ {speaker} ]\\N"
-                        f"{{\\r{style_name}\\fs72\\t(0,70,\\fscx112\\fscy112)\\t(70,140,\\fscx100\\fscy100)}}{word}"
+                        f"{{{tag_color}\\fs44\\b1}}[ {speaker.upper()} ]\\N"
+                        f"{{\\r{style_name}\\fs72\\t(0,70,\\fscx110\\fscy110)\\t(70,140,\\fscx100\\fscy100)}}{word}"
                     )
                     events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},{style_name},,0,0,0,,{center_dialogue}")
 
@@ -155,21 +213,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         for a in line_audio_files:
             f.write(f"file '{a}'\n")
 
-    subprocess.run(
-        ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
-    )
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     with open("subtitles.ass", "w", encoding="utf-8") as f:
         f.write(ass_header + "\n".join(events) + "\n")
 
-    return current_time_ms / 1000.0, speaker_timeline
+    return current_time_ms / 1000.0
 
 # -------------------------------------------------------------
-# 4. Assembling Broadcast Studio Video
+# 4. Assembling the Stickman Explainer Short
 # -------------------------------------------------------------
-def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_video="scam_short.mp4"):
-    ensure_studio_anchors()
+def assemble_stickman_short(video_clips, total_duration, output_video="scam_short.mp4"):
+    ensure_stickman_characters()
     clip_dur = total_duration / len(video_clips)
 
     prepared_clips = []
@@ -180,7 +235,7 @@ def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_
             "ffmpeg", "-y", "-stream_loop", "3", "-i", raw_clip,
             "-t", f"{clip_dur:.2f}",
             "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,"
-                   "eq=contrast=1.15:saturation=1.2:brightness=-0.04,vignette=PI/4.2,fps=30",
+                   "eq=contrast=1.12:saturation=1.15:brightness=-0.08,vignette=PI/4.5,fps=30",
             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an", processed_clip
         ]
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
@@ -190,13 +245,13 @@ def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_
             f.write(f"file '{c}'\n")
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "base_video.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    # Clean, robust filter graph:
-    # Scale anchor portraits to 440x500 and overlay Maya at (x=60, y=1340) and Vikram at (x=580, y=1340)
+    # Place Stickman Maya at bottom-left (x=50, y=1360) and Stickman Vikram at bottom-right (x=630, y=1360)
+    # Burn subtitles right in the center
     filter_graph = (
-        "[1:v]scale=440:500[maya];"
-        "[2:v]scale=440:500[vikram];"
-        "[0:v][maya]overlay=60:1340[vmaya];"
-        "[vmaya][vikram]overlay=580:1340[vdeck];"
+        "[1:v]scale=380:490[maya];"
+        "[2:v]scale=380:490[vikram];"
+        "[0:v][maya]overlay=60:1360[vm];"
+        "[vm][vikram]overlay=640:1360[vdeck];"
         "[vdeck]ass=subtitles.ass[vfinal]"
     )
 
@@ -206,8 +261,8 @@ def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_
     base_inputs = [
         "ffmpeg", "-y",
         "-i", "base_video.mp4",
-        "-i", "assets/maya_studio.png",
-        "-i", "assets/vikram_studio.png",
+        "-i", "assets/maya_stickman.png",
+        "-i", "assets/vikram_stickman.png",
         "-i", "dialogue_master.mp3"
     ]
 
@@ -229,7 +284,7 @@ def assemble_studio_short(video_clips, total_duration, speaker_timeline, output_
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Dual-Anchor Studio Short assembled successfully!")
+    print("Stickman Explainer Short assembled successfully!")
 
 # -------------------------------------------------------------
 # 5. YouTube Upload Handler
@@ -260,9 +315,9 @@ def upload_to_youtube(video_path, title, description):
                     f"{description}\n\n"
                     f"🛡️ Live Cyber Threat Matrix & SOP Protocols:\n"
                     f"https://santoshtiru1.github.io/Scam-Alerts/\n\n"
-                    f"#CyberSecurity #ScamAlert #Investigation #TrueCrime #Shorts"
+                    f"#Animation #Stickman #CyberSecurity #ScamAlert #Shorts"
                 ),
-                "tags": ["CyberSecurity", "ScamAlert", "Investigation", "TrueCrime", "Shorts"],
+                "tags": ["Animation", "Stickman", "CyberSecurity", "ScamAlert", "Shorts"],
                 "categoryId": "28"
             },
             "status": {
@@ -274,7 +329,7 @@ def upload_to_youtube(video_path, title, description):
         media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
         request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
         res = request.execute()
-        print("SUCCESS: Published Dual-Anchor Short! Video ID:", res.get("id"))
+        print("SUCCESS: Published Stickman Short! Video ID:", res.get("id"))
     except Exception as e:
         print(f"YouTube Upload notice (non-fatal): {e}")
 
@@ -289,7 +344,7 @@ def process_youtube_short(day_entry, story):
     queries = story.get("video_queries", ["smartphone call dark", "hacker coding screen", "stressed person phone", "police lights night"])
     video_clips = []
 
-    print("Step 1: Downloading 4K background B-roll footage...")
+    print("Step 1: Downloading background B-roll footage...")
     for idx, q in enumerate(queries):
         clip = f"clip_{idx}.mp4"
         if fetch_pixabay_video(q, clip):
@@ -308,10 +363,10 @@ def process_youtube_short(day_entry, story):
         return
 
     print("Step 2: Synthesizing character dialogue & center subtitles...")
-    total_dur, timeline = asyncio.run(render_dialogue_audio(story["dialogue"]))
+    total_dur = asyncio.run(render_dialogue_audio(story["dialogue"]))
 
-    print("Step 3: Rendering Dual-Anchor broadcast deck & dynamic lighting...")
-    assemble_studio_short(video_clips, total_dur, timeline)
+    print("Step 3: Overlaying Stickman characters (Maya & Vikram)...")
+    assemble_stickman_short(video_clips, total_dur)
 
     full_transcript = " ".join([f"{item['speaker']}: {item['text']}" for item in story["dialogue"]])
     print("Step 4: Uploading to YouTube...")
