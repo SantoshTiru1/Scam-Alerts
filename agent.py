@@ -12,11 +12,35 @@ from youtube_agent import process_youtube_short
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-# Change this:
-MODEL_NAME = "llama-3.1-8b-instant"
 
-# To this active production model:
-MODEL_NAME = "llama-3.3-70b-versatile"
+# Models prioritized by availability on Groq free tier
+MODELS_TO_TRY = [
+    "llama-3.3-70b-specdec",
+    "llama-3.3-70b-versatile",
+    "llama3-70b-8192",
+    "llama3-8b-8192",
+    "mixtral-8x7b-32768"
+]
+
+def call_groq_chat(messages, temperature=0.7, max_tokens=500):
+    for model in MODELS_TO_TRY:
+        try:
+            res = client.chat.completions.create(
+                model=model,
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
+            return res.choices[0].message.content.strip()
+        except Exception as e:
+            # If 404 or model not accessible, try next model in pool
+            if "model_not_found" in str(e) or "404" in str(e):
+                continue
+            print(f"Groq API error on {model}: {e}")
+            break
+    raise RuntimeError("All Groq models exhausted.")
+
+
 
 
 HEADERS = {
