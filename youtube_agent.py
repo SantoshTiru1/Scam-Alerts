@@ -11,78 +11,52 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # -------------------------------------------------------------
-# 1. Download Verified Presenter Clips (Maya & Vikram)
+# 1. Download Cyber B-Roll (Contextual to Scam Threat)
 # -------------------------------------------------------------
-def ensure_presenter_clips():
-    """
-    Ensures 1080x1920 vertical presenter clips exist in assets/.
-    If not already present, fetches portrait presenter footage via Pixabay API.
-    """
-    os.makedirs("assets", exist_ok=True)
-    maya_path = "assets/maya_presenter.mp4"
-    vikram_path = "assets/vikram_presenter.mp4"
-
+def fetch_cyber_broll(query, output_filename):
     api_key = os.getenv("PIXABAY_API_KEY")
+    if not api_key:
+        return False
 
-    presenters = [
-        (maya_path, "female newscaster anchor speaking to camera"),
-        (vikram_path, "businessman talking head interview close up")
-    ]
+    url = "https://pixabay.com/api/videos/"
+    params = {
+        "key": api_key,
+        "q": query,
+        "video_type": "film",
+        "per_page": 8,
+        "safesearch": "true"
+    }
 
-    for path, query in presenters:
-        if not os.path.exists(path) and api_key:
-            print(f"Downloading presenter footage for: {path}...")
-            try:
-                url = "https://pixabay.com/api/videos/"
-                params = {
-                    "key": api_key,
-                    "q": query,
-                    "video_type": "film",
-                    "per_page": 10,
-                    "safesearch": "true"
-                }
-                res = requests.get(url, params=params, timeout=20)
-                if res.status_code == 200:
-                    hits = res.json().get("hits", [])
-                    chosen_url = None
-                    for hit in hits:
-                        vids = hit.get("videos", {})
-                        target = vids.get("large") or vids.get("medium") or vids.get("small")
-                        if target and target.get("url"):
-                            chosen_url = target["url"]
-                            break
-
-                    if chosen_url:
-                        raw_temp = f"raw_{os.path.basename(path)}"
-                        with requests.get(chosen_url, stream=True, timeout=60) as r:
+    try:
+        res = requests.get(url, params=params, timeout=20)
+        if res.status_code == 200:
+            hits = res.json().get("hits", [])
+            if hits:
+                random.shuffle(hits)
+                for hit in hits:
+                    vids = hit.get("videos", {})
+                    target = vids.get("large") or vids.get("medium") or vids.get("small")
+                    if target and target.get("url"):
+                        with requests.get(target["url"], stream=True, timeout=40) as r:
                             r.raise_for_status()
-                            with open(raw_temp, "wb") as f:
+                            with open(output_filename, "wb") as f:
                                 for chunk in r.iter_content(chunk_size=16384):
                                     f.write(chunk)
-
-                        cmd = [
-                            "ffmpeg", "-y", "-i", raw_temp,
-                            "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,fps=30",
-                            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
-                            path
-                        ]
-                        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-                        if os.path.exists(raw_temp):
-                            os.remove(raw_temp)
-                        print(f"✓ Saved portrait presenter: {path}")
-            except Exception as e:
-                print(f"Notice downloading {path}: {e}")
+                        return True
+    except Exception as e:
+        print(f"B-roll fetch notice for {query}: {e}")
+    return False
 
 # -------------------------------------------------------------
-# 2. Audio & Clean Horizontal Subtitles
+# 2. Audio & Compact Middle Subtitle Generator (20% Middle)
 # -------------------------------------------------------------
-def ms_to_srt_time(ms):
+def ms_to_ass(ms):
+    cs = int((ms % 1000) / 10)
     total_sec = int(ms / 1000)
     s = total_sec % 60
     m = int(total_sec / 60) % 60
     h = int(total_sec / 3600)
-    millis = int(ms % 1000)
-    return f"{h:02d}:{m:02d}:{s:02d},{millis:03d}"
+    return f"{h}:{m:02d}:{s:02d}.{cs:02d}"
 
 async def render_dialogue_audio(dialogue_list):
     voices = {
@@ -90,11 +64,25 @@ async def render_dialogue_audio(dialogue_list):
         "Vikram": "en-US-ChristopherNeural"
     }
 
-    srt_entries = []
+    # ASS Header: Alignment=5 is Dead-Center (x=540, y=960).
+    # Fontsize=32 with tight margins makes it occupy only ~20% of the screen center.
+    ass_header = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: MayaMid,DejaVu Sans,32,&H00FFFFFF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,3,1,5,180,180,0,1
+Style: VikramMid,DejaVu Sans,32,&H00FFFFFF,&H0000FFFF,&H00000000,&HA0000000,1,0,0,0,100,100,1,0,3,3,1,5,180,180,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    events = []
     line_audio_files = []
     current_time_ms = 0
-    line_segments = []
-    srt_counter = 1
+    line_durations = []
 
     for idx, item in enumerate(dialogue_list):
         speaker = item.get("speaker", "Maya")
@@ -104,7 +92,7 @@ async def render_dialogue_audio(dialogue_list):
         line_file = f"line_{idx}.mp3"
         line_audio_files.append(line_file)
 
-        communicate = edge_tts.Communicate(text, voice, rate="+3%", pitch="-1Hz")
+        communicate = edge_tts.Communicate(text, voice, rate="+4%", pitch="-1Hz")
         submaker = edge_tts.SubMaker()
 
         with open(line_file, "wb") as f:
@@ -118,10 +106,12 @@ async def render_dialogue_audio(dialogue_list):
         dur_res = subprocess.run(cmd, stdout=subprocess.PIPE, text=True)
         line_duration_sec = float(dur_res.stdout.strip())
         line_duration_ms = int(line_duration_sec * 1000)
+        line_durations.append((line_duration_sec, speaker))
 
-        line_segments.append((line_file, line_duration_sec, speaker))
-        tag_color = "#F59E0B" if speaker == "Maya" else "#0EA5E9"
+        style_name = "MayaMid" if speaker == "Maya" else "VikramMid"
+        tag_color = "\\c&H00A5F5&" if speaker == "Maya" else "\\c&H00E996&"
 
+        # Chunk into small 2-3 word segments for high kinetic readability
         srt_content = submaker.get_srt().strip()
         blocks = re.split(r'\n\s*\n', srt_content) if srt_content else []
 
@@ -130,47 +120,34 @@ async def render_dialogue_audio(dialogue_list):
             lines = b.split('\n')
             if len(lines) >= 3:
                 time_line = lines[1]
-                word = " ".join(lines[2:]).strip()
+                word = " ".join(lines[2:]).strip().upper()
                 m = re.match(r'(\d+):(\d+):(\d+),(\d+)\s*-->\s*(\d+):(\d+):(\d+),(\d+)', time_line)
                 if m:
                     g = [int(x) for x in m.groups()]
-                    w_start = current_time_ms + (g[0] * 3600000 + g[1] * 60000 + g[2] * 1000 + g[3])
-                    w_end = current_time_ms + (g[4] * 3600000 + g[5] * 60000 + g[6] * 1000 + g[7])
+                    w_start = current_time_ms + (g[0]*3600000 + g[1]*60000 + g[2]*1000 + g[3])
+                    w_end = current_time_ms + (g[4]*3600000 + g[5]*60000 + g[6]*1000 + g[7])
                     words_data.append((w_start, w_end, word))
 
-        # Pack into clean 3-4 word phrases on a single horizontal line
         if words_data:
-            chunk_size = 4
+            chunk_size = 3
             for i in range(0, len(words_data), chunk_size):
                 chunk = words_data[i:i + chunk_size]
                 c_start = chunk[0][0]
-                c_end = max(chunk[-1][1], c_start + 450)
-                phrase = " ".join([w[2] for w in chunk]).upper()
-
-                # Single-line format: [NAME] Phrase
-                content = f"<font color=\"{tag_color}\"><b>[{speaker.upper()}]</b></font> {phrase}"
-                srt_entries.append(
-                    f"{srt_counter}\n"
-                    f"{ms_to_srt_time(c_start)} --> {ms_to_srt_time(c_end)}\n"
-                    f"{content}\n"
-                )
-                srt_counter += 1
+                c_end = max(chunk[-1][1], c_start + 400)
+                phrase = " ".join([w[2] for w in chunk])
+                dialogue_text = f"{{{tag_color}\\fs24\\b1}}[{speaker.upper()}]\\N{{\\r{style_name}\\fs34\\b1}}{phrase}"
+                events.append(f"Dialogue: 0,{ms_to_ass(c_start)},{ms_to_ass(c_end)},{style_name},,0,0,0,,{dialogue_text}")
         else:
-            words = text.split()
-            chunk_size = 4
+            words = text.upper().split()
+            chunk_size = 3
             num_chunks = max(1, len(words) // chunk_size)
             chunk_dur = line_duration_ms // num_chunks
             for i in range(0, len(words), chunk_size):
-                sub_words = " ".join(words[i:i + chunk_size]).upper()
+                sub_words = " ".join(words[i:i + chunk_size])
                 w_start = current_time_ms + (i // chunk_size) * chunk_dur
                 w_end = min(current_time_ms + line_duration_ms, w_start + chunk_dur)
-                content = f"<font color=\"{tag_color}\"><b>[{speaker.upper()}]</b></font> {sub_words}"
-                srt_entries.append(
-                    f"{srt_counter}\n"
-                    f"{ms_to_srt_time(w_start)} --> {ms_to_srt_time(w_end)}\n"
-                    f"{content}\n"
-                )
-                srt_counter += 1
+                dialogue_text = f"{{{tag_color}\\fs24\\b1}}[{speaker.upper()}]\\N{{\\r{style_name}\\fs34\\b1}}{sub_words}"
+                events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},{style_name},,0,0,0,,{dialogue_text}")
 
         current_time_ms += line_duration_ms
 
@@ -180,52 +157,36 @@ async def render_dialogue_audio(dialogue_list):
 
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    srt_path = os.path.abspath("subtitles.srt")
-    with open(srt_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(srt_entries) + "\n")
-        f.flush()
-        os.fsync(f.fileno())
+    with open("subtitles.ass", "w", encoding="utf-8") as f:
+        f.write(ass_header + "\n".join(events) + "\n")
 
-    return current_time_ms / 1000.0, line_segments
+    return current_time_ms / 1000.0, line_durations
 
 # -------------------------------------------------------------
-# 3. Assemble Human Presenter Cuts (Clean Centered Typography)
+# 3. Assemble Video with Guaranteed B-Roll & Centered Subtitles
 # -------------------------------------------------------------
-def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4"):
-    ensure_presenter_clips()
+def assemble_cinematic_short(video_clips, total_duration, output_video="scam_short.mp4"):
+    clip_dur = total_duration / len(video_clips)
 
-    cut_clips = []
-    for idx, (audio_file, duration, speaker) in enumerate(line_segments):
-        cut_clip = f"cut_{idx}.mp4"
-        cut_clips.append(cut_clip)
-
-        source_video = "assets/maya_presenter.mp4" if speaker == "Maya" else "assets/vikram_presenter.mp4"
-
+    prepared_clips = []
+    for idx, raw_clip in enumerate(video_clips):
+        processed_clip = f"prep_{idx}.mp4"
+        prepared_clips.append(processed_clip)
         cmd = [
-            "ffmpeg", "-y", "-stream_loop", "5", "-i", source_video,
-            "-t", f"{duration:.2f}",
+            "ffmpeg", "-y", "-stream_loop", "3", "-i", raw_clip,
+            "-t", f"{clip_dur:.2f}",
             "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,"
-                   "eq=contrast=1.06:saturation=1.10:brightness=-0.02,fps=30",
+                   "eq=contrast=1.12:saturation=1.15:brightness=-0.04,vignette=PI/4.5,fps=30",
             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
-            cut_clip
+            processed_clip
         ]
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    with open("cuts.txt", "w") as f:
-        for c in cut_clips:
+    with open("clips.txt", "w") as f:
+        for c in prepared_clips:
             f.write(f"file '{c}'\n")
 
-    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "cuts.txt", "-c", "copy", "base_presenters.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-
-    # Clean centered subtitle styling:
-    # Fontsize=30: Fits comfortably across the screen on 1 line without wrapping into a vertical column
-    # Alignment=2 (Bottom-center) with MarginV=480 places it cleanly in the lower-middle, below the presenter's face
-    sub_filter = (
-        "subtitles=filename=subtitles.srt:force_style='"
-        "Fontname=DejaVu Sans,Fontsize=30,Bold=1,"
-        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&HA0000000,"
-        "BorderStyle=3,Outline=3,Shadow=1,Alignment=2,MarginL=50,MarginR=50,MarginV=480'"
-    )
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "base_video.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
     ambient_path = "assets/ambient.mp3"
     has_ambient = os.path.exists(ambient_path)
@@ -233,11 +194,11 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
     if has_ambient:
         cmd_final = [
             "ffmpeg", "-y",
-            "-i", "base_presenters.mp4",
+            "-i", "base_video.mp4",
             "-i", "dialogue_master.mp3",
             "-stream_loop", "-1", "-i", ambient_path,
             "-filter_complex",
-            f"[0:v]{sub_filter}[vfinal];[2:a]volume=0.10[bg];[1:a][bg]amix=inputs=2:duration=first[afinal]",
+            "[0:v]ass=subtitles.ass[vfinal];[2:a]volume=0.10[bg];[1:a][bg]amix=inputs=2:duration=first[afinal]",
             "-map", "[vfinal]", "-map", "[afinal]",
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
@@ -245,15 +206,15 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
     else:
         cmd_final = [
             "ffmpeg", "-y",
-            "-i", "base_presenters.mp4",
+            "-i", "base_video.mp4",
             "-i", "dialogue_master.mp3",
-            "-vf", sub_filter,
+            "-vf", "ass=subtitles.ass",
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Human Presenter Short assembled successfully!")
+    print("Short assembled successfully with small middle subtitles!")
 
 # -------------------------------------------------------------
 # 4. YouTube Upload Handler
@@ -298,7 +259,7 @@ def upload_to_youtube(video_path, title, description):
         media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
         request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
         res = request.execute()
-        print("SUCCESS: Published Human Presenter Short! Video ID:", res.get("id"))
+        print("SUCCESS: Published Short! Video ID:", res.get("id"))
     except Exception as e:
         print(f"YouTube Upload notice (non-fatal): {e}")
 
@@ -310,12 +271,39 @@ def process_youtube_short(day_entry, story):
         print("Invalid dialogue story structure passed.")
         return
 
-    print("Step 1: Synthesizing character dialogue & clean subtitles...")
-    total_dur, line_segments = asyncio.run(render_dialogue_audio(story["dialogue"]))
+    # Verified cyber threat visual queries that never return lipstick or beaches
+    queries = [
+        "hacker coding dark room",
+        "cyber security network data",
+        "smartphone screen scam hacking",
+        "police emergency lights night"
+    ]
 
-    print("Step 2: Cutting between human presenters (Maya & Vikram)...")
-    assemble_human_presenter_short(line_segments)
+    video_clips = []
+    print("Step 1: Downloading verified cybercrime b-roll...")
+    for idx, q in enumerate(queries):
+        clip = f"clip_{idx}.mp4"
+        if fetch_cyber_broll(q, clip):
+            video_clips.append(clip)
+
+    fallbacks = ["digital code matrix", "dark tech server", "mobile phone notification dark", "cyber attack danger"]
+    fb_idx = 0
+    while len(video_clips) < 4 and fb_idx < len(fallbacks):
+        clip = f"fb_clip_{fb_idx}.mp4"
+        if fetch_cyber_broll(fallbacks[fb_idx], clip):
+            video_clips.append(clip)
+        fb_idx += 1
+
+    if not video_clips:
+        print("No stock footage available. Skipping video build.")
+        return
+
+    print("Step 2: Synthesizing character dialogue & small middle subtitles...")
+    total_dur, line_durations = asyncio.run(render_dialogue_audio(story["dialogue"]))
+
+    print("Step 3: Assembling video with centered 20% typography...")
+    assemble_cinematic_short(video_clips, total_dur)
 
     full_transcript = " ".join([f"{item['speaker']}: {item['text']}" for item in story["dialogue"]])
-    print("Step 3: Uploading to YouTube...")
+    print("Step 4: Uploading to YouTube...")
     upload_to_youtube("scam_short.mp4", story.get("title", "Cyber Threat Investigation"), full_transcript)
