@@ -15,9 +15,8 @@ from googleapiclient.http import MediaFileUpload
 # -------------------------------------------------------------
 def ensure_presenter_clips():
     """
-    Downloads and prepares verified 1080x1920 portrait clips of:
-    - Maya: Professional female presenter speaking directly to camera
-    - Vikram: Professional male presenter speaking directly to camera
+    Ensures 1080x1920 vertical presenter clips exist in assets/.
+    If not already present, fetches portrait presenter footage via Pixabay API.
     """
     os.makedirs("assets", exist_ok=True)
     maya_path = "assets/maya_presenter.mp4"
@@ -26,13 +25,13 @@ def ensure_presenter_clips():
     api_key = os.getenv("PIXABAY_API_KEY")
 
     presenters = [
-        (maya_path, "woman speaking to camera portrait interview"),
-        (vikram_path, "man speaking to camera interview portrait")
+        (maya_path, "female newscaster anchor speaking to camera"),
+        (vikram_path, "businessman talking head interview close up")
     ]
 
     for path, query in presenters:
         if not os.path.exists(path) and api_key:
-            print(f"Downloading verified presenter footage for: {path}...")
+            print(f"Downloading presenter footage for: {path}...")
             try:
                 url = "https://pixabay.com/api/videos/"
                 params = {
@@ -70,12 +69,12 @@ def ensure_presenter_clips():
                         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
                         if os.path.exists(raw_temp):
                             os.remove(raw_temp)
-                        print(f"Ready: {path}")
+                        print(f"✓ Saved portrait presenter: {path}")
             except Exception as e:
                 print(f"Notice downloading {path}: {e}")
 
 # -------------------------------------------------------------
-# 2. Audio & Clean 3-Word Chunk Subtitles
+# 2. Audio & Clean Horizontal Subtitles
 # -------------------------------------------------------------
 def ms_to_srt_time(ms):
     total_sec = int(ms / 1000)
@@ -139,19 +138,21 @@ async def render_dialogue_audio(dialogue_list):
                     w_end = current_time_ms + (g[4] * 3600000 + g[5] * 60000 + g[6] * 1000 + g[7])
                     words_data.append((w_start, w_end, word))
 
+        # Pack into clean 3-4 word phrases on a single horizontal line
         if words_data:
-            chunk_size = 3
+            chunk_size = 4
             for i in range(0, len(words_data), chunk_size):
                 chunk = words_data[i:i + chunk_size]
                 c_start = chunk[0][0]
-                c_end = max(chunk[-1][1], c_start + 400)
+                c_end = max(chunk[-1][1], c_start + 450)
                 phrase = " ".join([w[2] for w in chunk]).upper()
 
-                speaker_tag = f"[{speaker.upper()}]"
+                # Single-line format: [NAME] Phrase
+                content = f"<font color=\"{tag_color}\"><b>[{speaker.upper()}]</b></font> {phrase}"
                 srt_entries.append(
                     f"{srt_counter}\n"
                     f"{ms_to_srt_time(c_start)} --> {ms_to_srt_time(c_end)}\n"
-                    f"<font color=\"{tag_color}\"><b>{speaker_tag}</b></font>\n{phrase}\n"
+                    f"{content}\n"
                 )
                 srt_counter += 1
         else:
@@ -163,11 +164,11 @@ async def render_dialogue_audio(dialogue_list):
                 sub_words = " ".join(words[i:i + chunk_size]).upper()
                 w_start = current_time_ms + (i // chunk_size) * chunk_dur
                 w_end = min(current_time_ms + line_duration_ms, w_start + chunk_dur)
-                speaker_tag = f"[{speaker.upper()}]"
+                content = f"<font color=\"{tag_color}\"><b>[{speaker.upper()}]</b></font> {sub_words}"
                 srt_entries.append(
                     f"{srt_counter}\n"
                     f"{ms_to_srt_time(w_start)} --> {ms_to_srt_time(w_end)}\n"
-                    f"<font color=\"{tag_color}\"><b>{speaker_tag}</b></font>\n{sub_words}\n"
+                    f"{content}\n"
                 )
                 srt_counter += 1
 
@@ -188,7 +189,7 @@ async def render_dialogue_audio(dialogue_list):
     return current_time_ms / 1000.0, line_segments
 
 # -------------------------------------------------------------
-# 3. Assemble Human Presenter Cuts (Locked Exactly in the Middle)
+# 3. Assemble Human Presenter Cuts (Clean Centered Typography)
 # -------------------------------------------------------------
 def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4"):
     ensure_presenter_clips()
@@ -204,7 +205,7 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
             "ffmpeg", "-y", "-stream_loop", "5", "-i", source_video,
             "-t", f"{duration:.2f}",
             "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,"
-                   "eq=contrast=1.08:saturation=1.12:brightness=-0.02,fps=30",
+                   "eq=contrast=1.06:saturation=1.10:brightness=-0.02,fps=30",
             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
             cut_clip
         ]
@@ -216,14 +217,14 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
 
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "cuts.txt", "-c", "copy", "base_presenters.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    # Alignment=10 (Middle-Center of the 1080x1920 frame)
-    # MarginV=0 (Dead center on y=960)
-    # MarginL=60, MarginR=60 (Safe horizontal padding so text never clips on mobile)
+    # Clean centered subtitle styling:
+    # Fontsize=30: Fits comfortably across the screen on 1 line without wrapping into a vertical column
+    # Alignment=2 (Bottom-center) with MarginV=480 places it cleanly in the lower-middle, below the presenter's face
     sub_filter = (
         "subtitles=filename=subtitles.srt:force_style='"
-        "Fontname=DejaVu Sans,Fontsize=50,Bold=1,"
-        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&H90000000,"
-        "BorderStyle=3,Outline=4,Shadow=0,Alignment=10,MarginL=60,MarginR=60,MarginV=0'"
+        "Fontname=DejaVu Sans,Fontsize=30,Bold=1,"
+        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&HA0000000,"
+        "BorderStyle=3,Outline=3,Shadow=1,Alignment=2,MarginL=50,MarginR=50,MarginV=480'"
     )
 
     ambient_path = "assets/ambient.mp3"
@@ -252,7 +253,7 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Human Presenter Short assembled successfully with centered subtitles!")
+    print("Human Presenter Short assembled successfully!")
 
 # -------------------------------------------------------------
 # 4. YouTube Upload Handler
@@ -309,7 +310,7 @@ def process_youtube_short(day_entry, story):
         print("Invalid dialogue story structure passed.")
         return
 
-    print("Step 1: Synthesizing character dialogue & chunked subtitles...")
+    print("Step 1: Synthesizing character dialogue & clean subtitles...")
     total_dur, line_segments = asyncio.run(render_dialogue_audio(story["dialogue"]))
 
     print("Step 2: Cutting between human presenters (Maya & Vikram)...")
