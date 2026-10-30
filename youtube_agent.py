@@ -13,7 +13,6 @@ from googleapiclient.http import MediaFileUpload
 # -------------------------------------------------------------
 # 1. Ensure Presenter Clips Exist (Auto-Download Safeguard)
 # -------------------------------------------------------------
-
 def ensure_presenter_clips():
     os.makedirs("assets", exist_ok=True)
     maya_path = "assets/maya_presenter.mp4"
@@ -89,7 +88,7 @@ async def render_dialogue_audio(dialogue_list):
     srt_entries = []
     line_audio_files = []
     current_time_ms = 0
-    line_segments = []  # (audio_file, duration_sec, speaker)
+    line_segments = []
     srt_counter = 1
 
     for idx, item in enumerate(dialogue_list):
@@ -116,10 +115,12 @@ async def render_dialogue_audio(dialogue_list):
         line_duration_ms = int(line_duration_sec * 1000)
 
         line_segments.append((line_file, line_duration_sec, speaker))
-
         tag_color = "#F59E0B" if speaker == "Maya" else "#0EA5E9"
 
-        blocks = re.split(r'\n\s*\n', submaker.get_srt().strip())
+        srt_content = submaker.get_srt().strip()
+        blocks = re.split(r'\n\s*\n', srt_content) if srt_content else []
+
+        words_found = 0
         for b in blocks:
             lines = b.split('\n')
             if len(lines) >= 3:
@@ -140,18 +141,35 @@ async def render_dialogue_audio(dialogue_list):
                         f"<font color=\"{tag_color}\"><b>{speaker_tag}</b></font>\n{word}\n"
                     )
                     srt_counter += 1
+                    words_found += 1
+
+        # Fallback if no individual word boundaries were captured
+        if words_found == 0:
+            speaker_tag = f"[{speaker.upper()}]"
+            w_start = current_time_ms
+            w_end = current_time_ms + line_duration_ms
+            srt_entries.append(
+                f"{srt_counter}\n"
+                f"{ms_to_srt_time(w_start)} --> {ms_to_srt_time(w_end)}\n"
+                f"<font color=\"{tag_color}\"><b>{speaker_tag}</b></font>\n{text.upper()}\n"
+            )
+            srt_counter += 1
 
         current_time_ms += line_duration_ms
 
-    # Combine audio pieces
+    # Combine dialogue audio
     with open("audio_concat.txt", "w") as f:
         for a in line_audio_files:
             f.write(f"file '{a}'\n")
 
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    with open("subtitles.srt", "w", encoding="utf-8") as f:
+    # Ensure subtitles.srt is written, synced and flushed completely
+    srt_path = os.path.abspath("subtitles.srt")
+    with open(srt_path, "w", encoding="utf-8") as f:
         f.write("\n".join(srt_entries) + "\n")
+        f.flush()
+        os.fsync(f.fileno())
 
     return current_time_ms / 1000.0, line_segments
 
@@ -161,7 +179,6 @@ async def render_dialogue_audio(dialogue_list):
 def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4"):
     ensure_presenter_clips()
 
-    # Slice and match presenter video to exact speech duration of each turn
     cut_clips = []
     for idx, (audio_file, duration, speaker) in enumerate(line_segments):
         cut_clip = f"cut_{idx}.mp4"
@@ -185,10 +202,10 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
 
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "cuts.txt", "-c", "copy", "base_presenters.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
-    # Subtitle styling placed in the middle with a clean dark card
-    sub_style = (
-        "subtitles=subtitles.srt:force_style='"
-        "Fontname=DejaVu Sans,Fontsize=38,Bold=1,"
+    # Escaped subtitle filter syntax compatible with Linux FFmpeg
+    sub_filter = (
+        "subtitles=filename=subtitles.srt:force_style='"
+        "Fontname=DejaVu Sans,Fontsize=36,Bold=1,"
         "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&HA0000000,"
         "BorderStyle=3,Outline=4,Shadow=2,Alignment=10,MarginV=380'"
     )
@@ -203,7 +220,7 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
             "-i", "dialogue_master.mp3",
             "-stream_loop", "-1", "-i", ambient_path,
             "-filter_complex",
-            f"[0:v]{sub_style}[vfinal];[2:a]volume=0.10[bg];[1:a][bg]amix=inputs=2:duration=first[afinal]",
+            f"[0:v]{sub_filter}[vfinal];[2:a]volume=0.10[bg];[1:a][bg]amix=inputs=2:duration=first[afinal]",
             "-map", "[vfinal]", "-map", "[afinal]",
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
@@ -213,7 +230,7 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
             "ffmpeg", "-y",
             "-i", "base_presenters.mp4",
             "-i", "dialogue_master.mp3",
-            "-vf", sub_style,
+            "-vf", sub_filter,
             "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_video
         ]
