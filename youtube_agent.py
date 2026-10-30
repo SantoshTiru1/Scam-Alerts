@@ -75,7 +75,7 @@ def ensure_presenter_clips():
                 print(f"Notice downloading {path}: {e}")
 
 # -------------------------------------------------------------
-# 2. Audio & Clean 3-4 Word Chunk Subtitles
+# 2. Audio & Clean 3-Word Chunk Subtitles
 # -------------------------------------------------------------
 def ms_to_srt_time(ms):
     total_sec = int(ms / 1000)
@@ -188,7 +188,7 @@ async def render_dialogue_audio(dialogue_list):
     return current_time_ms / 1000.0, line_segments
 
 # -------------------------------------------------------------
-# 3. Assemble Human Presenter Cuts (Clean Centered Typography)
+# 3. Assemble Human Presenter Cuts (Locked Exactly in the Middle)
 # -------------------------------------------------------------
 def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4"):
     ensure_presenter_clips()
@@ -216,11 +216,14 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
 
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "cuts.txt", "-c", "copy", "base_presenters.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
+    # Alignment=10 (Middle-Center of the 1080x1920 frame)
+    # MarginV=0 (Dead center on y=960)
+    # MarginL=60, MarginR=60 (Safe horizontal padding so text never clips on mobile)
     sub_filter = (
         "subtitles=filename=subtitles.srt:force_style='"
-        "Fontname=DejaVu Sans,Fontsize=24,Bold=1,"
-        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&HB0000000,"
-        "BorderStyle=3,Outline=3,Shadow=2,Alignment=2,MarginV=260'"
+        "Fontname=DejaVu Sans,Fontsize=50,Bold=1,"
+        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BackColour=&H90000000,"
+        "BorderStyle=3,Outline=4,Shadow=0,Alignment=10,MarginL=60,MarginR=60,MarginV=0'"
     )
 
     ambient_path = "assets/ambient.mp3"
@@ -249,7 +252,7 @@ def assemble_human_presenter_short(line_segments, output_video="scam_short.mp4")
         ]
 
     subprocess.run(cmd_final, check=True)
-    print("Human Presenter Short assembled successfully!")
+    print("Human Presenter Short assembled successfully with centered subtitles!")
 
 # -------------------------------------------------------------
 # 4. YouTube Upload Handler
