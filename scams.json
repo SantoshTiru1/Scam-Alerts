@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-29 10:14 UTC",
+  "updated_at": "2026-10-30 06:26 UTC",
   "history": [
+    {
+      "date": "2026-10-30",
+      "regions": {
+        "North America": {
+          "headline": "AI deepfakes pose risks to consumers, voters and others, security experts warn - CBS News",
+          "summary": "AI deepfakes pose risks to consumers, voters and others, security experts warn\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNN2RORHFtSEMxa3hLeTVpODhOR0kyNkExQUV6NmJ2anBZT0NLQnhpdTA4dDNOSjVja09vV0JlY3I1eFppdmY1Rk5IZ1ZpR2JoWXNtbUpaUFJiYXVFbTZPRGliTEUwbjVCWXBHaFhWeEhGdGh1ZVZTRDdLaDdVUDdvTzN6SGp3S1IycWJFVQ?oc=5"
+        },
+        "South America": {
+          "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
+          "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
+          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
+        },
+        "Europe": {
+          "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
+          "summary": "Booking.com under investigation by EU regulators over fake listings and scams | European Union\u00a0\u00a0The Guardian",
+          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVF5LVJ5UEZDWkVCT21KTzdrV2ZDNmt0MWdxalNuTTJkV2JjeUROTDgtQ01mWEwzeHBEbXNBTnlYYmVWV01tMmRPODducGFZV0RDeXBlLWlGNXRlTkh2YW5lWkRtTHRRbmh4aERFYld6Zl9xUjJLQTFFNmFaQVNGcWttRmNQYkxCY1BDUk1wekFJQkZOMWVQRnd4aTl4bXZnZVpXak5DVnFqV1BMNzNv?oc=5"
+        },
+        "India": {
+          "headline": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide) - DeXpose",
+          "summary": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide)\u00a0\u00a0DeXpose",
+          "source": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1tbldUNldVWWRGajZUdGVyc3VteVItNF8xQ0VTRzlMOHl1VTYwVkNUakhFZS1sY2VhdTJjeUtvYzBDZC03OU5nNUtTSnJJd1dBekpPWkNEbw?oc=5"
+        },
+        "Singapore": {
+          "headline": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results - Singapore Police Force",
+          "summary": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlpaTlR1eG1PUzNRaEpSajdSMDFoYks4ZzVBU2QyaHFueDZNMVY4UzlueVpqbGdGc1V6bHRrSzZvUVJJdm5JTkpuLXUtYWZtOFBCTVlXa2VoN0w3Z0R4OHVVd3pWNEU5YnhqS1VOam84Rno3ZjVwQ1NFTWVuMzJVZWpmVl96TzdzYVZaY1A5MHRHWXVGcEhNUjB6dlZSTkJUN010MFFjNlY3LThhRlEwMS1LMjVXNHpBUWpJUzJmWGRSV3NNY2Z0b0RQdmpLOVMtZ21ra0p3?oc=5"
+        },
+        "China": {
+          "headline": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams - South China Morning Post",
+          "summary": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams\u00a0\u00a0South China Morning Post",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRlZDaWRHa0RaWU5OUnF4YThpclN0UnM1eW9kdjBiNXFSbmZnWk16Y1BzekZkSlpja2RVZG9GZWp3VDZWcGh4VXlGOFhiTW9TTDc0NEhMSHBNQTlHX25vVWlIU0VMMktxVzdBNXc5LTJqQ0hVc2V0NE9NU185aUJSQnRGb1VSV1lxdzJ6ZllDOEZjckFGNXY1RWQ4YVRSOHBBc1FoQTdxdEZQdG1HN3hQenNQY08wV1pBd2Uw0gG7AUFVX3lxTE9IeWNmV2wyTEM3SGtzOGRsYl9xdldjb2JnUzlCangyQmt5XzVZb291clhhdEUycTVrdTVyaldsOUZaSlFwa0RteVB6RmdLZDBuT3Z1QnhPWUVWMzhKSVhqcmJDMk42OFlxY3ZDZzltOEJPT2pnS2NZWlNNTWZOSmtFNzhKbllCQVdyeXMwU3lCTEc3Z1lvQ0ZPVVZCNWIwcHNXdk1mQjE0MEJpdHpSSGJmV1VwR0FBWE9hbHM?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
+          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-29",
       "regions": {
