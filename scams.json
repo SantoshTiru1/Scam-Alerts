@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-10-30 14:09 UTC",
+  "updated_at": "2026-10-31 06:26 UTC",
   "history": [
+    {
+      "date": "2026-10-31",
+      "regions": {
+        "North America": {
+          "headline": "Global cyberscams bilk Americans out of billions. A fragmented US response means few get money back - ABC News - Breaking News, Latest News and Videos",
+          "summary": "Global cyberscams bilk Americans out of billions. A fragmented US response means few get money back\u00a0\u00a0ABC News - Breaking News, Latest News and Videos",
+          "source": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNR3ZoTVZxX2NvQmNMa3ItSWMtVWhyNU5vUkhWek53em80dkZZLWR2ZGFadWdBeG1BTTNRbTdkUm9BdmlDdkFNdFRwdkRTc0pqYzFEU09RY1VKY2Nzbkc2eVlEREFSSnB6OUZ6N1VDWHlUS25pSHZwV1M4U0ZHSkhOS01fR1Z0RER5OFBhMmNTcmx1LUJ1Wk9jbXRCaGxrcG04ZzhPVWV6VFp2OTTSAbABQVVfeXFMTTEzU1JOejU5bldMYlRFcUx0WjZjcU11Yk1sWXd6WkhFUERNcExxMlJFOTlITFV0TWtGU0lHLWlYRXlIS0FhTk56SE5TTTliMmluNXBJUXhybDZKOWk0ZU15Y0E0RWdaY01DVUQ3bmZhUkxSTGYxN3RQSVJZLWZBdjA0eDBhcDljNUNHeDNsZjhORnQ3akQyNzNQZUMyNjY4aHYzd3YwUmRFZHNqd0lZTGk?oc=5"
+        },
+        "South America": {
+          "headline": "3. The trends reshaping cybersecurity - World Economic Forum",
+          "summary": "3. The trends reshaping cybersecurity\u00a0\u00a0World Economic Forum",
+          "source": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOQVBWNEdpUmJVSHBLbU9iZzZkRFIzZXV0SE9mS1ZXdlJVMGtBcDhvTFZaQnV0VWxUR1NOZTVjc2ZCcEYybkJ6VzFEOGlPei1saW93cF9WdHNWeGpubVBvZ3V5U3pWZlN6NjQ3V1QxZzN5ajJ3OVR1VU9Vc1pnUHQzSHkycUpSS3pTSlU5dGFZS2dGem8zblZ1SVBMLUViU1hhSndHWGFrZUVSRXc?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "India": {
+          "headline": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide) - DeXpose",
+          "summary": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide)\u00a0\u00a0DeXpose",
+          "source": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1tbldUNldVWWRGajZUdGVyc3VteVItNF8xQ0VTRzlMOHl1VTYwVkNUakhFZS1sY2VhdTJjeUtvYzBDZC03OU5nNUtTSnJJd1dBekpPWkNEbw?oc=5"
+        },
+        "Singapore": {
+          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
+          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
+        },
+        "China": {
+          "headline": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams - South China Morning Post",
+          "summary": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams\u00a0\u00a0South China Morning Post",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRlZDaWRHa0RaWU5OUnF4YThpclN0UnM1eW9kdjBiNXFSbmZnWk16Y1BzekZkSlpja2RVZG9GZWp3VDZWcGh4VXlGOFhiTW9TTDc0NEhMSHBNQTlHX25vVWlIU0VMMktxVzdBNXc5LTJqQ0hVc2V0NE9NU185aUJSQnRGb1VSV1lxdzJ6ZllDOEZjckFGNXY1RWQ4YVRSOHBBc1FoQTdxdEZQdG1HN3hQenNQY08wV1pBd2Uw0gG7AUFVX3lxTE9IeWNmV2wyTEM3SGtzOGRsYl9xdldjb2JnUzlCangyQmt5XzVZb291clhhdEUycTVrdTVyaldsOUZaSlFwa0RteVB6RmdLZDBuT3Z1QnhPWUVWMzhKSVhqcmJDMk42OFlxY3ZDZzltOEJPT2pnS2NZWlNNTWZOSmtFNzhKbllCQVdyeXMwU3lCTEc3Z1lvQ0ZPVVZCNWIwcHNXdk1mQjE0MEJpdHpSSGJmV1VwR0FBWE9hbHM?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "PHP: What is it and why did it spark a global cyber security scramble? - BBC",
+          "summary": "PHP: What is it and why did it spark a global cyber security scramble?\u00a0\u00a0BBC",
+          "source": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA1V0VTbm4wQ3BmN1hGMnNiSFRrU3FMTlNGcEV4Nzl4RVgzRk9NNjZIWXVkaWdFVElIZVRQUGdjbWZ6Wk1CUHM5djJJMGxqZVFlVjJqQ2tjUWRoZTg?oc=5"
+        }
+      }
+    },
     {
       "date": "2026-10-30",
       "regions": {
