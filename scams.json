@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-01 06:29 UTC",
+  "updated_at": "2026-11-02 06:56 UTC",
   "history": [
+    {
+      "date": "2026-11-02",
+      "regions": {
+        "India": {
+          "headline": "Illegal SIM Box network linked to digital arrest scams busted - The Times of India",
+          "summary": "Illegal SIM Box network linked to digital arrest scams busted\u00a0\u00a0The Times of India",
+          "source": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNUk5GT21UWGZveF94TllsNy05OVkwdkx6X1ducldwaVczbTBFVXdPekJlZzhxbFA5Tmhvb0lxbkhzZzFHbXhIaE84ZjNFUl9XRWFnUjFoMTZBVXJZeDMzRU5VeG5FWms0ZlR4RzRUNXFOU2Q1amIySng5ZHowc3RvNzR6VndQUHdVU3dtZ1lldmFDM1FkNW1iSWtOTHNzS0xIN0dndkY3ci10SW9SMG52bUhCRjZUbjFOQWMtUTlBa2Q1Um52RF8xcVZOYzBJYS13b1HSAdcBQVVfeXFMT0I1Nnh4RGRSYk8tWGZwRDBCcHBlN2dIX0RiZk5HZWRpQXNTLXJiLVl6dEw3N3lEazYwOGl0NVUySTlVNFhSLUJyQTJ3WTZzVEZyMmo1VGJmTlNyclFYcXpPNlhmYXRjVWt1RHNQbUtGbFBraHc2enNxd2dpUkVlZ0lRc2tpenkzaV9OX2VTcjBVRzFaR3BoNHNCSHZWUzJIdkpKYlBoSHpuUnZ6QU1JalIxblZpWDNudmwwdFVsSUg0ZVp2cGpwMzl1Y3JrVkU2UjhEaTQ1aGs?oc=5"
+        },
+        "North America": {
+          "headline": "Americans Lost Nearly $18 Billion Last Year to Cyberscams. Is Washington Doing Enough to Help Them Get It Back? - Time Magazine",
+          "summary": "Americans Lost Nearly $18 Billion Last Year to Cyberscams. Is Washington Doing Enough to Help Them Get It Back?\u00a0\u00a0Time Magazine",
+          "source": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOTzdKWU8tQzRHU2ZyMVJHaUgwOThqcTh6d19SRTF2dXNkWUkxbGd2Rk1SdmxPTHNvTjVsTFo3TE9VUVJTQUpFb29VaGl4VzNsRGhOQlNRTFp4LTlUMHhHaFVKaWxpVDRFZEcxOVRZbWJhN2piVkx1RDJyVEhEZm1pYS1SUlFFVHZEYktnZ0xZZVRTZXR3a1hxTW9kSnRab0c3MDQteVJ2NzdjX1h4U2pwTHVLMnQwLW05cmtTZHpzUm5tQjdQNk1nQ2loWGFBOFBuNTNSLU9SRFlBaVRtQngw?oc=5"
+        },
+        "South America": {
+          "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
+          "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
+          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "Singapore": {
+          "headline": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams - Singapore Police Force",
+          "summary": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUlpfaVgwdV85QkdYMDR6OUpwOS1zYjFtNkRxNmVPOTdNcGlfVXI4d0lNdll5ZU1HbWFITVg4VHlqQ29mOURFSlJPUmN2MHQ5eVdzd1Q4UmZFVXpNcmMxLTJJbF9idm84NDFFRnAxRGlhLThSblZnVHB5WXdSUkpHM3QzOF9DN1RpdjhWV0xZNFFuLTJvRkpOd1N0U29LMzA0RnJrWWhVRTQ3WVE2bXNlQ0FoN01nWFh3T3c4?oc=5"
+        },
+        "China": {
+          "headline": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams - South China Morning Post",
+          "summary": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams\u00a0\u00a0South China Morning Post",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRlZDaWRHa0RaWU5OUnF4YThpclN0UnM1eW9kdjBiNXFSbmZnWk16Y1BzekZkSlpja2RVZG9GZWp3VDZWcGh4VXlGOFhiTW9TTDc0NEhMSHBNQTlHX25vVWlIU0VMMktxVzdBNXc5LTJqQ0hVc2V0NE9NU185aUJSQnRGb1VSV1lxdzJ6ZllDOEZjckFGNXY1RWQ4YVRSOHBBc1FoQTdxdEZQdG1HN3hQenNQY08wV1pBd2Uw0gG7AUFVX3lxTE9IeWNmV2wyTEM3SGtzOGRsYl9xdldjb2JnUzlCangyQmt5XzVZb291clhhdEUycTVrdTVyaldsOUZaSlFwa0RteVB6RmdLZDBuT3Z1QnhPWUVWMzhKSVhqcmJDMk42OFlxY3ZDZzltOEJPT2pnS2NZWlNNTWZOSmtFNzhKbllCQVdyeXMwU3lCTEc3Z1lvQ0ZPVVZCNWIwcHNXdk1mQjE0MEJpdHpSSGJmV1VwR0FBWE9hbHM?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "PHP: What is it and why did it spark a global cyber security scramble? - BBC",
+          "summary": "PHP: What is it and why did it spark a global cyber security scramble?\u00a0\u00a0BBC",
+          "source": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA1V0VTbm4wQ3BmN1hGMnNiSFRrU3FMTlNGcEV4Nzl4RVgzRk9NNjZIWXVkaWdFVElIZVRQUGdjbWZ6Wk1CUHM5djJJMGxqZVFlVjJqQ2tjUWRoZTg?oc=5"
+        }
+      },
+      "featured_category": "Lottery & KBC Lucky Draw WhatsApp Scams"
+    },
     {
       "date": "2026-11-01",
       "regions": {
