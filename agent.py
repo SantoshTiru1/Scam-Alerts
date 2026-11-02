@@ -1,414 +1,286 @@
 import os
-import json
 import re
-import random
+import json
+import asyncio
+import subprocess
 import urllib.parse
-import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
 import requests
-from bs4 import BeautifulSoup
-from groq import Groq
-from youtube_agent import process_youtube_short
+import edge_tts
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-
-
-# Models prioritized by availability on Groq free tier
-MODELS_TO_TRY = [
-    "llama-3.3-70b-specdec",
-    "llama-3.3-70b-versatile",
-    "llama3-70b-8192",
-    "llama3-8b-8192",
-    "mixtral-8x7b-32768"
-]
-
-def call_groq_chat(messages, temperature=0.7, max_tokens=500):
-    for model in MODELS_TO_TRY:
-        try:
-            res = client.chat.completions.create(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens
-            )
-            return res.choices[0].message.content.strip()
-        except Exception as e:
-            # If 404 or model not accessible, try next model in pool
-            if "model_not_found" in str(e) or "404" in str(e):
-                continue
-            print(f"Groq API error on {model}: {e}")
-            break
-    raise RuntimeError("All Groq models exhausted.")
-
-
-
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-}
-
-REGIONS = [
-    "North America",
-    "South America",
-    "Europe",
-    "India",
-    "Singapore",
-    "China",
-    "Japan",
-    "Rest of the World"
-]
-
-def fetch_rss_articles(query):
-    encoded_query = urllib.parse.quote(query)
-    rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=en-US&gl=US&ceid=US:en"
-    
-    articles = []
-    try:
-        res = requests.get(rss_url, headers=HEADERS, timeout=10)
-        if res.status_code == 200:
-            root = ET.fromstring(res.content)
-            for item in root.findall(".//item")[:3]:
-                title = item.findtext("title", "")
-                link = item.findtext("link", "")
-                description = item.findtext("description", "")
-                
-                soup = BeautifulSoup(description, "html.parser")
-                clean_text = soup.get_text()
-
-                if link and not link.startswith("https://www.google.com/search"):
-                    articles.append({
-                        "title": title,
-                        "body": clean_text if clean_text else title,
-                        "url": link
-                    })
-    except Exception as e:
-        print(f"RSS warning for {query}: {e}")
-        
-    return articles
-
-def fetch_india_official_scams():
-    portal_url = "https://cybercrime.gov.in/Webform/daily-digest.aspx"
-    base_url = "https://cybercrime.gov.in/Webform/"
-
-    session = requests.Session()
-    session.headers.update(HEADERS)
+# -------------------------------------------------------------
+# 1. Generate Hand-Drawn Ink Explainer Scene Illustrations
+# -------------------------------------------------------------
+def fetch_ink_explainer_frame(scene_desc, output_filename):
+    """
+    Fetches custom Ink Explainer stickman artwork using Pollinations.ai (Free, no-auth).
+    Produces clean black-and-white ink sketches on a whiteboard/paper background.
+    """
+    clean_desc = re.sub(r'[^a-zA-Z0-9 ]', '', scene_desc)
+    prompt = (
+        f"minimalist stickman line drawing, ink explainer aesthetic, black ink pen on clean white paper, "
+        f"expressive stick figure character, comic illustration, simple doodle, {clean_desc}, sharp lines, high contrast"
+    )
+    encoded = urllib.parse.quote(prompt)
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1920&model=flux&nologo=true&seed={os.urandom(2).hex()}"
 
     try:
-        res = session.get(portal_url, timeout=6, verify=False)
-        if res.status_code == 200:
-            soup = BeautifulSoup(res.text, "html.parser")
-            digest_links = []
-            for a in soup.find_all("a", href=True):
-                text = a.get_text(strip=True)
-                href = a["href"]
-                if re.search(r"daily\s*digest", text, re.IGNORECASE) or ("digest" in href.lower() and href.endswith(".pdf")):
-                    full_link = href if href.startswith("http") else urllib.parse.urljoin(base_url, href)
-                    digest_links.append({
-                        "title": text if len(text) > 10 else f"I4C Daily Cyber Digest: {text}",
-                        "body": f"Official National Cyber Crime Reporting Portal Daily Digest Advisory ({text}).",
-                        "url": full_link
-                    })
-
-            if digest_links:
-                return digest_links[0]
+        res = requests.get(url, timeout=45)
+        if res.status_code == 200 and len(res.content) > 10000:
+            with open(output_filename, "wb") as f:
+                f.write(res.content)
+            print(f"Generated scene artwork: {output_filename}")
+            return True
     except Exception as e:
-        print(f"Cybercrime.gov.in timeout/notice: {e}")
+        print(f"Artwork fetch notice: {e}")
+    return False
 
-    fallback_articles = fetch_rss_articles("India cyber crime scam phishing CERT-In")
-    if fallback_articles:
-        return fallback_articles[0]
+# -------------------------------------------------------------
+# 2. Audio & Centered Compact Subtitles (20% Middle Area)
+# -------------------------------------------------------------
+def ms_to_ass(ms):
+    cs = int((ms % 1000) / 10)
+    total_sec = int(ms / 1000)
+    s = total_sec % 60
+    m = int(total_sec / 60) % 60
+    h = int(total_sec / 3600)
+    return f"{h}:{m:02d}:{s:02d}.{cs:02d}"
 
-    return {
-        "title": "National Cyber Crime Reporting Portal Advisory",
-        "body": "Active financial fraud campaigns using malicious APK links and digital arrest threats reported.",
-        "url": portal_url
+async def render_dialogue_audio(dialogue_list):
+    voices = {
+        "Maya": "en-US-JennyNeural",
+        "Vikram": "en-US-ChristopherNeural"
     }
 
-def fetch_scam_for_region(region):
-    if region == "India":
-        return fetch_india_official_scams()
+    # Ink Explainer Subtitle Style: Dark rounded pill box, high contrast, middle-center (Alignment=5)
+    ass_header = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
 
-    query_map = {
-        "North America": "US cyber security scam phishing fraud news",
-        "South America": "Latin America cyber security fraud scam",
-        "Europe": "Europe UK cyber crime phishing scam news",
-        "Singapore": "Singapore cyber security scam police advisory phishing",
-        "China": "China cyber fraud scam phishing news",
-        "Japan": "Japan cyber security fraud phishing scam",
-        "Rest of the World": "Global cyber fraud scam attack news"
-    }
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: InkSub,DejaVu Sans,34,&H00FFFFFF,&H0000FFFF,&H00000000,&HB0000000,1,0,0,0,100,100,1,0,3,3,1,5,160,160,0,1
 
-    query = query_map.get(region, f"{region} cyber crime scam")
-    articles = fetch_rss_articles(query)
-    
-    if articles:
-        return articles[0]
-
-    return {
-        "title": f"Active Cyber Fraud Campaign Target: {region}",
-        "body": f"Phishing threats targeting consumers and online credentials reported across {region}.",
-        "url": "https://thehackernews.com"
-    }
-
-
-def summarize_scam(region, news_item):
-    prompt = f"""
-You are a cybersecurity threat analyst.
-Region / Country: {region}
-Title: {news_item.get('title')}
-Details: {news_item.get('body')}
-
-Task:
-Write a threat summary strictly under 100 words.
-Structure:
-- Threat Vector: How the scam works
-- Target: Who is targeted
-- Prevention: How to stay safe
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
-    try:
-        response = client.chat.completions.create(
-            model=MODEL_NAME,
-            messages=[
-                {"role": "system", "content": "You are a concise cyber intelligence analyst."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.3,
-            max_tokens=220
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        print(f"LLM Error for {region}: {e}")
-        return news_item.get("body", "Summary currently unavailable.")
+    events = []
+    line_audio_files = []
+    current_time_ms = 0
+    line_durations = []
 
+    for idx, item in enumerate(dialogue_list):
+        speaker = item.get("speaker", "Maya")
+        text = item.get("text", "")
+        voice = voices.get(speaker, "en-US-ChristopherNeural")
 
-def post_to_telegram(day_entry):
-    bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        line_file = f"line_{idx}.mp3"
+        line_audio_files.append(line_file)
 
-    if not bot_token or not chat_id:
-        print("Telegram tokens not set. Skipping.")
-        return
+        communicate = edge_tts.Communicate(text, voice, rate="+4%", pitch="-1Hz")
+        submaker = edge_tts.SubMaker()
 
-    date_str = day_entry.get("date", "Today")
-    regions_data = day_entry.get("regions", {})
+        with open(line_file, "wb") as f:
+            async for chunk in communicate.stream():
+                if chunk["type"] == "audio":
+                    f.write(chunk["data"])
+                elif chunk["type"] == "WordBoundary":
+                    submaker.feed(chunk)
 
-    message = f"🚨 *Global Cyber Scam Alert — {date_str}*\n\n"
-    ordered_keys = sorted(regions_data.keys(), key=lambda x: (x != "India", x))
+        cmd = ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", line_file]
+        dur_res = subprocess.run(cmd, stdout=subprocess.PIPE, text=True)
+        line_duration_sec = float(dur_res.stdout.strip())
+        line_duration_ms = int(line_duration_sec * 1000)
+        line_durations.append((line_duration_sec, speaker))
 
-    for region in ordered_keys:
-        info = regions_data[region]
-        headline = info.get("headline", f"{region} Alert")
-        summary = info.get("summary", "").replace("*", "").split("\n")[0]
-        source = info.get("source", "")
+        tag_color = "\\c&H00D7FF&" if speaker == "Maya" else "\\c&H00E996&"
 
-        message += f"🌍 *{region}*: {headline}\n"
-        message += f"_{summary}_\n"
-        if source and source != "#":
-            message += f"[🔗 Read Primary Report]({source})\n"
-        message += "\n"
+        # Group words into 3-word chunks
+        srt_content = submaker.get_srt().strip()
+        blocks = re.split(r'\n\s*\n', srt_content) if srt_content else []
 
-    message += "🌐 *Full Interactive Digest & Archives:*\n"
-    message += "https://santoshtiru1.github.io/Scam-Alerts/\n\n"
-    message += "#CyberSecurity #ScamAlert #Phishing #India"
+        words_data = []
+        for b in blocks:
+            lines = b.split('\n')
+            if len(lines) >= 3:
+                time_line = lines[1]
+                word = " ".join(lines[2:]).strip().upper()
+                m = re.match(r'(\d+):(\d+):(\d+),(\d+)\s*-->\s*(\d+):(\d+):(\d+),(\d+)', time_line)
+                if m:
+                    g = [int(x) for x in m.groups()]
+                    w_start = current_time_ms + (g[0]*3600000 + g[1]*60000 + g[2]*1000 + g[3])
+                    w_end = current_time_ms + (g[4]*3600000 + g[5]*60000 + g[6]*1000 + g[7])
+                    words_data.append((w_start, w_end, word))
 
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
-        "text": message,
-        "parse_mode": "Markdown",
-        "disable_web_page_preview": True
-    }
-
-    try:
-        res = requests.post(url, json=payload, timeout=15)
-        if res.status_code == 200:
-            print("Telegram alert delivered successfully!")
+        if words_data:
+            chunk_size = 3
+            for i in range(0, len(words_data), chunk_size):
+                chunk = words_data[i:i + chunk_size]
+                c_start = chunk[0][0]
+                c_end = max(chunk[-1][1], c_start + 400)
+                phrase = " ".join([w[2] for w in chunk])
+                entry = f"{{{tag_color}\\fs24\\b1}}[{speaker.upper()}]\\N{{\\rInkSub\\fs34\\b1}}{phrase}"
+                events.append(f"Dialogue: 0,{ms_to_ass(c_start)},{ms_to_ass(c_end)},InkSub,,0,0,0,,{entry}")
         else:
-            print(f"Telegram error {res.status_code}: {res.text}")
-    except Exception as e:
-        print(f"Telegram send error: {e}")
+            words = text.upper().split()
+            chunk_size = 3
+            num_chunks = max(1, len(words) // chunk_size)
+            chunk_dur = line_duration_ms // num_chunks
+            for i in range(0, len(words), chunk_size):
+                sub_words = " ".join(words[i:i + chunk_size])
+                w_start = current_time_ms + (i // chunk_size) * chunk_dur
+                w_end = min(current_time_ms + line_duration_ms, w_start + chunk_dur)
+                entry = f"{{{tag_color}\\fs24\\b1}}[{speaker.upper()}]\\N{{\\rInkSub\\fs34\\b1}}{sub_words}"
+                events.append(f"Dialogue: 0,{ms_to_ass(w_start)},{ms_to_ass(w_end)},InkSub,,0,0,0,,{entry}")
 
-def post_to_whatsapp(day_entry):
-    phone = os.getenv("WHATSAPP_PHONE")
-    apikey = os.getenv("WHATSAPP_APIKEY")
+        current_time_ms += line_duration_ms
 
-    if not phone or not apikey:
-        print("WhatsApp secrets not configured. Skipping WhatsApp alert.")
+    with open("audio_concat.txt", "w") as f:
+        for a in line_audio_files:
+            f.write(f"file '{a}'\n")
+
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "audio_concat.txt", "-c", "copy", "dialogue_master.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    with open("subtitles.ass", "w", encoding="utf-8") as f:
+        f.write(ass_header + "\n".join(events) + "\n")
+
+    return current_time_ms / 1000.0, line_durations
+
+# -------------------------------------------------------------
+# 3. Animate Sketch Frames with Dynamic Motion & Subtitles
+# -------------------------------------------------------------
+def assemble_ink_explainer_video(image_files, line_durations, output_video="scam_short.mp4"):
+    """
+    Takes the generated stickman sketch drawings, applies smooth Ken Burns camera
+    motion (zoom/pan), and burns centered kinetic subtitles over the narrative.
+    """
+    clip_files = []
+    
+    # Calculate duration per scene
+    total_duration = sum(dur for dur, _ in line_durations)
+    dur_per_scene = total_duration / len(image_files)
+
+    for idx, img_path in enumerate(image_files):
+        clip_name = f"scene_{idx}.mp4"
+        clip_files.append(clip_name)
+        
+        # Alternate between subtle zoom-in and subtle zoom-out for documentary pacing
+        zoom_expr = "zoom+0.0012" if idx % 2 == 0 else "zoom-0.0010"
+        
+        cmd = [
+            "ffmpeg", "-y", "-loop", "1", "-i", img_path,
+            "-t", f"{dur_per_scene:.2f}",
+            "-vf", f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+                   f"zoompan=z='min(max({zoom_expr},1.0),1.15)':d={int(dur_per_scene*30)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30,"
+                   f"format=yuv420p",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
+            clip_name
+        ]
+        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+
+    with open("scenes_list.txt", "w") as f:
+        for c in clip_files:
+            f.write(f"file '{c}'\n")
+
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "scenes_list.txt", "-c", "copy", "raw_montage.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+
+    # Burn middle-center subtitles
+    cmd_final = [
+        "ffmpeg", "-y",
+        "-i", "raw_montage.mp4",
+        "-i", "dialogue_master.mp3",
+        "-vf", "ass=subtitles.ass",
+        "-c:v", "libx264", "-c:a", "aac", "-b:a", "192k",
+        "-shortest", output_video
+    ]
+    subprocess.run(cmd_final, check=True)
+    print("Ink Explainer Short assembled successfully!")
+
+# -------------------------------------------------------------
+# 4. YouTube Upload Handler
+# -------------------------------------------------------------
+def upload_to_youtube(video_path, title, description):
+    client_id = os.getenv("YOUTUBE_CLIENT_ID")
+    client_secret = os.getenv("YOUTUBE_CLIENT_SECRET")
+    refresh_token = os.getenv("YOUTUBE_REFRESH_TOKEN")
+
+    if not all([client_id, client_secret, refresh_token]):
+        print("YouTube credentials missing in Secrets. Skipping upload.")
         return
 
-    date_str = day_entry.get("date", "Today")
-    regions = day_entry.get("regions", {})
-
-    msg = f"🚨 *Global Cyber Scam Digest — {date_str}*\n\n"
-    priority_order = ["India", "Singapore", "North America", "Europe"]
-    for reg in priority_order:
-        if reg in regions:
-            headline = regions[reg].get("headline", "")[:75]
-            msg += f"• *{reg}*: {headline}\n"
-
-    msg += "\n🌐 *Full Reports & Prevention Tips:*\nhttps://santoshtiru1.github.io/Scam-Alerts/"
-
     try:
-        encoded_msg = urllib.parse.quote(msg)
-        url = f"https://api.callmebot.com/whatsapp.php?phone={phone}&text={encoded_msg}&apikey={apikey}"
-        res = requests.get(url, timeout=15)
-        print("WhatsApp CallMeBot status:", res.status_code)
-    except Exception as e:
-        print("WhatsApp error:", e)
-
-def generate_day_report(target_date):
-    print(f"\n--- Gathering reports for {target_date.strftime('%Y-%m-%d')} ---")
-    day_entry = {
-        "date": target_date.strftime("%Y-%m-%d"),
-        "regions": {}
-    }
-    for region in REGIONS:
-        print(f"Analyzing: {region}...")
-        item = fetch_scam_for_region(region)
-        summary = summarize_scam(region, item)
-        day_entry["regions"][region] = {
-            "headline": item.get("title"),
-            "summary": summary,
-            "source": item.get("url")
-        }
-    return day_entry
-
-def select_daily_featured_scam(day_entry):
-    """
-    Rotates daily across the 8 regions or threat vectors so the video 
-    never covers the same topic two days in a row.
-    """
-    regions = day_entry.get("regions", {})
-    if not regions:
-        return "Global", "AI Voice Clone Ransom", "Scammers use 3-second voice samples from social media to fake kidnappings and demand instant crypto or UPI ransoms."
-
-    available_regions = list(regions.keys())
-    day_num = datetime.now(timezone.utc).timetuple().tm_yday
-    chosen_region = available_regions[day_num % len(available_regions)]
-    scam = regions.get(chosen_region, {})
-
-    headline = scam.get("headline", "Emerging Cyber Threat")
-    summary = scam.get("summary", "")
-    return chosen_region, headline, summary
-
-def generate_cinematic_story(day_entry):
-    target_region, headline, summary = select_daily_featured_scam(day_entry)
-
-    prompt = f"""
-You are the scriptwriter for a high-retention cybercrime mini-series.
-Write a fast-paced 50-second conversational exchange between two visible investigators:
-- VIKRAM (Lead Cyber Threat Analyst)
-- MAYA (Investigative Reporter)
-
-Today's Incident:
-Region: {target_region}
-Incident: {headline}
-Details: {summary}
-
-Scripting Rules:
-1. Format as an alternating dialogue between Maya and Vikram (4 to 5 short lines total, roughly 110-125 words).
-2. Start directly with an alarming hook:
-   - Line 1 (Maya): Breaks the urgent news or intercepted distress call.
-   - Line 2 (Vikram): Explains the technical trap or psychological manipulation.
-   - Line 3 (Maya): Highlights the victim's panic and drained balance.
-   - Line 4 (Vikram): Delivers the concrete, unbreachable defense rule.
-3. Keep dialogue snappy, realistic, and dramatic. No robotic filler or greetings.
-4. Strictly valid JSON output with these exact keys:
-{{
-  "title": "Shocking Title under 60 chars",
-  "dialogue": [
-    {{"speaker": "Maya", "text": "Sentence spoken by Maya..."}},
-    {{"speaker": "Vikram", "text": "Sentence spoken by Vikram..."}},
-    {{"speaker": "Maya", "text": "Sentence spoken by Maya..."}},
-    {{"speaker": "Vikram", "text": "Sentence spoken by Vikram..."}}
-  ],
-  "video_queries": ["query 1", "query 2", "query 3", "query 4"]
-}}
-"""
-    try:
-        response = client.chat.completions.create(
-            model=MODEL_NAME,
-            messages=[
-                {"role": "system", "content": "You are a master scriptwriter creating conversational cyber dialogues. Return valid raw JSON only."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.75,
-            max_tokens=650
+        creds = Credentials(
+            None,
+            refresh_token=refresh_token,
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=client_id,
+            client_secret=client_secret,
         )
-        raw = response.choices[0].message.content.strip()
-        if "```" in raw:
-            raw = raw.split("```")[1]
-            if raw.startswith("json"):
-                raw = raw[4:]
-        data = json.loads(raw.strip())
-        return data
-    except Exception as e:
-        print("Fallback dialogue generation notice:", e)
-        fallback_pool = [
-            {
-                "title": f"Vikram & Maya: The {target_region} Digital Arrest",
-                "dialogue": [
-                    {"speaker": "Maya", "text": f"Vikram, a citizen in {target_region} was just trapped on a six-hour video call by men wearing forged police uniforms."},
-                    {"speaker": "Vikram", "text": "The psychological intimidation in these fake digital arrests is extreme. They use forged warrants to force instant transfers."},
-                    {"speaker": "Maya", "text": "By the time the victim realized it was a mock studio, their life savings were gone into mule accounts."},
-                    {"speaker": "Vikram", "text": "Remember our rule: real law enforcement will never arrest you over a video call or demand money to clear your name. Disconnect immediately."}
-                ],
-                "video_queries": ["police siren night", "laptop cyber attack", "worried phone call", "digital lock shield"]
+        youtube = build("youtube", "v3", credentials=creds)
+
+        body = {
+            "snippet": {
+                "title": f"⚠️ {title[:65]} #Shorts",
+                "description": (
+                    f"{description}\n\n"
+                    f"🛡️ Daily Cyber Intelligence Protocols:\n"
+                    f"https://santoshtiru1.github.io/Scam-Alerts/\n\n"
+                    f"#Animation #Stickman #Investigation #CyberSecurity #Shorts"
+                ),
+                "tags": ["Animation", "Stickman", "CyberSecurity", "Investigation", "Shorts"],
+                "categoryId": "28"
             },
-            {
-                "title": f"Vikram & Maya: The Malicious APK Trap",
-                "dialogue": [
-                    {"speaker": "Maya", "text": f"Vikram, we're seeing a wave of fake job offers in {target_region} asking users to download a private support app."},
-                    {"speaker": "Vikram", "text": "That APK contains a background trojan designed to intercept SMS two-factor codes and log banking credentials silently."},
-                    {"speaker": "Maya", "text": "Victims complete rating tasks while hackers siphon thousands directly out of their accounts."},
-                    {"speaker": "Vikram", "text": "Never install APK files sent through messaging groups or untrusted links. Stick strictly to verified app stores."}
-                ],
-                "video_queries": ["smartphone texting dark", "data matrix code", "bank transfer screen", "cyber security padlock"]
+            "status": {
+                "privacyStatus": "public",
+                "selfDeclaredMadeForKids": False
             }
-        ]
-        return random.choice(fallback_pool)
+        }
 
-def main():
-    feed_file = "scams.json"
-    history = []
+        media = MediaFileUpload(video_path, chunksize=-1, resumable=True, mimetype="video/mp4")
+        request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
+        res = request.execute()
+        print("SUCCESS: Published Ink Explainer Short! Video ID:", res.get("id"))
+    except Exception as e:
+        print(f"YouTube Upload notice: {e}")
 
-    if os.path.exists(feed_file):
-        try:
-            with open(feed_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                if isinstance(data, dict) and "history" in data:
-                    history = data["history"]
-        except Exception as e:
-            print(f"File read notice: {e}")
+# -------------------------------------------------------------
+# 5. Pipeline Orchestrator
+# -------------------------------------------------------------
+def process_youtube_short(day_entry, story):
+    if not story or "dialogue" not in story:
+        print("Invalid dialogue story structure passed.")
+        return
 
-    now = datetime.now(timezone.utc).replace(tzinfo=None)
-    today_str = now.strftime("%Y-%m-%d")
-    yesterday = now - timedelta(days=1)
-    yesterday_str = yesterday.strftime("%Y-%m-%d")
+    category = story.get("category", "Cyber Scam")
+    print(f"\n--- Generating Ink Explainer Visuals for: {category} ---")
 
-    existing_dates = {item.get("date") for item in history}
+    # Generate 4 distinct stickman sketch scenes tailored to the story
+    scene_descriptions = [
+        f"stickman looking shocked at smartphone with {category} trap on screen",
+        f"shady stickman criminal wearing hoodie laughing while operating laptop computer with evil code",
+        f"stickman crying with empty pockets and wallet showing money flying away",
+        f"stickman police investigator pointing finger at warning sign shield with red stop icon"
+    ]
 
-    if yesterday_str not in existing_dates and len(history) == 0:
-        history.append(generate_day_report(yesterday))
+    images = []
+    for idx, desc in enumerate(scene_descriptions):
+        img_file = f"sketch_{idx}.png"
+        if fetch_ink_explainer_frame(desc, img_file):
+            images.append(img_file)
 
-    history = [item for item in history if item.get("date") != today_str]
-    history.insert(0, generate_day_report(now))
-    history = history[:30]
+    if not images:
+        print("Image generation failed. Skipping video production.")
+        return
 
-    with open(feed_file, "w", encoding="utf-8") as f:
-        json.dump({
-            "updated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
-            "history": history
-        }, f, indent=2)
+    print("Synthesizing dialogue audio and centered subtitles...")
+    total_dur, line_durations = asyncio.run(render_dialogue_audio(story["dialogue"]))
 
-    if history:
-        post_to_telegram(history[0])
-        post_to_whatsapp(history[0])
-        story_data = generate_cinematic_story(history[0])
-        process_youtube_short(history[0], story_data)
+    print("Compositing Ink Explainer animation...")
+    assemble_ink_explainer_video(images, line_durations)
 
-    print("Pipeline completed successfully.")
-
-if __name__ == "__main__":
-    main()
+    full_transcript = " ".join([f"{item['speaker']}: {item['text']}" for item in story["dialogue"]])
+    print("Uploading to YouTube...")
+    upload_to_youtube("scam_short.mp4", story.get("title", f"The {category} Trap"), full_transcript)
