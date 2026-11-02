@@ -29,25 +29,27 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install duckduckgo_search groq requests beautifulsoup4 edge-tts pillow google-api-python-client google-auth-oauthlib
-
-      - name: Run Cyber Threat Agent
+      - name: Run pipeline
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           WHATSAPP_PHONE: ${{ secrets.WHATSAPP_PHONE }}
           WHATSAPP_APIKEY: ${{ secrets.WHATSAPP_APIKEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: |
           python agent.py
 
       - name: Commit and push changes
         run: |
           git config --global user.name "ScamWatch-Bot"
-          git config --global user.email "bot@github-actions.internal"
+          git config --global user.email "actions@github.com"
           git add scams.json
-          git commit -m "Auto-update scam digest: $(date +'%Y-%m-%d')" || exit 0
-          git push
+          git commit -m "Auto-update scam digest: $(date -u +'%Y-%m-%d')" || exit 0
+          for i in {1..5}; do
+            git pull --rebase origin main || true
+            git push origin main && break || sleep 15
+          done
