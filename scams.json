@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-06 13:16 UTC",
+  "updated_at": "2026-11-07 11:57 UTC",
   "history": [
+    {
+      "date": "2026-11-07",
+      "regions": {
+        "India": {
+          "headline": "Pensioners lose \u20b98 crore in \u2018digital arrest\u2019 scams - The Times of India",
+          "summary": "Pensioners lose \u20b98 crore in \u2018digital arrest\u2019 scams\u00a0\u00a0The Times of India",
+          "source": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPY0VNQmxTUHdtak9RU1ZXbEkxNTlXUlJCLWZoUG1VOUpEb1puSGQ4M3czZWxDaXRBMXd0VHUxN21KNTE2elU5NEc2c1V2OWJMTU5jRTRmckNYWEFjbF9JemxaN0lsa3BlSEYzdE5fZEhHVld1c1U1R181b05YYXZlWnhaYUVfQlVTT3Y4djdkMTFjTXhzbjZaX1lDOHhBdXFWRDNqNVhxX1R4UmR5U2hWT0pIbmtwVmFWSnJlRm5vN3VMRE3SAcgBQVVfeXFMTW9FckFzbGxaOFNTSUpuWDZaUXQySWI3LXVteHRoWXN5M1ZPdkJMRndEMVdLUkRrTF9PNG1kWk1PVmVRY2dIYkNuRXJBZjFOZFlBN3FDWEwxLVU3RWNLNnAxSDFyalNPTGJJNm5EenZEZGt5ZTNySkRaYzBFYzR5cjZ1WFFxNXBBckdESUVTODNtcW9BQl9HdUZ6ZGdSWGdkNWZZLUR0WlNmX3QwaVNPV2l4LTFDM25EQXZ0ZXZDWnlHOTBUMk9KeU0?oc=5"
+        },
+        "North America": {
+          "headline": "US targets Prince Group\u2019s financial network to stop it laundering proceeds from cyber scams - Escudo Digital",
+          "summary": "US targets Prince Group\u2019s financial network to stop it laundering proceeds from cyber scams\u00a0\u00a0Escudo Digital",
+          "source": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNVkd0aXEwNlpKejlVdk56UE9mZEJuNDNpNkgzZDVGaklzSFdZamZxcWI5dUhiTkVITEVQcTh4VnBZZGFlVTZ3SE4xbXpZWHlnMUpHVmR4R3p4TERUOWRNUjRBdzRqbHdVaEM5MVlONkJ6V3pldnFSWXRsVFVxQXlnaGZ3ZG9maUJaOTZ2X2RQT295QUZmeUNIdUNKUVhxd2NjVS14ZkUtNVdtUThrNjh3dE1HQm5fWHl5c3kwTHlTQUE2aGE2SHN5cDBEMmNyanJldzNlMXFHcG16QQ?oc=5"
+        },
+        "South America": {
+          "headline": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats - Industrial Cyber",
+          "summary": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats\u00a0\u00a0Industrial Cyber",
+          "source": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNSm1Mb2kzYTJvd2F6Zld5U01VNHdqdlpQb2pRcllBZzAyVldEN292UkwzaHV6VmlpOGowaHF4RHlvbEtocDAyNDJEQ0xaUFJET2JHWFl3UENBajJsbFNvSXNRR18yR0ZId2RkWjE3Qjc4bDVJYVNDVkJnVjRqOGh2SGpjQlNhLUhOR1JKTzNLUVdDWVhYU0dmd0pfWU1USnJ4dWpOSzdXY2Q2NFVNcHJlWHkxOGRZX2pLYzd1QTZ5U2RSanFuNFBQQjFwM3ZPNEZwUVJvUVFobWlSZDI1OGRGaFl3?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "Singapore": {
+          "headline": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams - Singapore Police Force",
+          "summary": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUlpfaVgwdV85QkdYMDR6OUpwOS1zYjFtNkRxNmVPOTdNcGlfVXI4d0lNdll5ZU1HbWFITVg4VHlqQ29mOURFSlJPUmN2MHQ5eVdzd1Q4UmZFVXpNcmMxLTJJbF9idm84NDFFRnAxRGlhLThSblZnVHB5WXdSUkpHM3QzOF9DN1RpdjhWV0xZNFFuLTJvRkpOd1N0U29LMzA0RnJrWWhVRTQ3WVE2bXNlQ0FoN01nWFh3T3c4?oc=5"
+        },
+        "China": {
+          "headline": "DOJ takes down 13 alleged Chinese-run scam compounds, seizes $52M in cryp\u00adtocur\u00adrency - Spectrum News",
+          "summary": "DOJ takes down 13 alleged Chinese-run scam compounds, seizes $52M in cryp\u00adtocur\u00adrency\u00a0\u00a0Spectrum News",
+          "source": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOamUwckJGZEdiUU1mZm9fd0dPU1Frb29hcGJxQlpxMGItbUVnTVRQaDVKTFRhc2NfSFNURTJIZVVFMzhUbjVqVkNJbjk3VFdyVXVsbFNQWDBnWUtoSDNua3M1T2xvd3FHOEJFUUM1bm9waGNFblBScDNZX3l1amFFcGVqQm55aWhtYUtR?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "Federal agencies warn organizations about potential cyberattacks on industrial refrigerators - CBS News",
+          "summary": "Federal agencies warn organizations about potential cyberattacks on industrial refrigerators\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPTGxKc0hMaEZWRFZjQXV1Y09zY2tTbWFXUXdGLTRWblRzczdhQUowbXIxMHJoWUo5cG9rU2NfcjJPcUY1SDhZM1V3N3Ftd0NnMnBxV0sxYjJ6YjlDSjBCM0Fnc2NXLUxETWxHSnBaa25PMHVhMUhpNHJYb3c3NWwyWkpZb2k?oc=5"
+        }
+      },
+      "featured_category": "SIM Swapping & OTP Interception"
+    },
     {
       "date": "2026-11-06",
       "regions": {
@@ -1303,51 +1349,6 @@
           "headline": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam - CyberSecurityNews",
           "summary": "16 Suspects Detained in Timor-Leste for Japanese Police Impersonation Scam\u00a0\u00a0CyberSecurityNews",
           "source": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZTGtFU1c4bXcyalc3aDZmVWlHQ3hHeVRjZjlUUDhvV21XNnRTWEJJZlNCX2RRaWt2VTVaSEl4SHJDZkNZUVRaZHlwbUwtVkJRZjBXVNIBWkFVX3lxTFBTaWd5QWdVOFpOUGtNbW1FYXBMUF9fbEpsUjNvcnhBVzVrMjF4UmFuZC1VbjdCQTBITTdPb3hpbkhyRk4wTHE4c215RGVlVzdxQndNT0JtcXpiZw?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
-          "summary": "58 arrests in global effort to dismantle West African organized crime groups\u00a0\u00a0Interpol",
-          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc3NwM19iUmZSc185R1k1X2xpQ1BYQU1uYVd1cHBHenZKekVWS0tpaEdycS0wbkdxcTdSdXJicS1GRXR1QXJteEdaTzllVmlmZHhZWWEtUGtIWlN3Zjd5U0R3M19SWFRmeS1SQjZka3Q5cC1pMU1QNlk4QXdkRVp5QktFdWVjV09FZHB3TTE0c1lDWUFndExwNkVHT0ppNWgyaDAwa3BsRGs0LVhiTk1OcS1VVkxKMm13SFZrS1lHX1d4WEl6eXc?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-05",
-      "regions": {
-        "North America": {
-          "headline": "Booking.com customers warned of 'reservation hijack' scams after data breach - BBC",
-          "summary": "Booking.com customers warned of 'reservation hijack' scams after data breach\u00a0\u00a0BBC",
-          "source": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5pQy1QaWFsR0FmYmw3MFFIbFp5MHhYX082M3FyWmFtMjFZcHFHaUt4V0taVTVhT1ZodHlQakhlNGI4QTQyYUQ1aVJUdm12c3FJUzdiVkJOb0JrZw?oc=5"
-        },
-        "South America": {
-          "headline": "October Launches Cybersecurity Month in the United States and Europe With a Call for a Safer Online World - EIN Presswire",
-          "summary": "October Launches Cybersecurity Month in the United States and Europe With a Call for a Safer Online World\u00a0\u00a0EIN Presswire",
-          "source": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQbzVrVGtJMG1udElySm9ZbWc3RGxqWnRKMTRpNVNocUs2S1Z3UEZKMzZmb0NuQmNJMkthOGhjMjdpbFY4NEtxWWFpTl94Qm5tcWJ4LUs4cWxxWXlESjRrMzdpVDJWYjUwckYyMm91eHI0SlZuWXpwVDdxMGJDZ19XRnVWaEdLT1Ewel9DWEtjeXNzdTl6RzU0Rkp4OE5CcGpWMUJQWTQ3TmZVRTZqem15d19ybWNfWGsyQjJ0S0ZxUUsyQlV5SjFLNHhNaVhBRzIwem9NbTgtWW43eDUyUjc0NEFZZlN3dVU?oc=5"
-        },
-        "Europe": {
-          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
-          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
-          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
-        },
-        "India": {
-          "headline": "Daily Digest",
-          "summary": "Official National Cyber Crime Reporting Portal Daily Digest Advisory (Daily Digest). Covers active financial fraud vectors, malicious APK campaigns, and cyber safety alerts across India.",
-          "source": "https://cybercrime.gov.in/Webform/daily-digest.aspx"
-        },
-        "Singapore": {
-          "headline": "Fake LinkedIn Crypto Job Scams Have Cost $11.8M: Singapore - Yahoo",
-          "summary": "Fake LinkedIn Crypto Job Scams Have Cost $11.8M: Singapore\u00a0\u00a0Yahoo",
-          "source": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQVk50Sml3NGg3Qms4NGxMaENDYW5VX2Y4THpRWFF4SkhQelNHdkppZ29WanowZHJuUTBlWDJmQVlLRVZuZUhzTmNEbWlTMzE1SEpYbXhEUXFOXy02enVXdTZIb25UMHFrVTRhX0EwSlJnU0RaTVVNV2tFcDh1d043S0pjOEFDWU82Y1VsODNROTE?oc=5"
-        },
-        "China": {
-          "headline": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN - South China Morning Post",
-          "summary": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN\u00a0\u00a0South China Morning Post",
-          "source": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQXBTci1yRUZFRS1hRUFHbm11ZW1Bcm9yaGM0WmpZUXpER1o5TC1jTTZOQVFxY2hPRWludlAwRlI4b1JBWVJwZDc0VmRsUkl5NWMwRmMxa0swUHNFMDZZSWpOWGstRWdGXzVPSjFJOVdfa1NvazJrclBWLWJCWUVELU83ZTVsZ000ZHA2SHNRcjFiSVFpR2trTnc3SElDNnRjcDAwalFCTWxSdlM3VzNQeHFQNEdBeWgxMW5lWkhwVHZMd9IBwgFBVV95cUxOTDNPcW45YVJSSnVpY2Uzc2pteklHWjJrclZZOHhGcVF5T1UtaE02SkV6MENuZ3RsbnIta2xnamptallmOGFQTnVrTERPZUlRcUl1SW1Rd0tzT0U5OWtheGE3aUpTcjVEc0o5UVlBZ1B4ejJyOTNob3JiRGNKX3RnNVhiODZnZzRPZmNLUU5melJrUERqeWdPYks5c3VtRkxDcUk5OTJaZDFWaHl0N0h5LUQ0eXRvNVNVSmFYUjZDX3IzZw?oc=5"
-        },
-        "Japan": {
-          "headline": "Japan's new AI police: How AIko is protecting millions from $2 billion online scams before it's too late - The Times of India",
-          "summary": "Japan's new AI police: How AIko is protecting millions from $2 billion online scams before it's too late\u00a0\u00a0The Times of India",
-          "source": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPb3NOVVIwQmozVTVhVEt1RmxGY2xnNGNJaHRCNVNpVklWRnNBYlNReHZBRXY3elJlNTlSdE1pbUkzWGlNRTFBNFZfNkxTUDhVcXE0YWZULXFWWWpldWdac2FtSzc5d3g2UFp2T01kVTNIbFJxTFl1eWZ4bFRQSDY5Z3BqNXZCR2N6LWtwaXcxWVZVQ0dUVlNBZ3dkdV9wQkxlQTVzSS13YUVDeDdZVVkwS3RDYXRKN0hhYTNUOVNtNDdwbmV3Rm1nYzdUTFdxRERISFFNZlZnMUtUS2Q2LVIzclFhT0l4MmRkWlpRcWdjandGc2hQQjZ6WWVtR2lDbVdvUVRyb0Nzb0hudjdIY3JOONIBlgJBVV95cUxQZWtSd0Q5SHcwM3hIdmhzbWlsVDFYYmZ0MXFkbTR2aW50b2hUQ0NVZG1XTlVTS0paSnBoRFkzRHhzcFRjU2toc01oVFlXcmRDVXdVLWlCX0N0TXA1VXl3MzBGNy16cnJaVTNsVUVscDgwUTRCSVg3MHNMbkJKdWZBMWRHSHg5NVB6UU1BTkxZZUlrOVdyNHFWcXJ6dEtOR1NGQmozb3BCejBaQUJJYnJFd2ZxZFpNb1pzM2pmQk9teG9Dc2JUSFJiWkQ0Y2dxN2tvRG40bDR5azV1ei1FeENmdzNuV3RCNW9URFFKdVNKa3hxcmtBQXd3SGRLVTRMdXQ5X1NMbWdJcWdRWUtwdk5JcVk0eFdsQQ?oc=5"
         },
         "Rest of the World": {
           "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
