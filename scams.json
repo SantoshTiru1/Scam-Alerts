@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-08 12:16 UTC",
+  "updated_at": "2026-11-09 14:26 UTC",
   "history": [
+    {
+      "date": "2026-11-09",
+      "regions": {
+        "India": {
+          "headline": "Digital arrest: A cyberfraud wrapped in a psychological trap; why intelligence falls prey to basic instincts - The Times of India",
+          "summary": "Digital arrest: A cyberfraud wrapped in a psychological trap; why intelligence falls prey to basic instincts\u00a0\u00a0The Times of India",
+          "source": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPbmdTSmtyVnYxalJNbEtWeVZSbG1PbTllR3U1X05KUjNFRVRfVTJoR2hLVmtnSjNVcG9OZktXR1ZDNVRrR05IMFFoYTNVRTA3T09neUwxRWhuaFVscHRrM3pOQmwzanViRmRtZk5TUUwtVlhOUzJCQWN6TWNqeUYxV3AzY0NxSnJGSDQ5OGtQNUxsNXJFWjIxRU1xVDAyRDZrNmIxZW5SRTZfbEhNTVB3R3hKNzdCczg4azNYNHhpdTFNWDh0ek9Jb0JNNFlNWTBfaHdxSmdBTEJLZHdCekxnOUdPS3RTY0dRNngxNUUxVWE1YnpfUmEtaTVLRHljNUdQWmt5Sg?oc=5"
+        },
+        "North America": {
+          "headline": "District of Columbia | Scam Center Strike Force - Department of Justice (.gov)",
+          "summary": "District of Columbia | Scam Center Strike Force\u00a0\u00a0Department of Justice (.gov)",
+          "source": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aN3hxdzVsUE1jTzJ2V0tNZThiT3Y1UmhQa0lpR1RrLW5fRmdnQ1RKbzNnYmVtLXcybktYcndVYXZmd1BiNkd2YU5sMGFRLU5YQ2JvcF9EQmV4VTZqN0JNLTFNd1dwSGs?oc=5"
+        },
+        "South America": {
+          "headline": "Scammers are waiting to swindle new internet users. How do we protect them? - BBC",
+          "summary": "Scammers are waiting to swindle new internet users. How do we protect them?\u00a0\u00a0BBC",
+          "source": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOMWNmcWdOd1FHR2EwVzBkbEpsY1Y3Vk9QYTBnYlljd0JTX3ZTZ2xXaDVWUVVaakV0U0xIcG4tRGhWZjB0VVhfWWF2MlEyS0lERzE5VkNKS0xIaVVSM2pDUHpuUURYWTJTUnd4eFoxdmhIOWpuaEQ4QUt0OWJibnUwbmE2Vi1WalZpLUNZa2lrbHA3V19YNC0zZ3VGczZCamE3Ujg2UUc1UUN3VmlPRDBtRnpJZEFfMXpX?oc=5"
+        },
+        "Europe": {
+          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
+          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
+        },
+        "Singapore": {
+          "headline": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams - Singapore Police Force",
+          "summary": "Know Who\u2019s Calling: SPF Launches Single Caller ID to Combat Scams\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUlpfaVgwdV85QkdYMDR6OUpwOS1zYjFtNkRxNmVPOTdNcGlfVXI4d0lNdll5ZU1HbWFITVg4VHlqQ29mOURFSlJPUmN2MHQ5eVdzd1Q4UmZFVXpNcmMxLTJJbF9idm84NDFFRnAxRGlhLThSblZnVHB5WXdSUkpHM3QzOF9DN1RpdjhWV0xZNFFuLTJvRkpOd1N0U29LMzA0RnJrWWhVRTQ3WVE2bXNlQ0FoN01nWFh3T3c4?oc=5"
+        },
+        "China": {
+          "headline": "DOJ takes down 13 alleged Chinese-run scam compounds, seizes $52M in cryp\u00adtocur\u00adrency - Spectrum News",
+          "summary": "DOJ takes down 13 alleged Chinese-run scam compounds, seizes $52M in cryp\u00adtocur\u00adrency\u00a0\u00a0Spectrum News",
+          "source": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOamUwckJGZEdiUU1mZm9fd0dPU1Frb29hcGJxQlpxMGItbUVnTVRQaDVKTFRhc2NfSFNURTJIZVVFMzhUbjVqVkNJbjk3VFdyVXVsbFNQWDBnWUtoSDNua3M1T2xvd3FHOEJFUUM1bm9waGNFblBScDNZX3l1amFFcGVqQm55aWhtYUtR?oc=5"
+        },
+        "Japan": {
+          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
+          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
+          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
+          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
+        }
+      },
+      "featured_category": "Work From Home YouTube Like Scams"
+    },
     {
       "date": "2026-11-08",
       "regions": {
@@ -1290,51 +1336,6 @@
           "headline": "Regulatory and Executive Impersonation for WhatsApp Account Takeover using Malicious Windows Executables and High value financial fraud - PIB",
           "summary": "Regulatory and Executive Impersonation for WhatsApp Account Takeover using Malicious Windows Executables and High value financial fraud\u00a0\u00a0PIB",
           "source": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5GLTNBaDVudk04SEEwdmdfM2NZS1pJYWxjZ1oxMThOTmpSNjhqRUFPazZXTjNkaVFTcVdhMEF2Z1Z4UmtHX0tRUHR3SVdpMkV6NTVMbFVybTMxZGRkSWUxeXZVRHhta3g0c0ZJcHVFdjRDRXdMMVFRZS1kRQ?oc=5"
-        },
-        "Singapore": {
-          "headline": "Singapore Is Literally Training People to Get Scammed - TechRepublic",
-          "summary": "Singapore Is Literally Training People to Get Scammed\u00a0\u00a0TechRepublic",
-          "source": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOYVhuNDgtMl96XzFEQTlyR3diOU1qZFNSYmNId2RzX3VkMTVtazJYcWZVYTh2QWgxdEQyRjhRTGozd190cEh4V2F4N3lHLTRtblkwRzhaQWJUOTBTZUFPNmFkM3lELWVKUl8zNEJXZWZhVDR0OS1EQnMwTkdmSzlvcnRLQXg3NUlZREU4VTN1OHVhdklnelE?oc=5"
-        },
-        "China": {
-          "headline": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN - South China Morning Post",
-          "summary": "Asia-Pacific cyberscam victims lost up to US$114 billion last year: UN\u00a0\u00a0South China Morning Post",
-          "source": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQXBTci1yRUZFRS1hRUFHbm11ZW1Bcm9yaGM0WmpZUXpER1o5TC1jTTZOQVFxY2hPRWludlAwRlI4b1JBWVJwZDc0VmRsUkl5NWMwRmMxa0swUHNFMDZZSWpOWGstRWdGXzVPSjFJOVdfa1NvazJrclBWLWJCWUVELU83ZTVsZ000ZHA2SHNRcjFiSVFpR2trTnc3SElDNnRjcDAwalFCTWxSdlM3VzNQeHFQNEdBeWgxMW5lWkhwVHZMd9IBwgFBVV95cUxOTDNPcW45YVJSSnVpY2Uzc2pteklHWjJrclZZOHhGcVF5T1UtaE02SkV6MENuZ3RsbnIta2xnamptallmOGFQTnVrTERPZUlRcUl1SW1Rd0tzT0U5OWtheGE3aUpTcjVEc0o5UVlBZ1B4ejJyOTNob3JiRGNKX3RnNVhiODZnZzRPZmNLUU5melJrUERqeWdPYks5c3VtRkxDcUk5OTJaZDFWaHl0N0h5LUQ0eXRvNVNVSmFYUjZDX3IzZw?oc=5"
-        },
-        "Japan": {
-          "headline": "Fake Japanese Police Callers Used Fraudulent Parcel Lures to Target Households - Cyber Press",
-          "summary": "Fake Japanese Police Callers Used Fraudulent Parcel Lures to Target Households\u00a0\u00a0Cyber Press",
-          "source": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ub2YxMEpfeVZId1pzN19ZbHlUS1d6LWNUVWwxMDVlam1MdnJRem5hYWlhcVI2WTExQkJPOTlYNkFtOFBHc0pVWjlDdU9KOXd2T0lCMlZsTHoyOVg2VEs4bzB6RXJqbU1iLV91VtIBbEFVX3lxTE5ub2YxMEpfeVZId1pzN19ZbHlUS1d6LWNUVWwxMDVlam1MdnJRem5hYWlhcVI2WTExQkJPOTlYNkFtOFBHc0pVWjlDdU9KOXd2T0lCMlZsTHoyOVg2VEs4bzB6RXJqbU1iLV91Vg?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "58 arrests in global effort to dismantle West African organized crime groups - Interpol",
-          "summary": "58 arrests in global effort to dismantle West African organized crime groups\u00a0\u00a0Interpol",
-          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc3NwM19iUmZSc185R1k1X2xpQ1BYQU1uYVd1cHBHenZKekVWS0tpaEdycS0wbkdxcTdSdXJicS1GRXR1QXJteEdaTzllVmlmZHhZWWEtUGtIWlN3Zjd5U0R3M19SWFRmeS1SQjZka3Q5cC1pMU1QNlk4QXdkRVp5QktFdWVjV09FZHB3TTE0c1lDWUFndExwNkVHT0ppNWgyaDAwa3BsRGs0LVhiTk1OcS1VVkxKMm13SFZrS1lHX1d4WEl6eXc?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-07",
-      "regions": {
-        "North America": {
-          "headline": "Booking.com customers warned of 'reservation hijack' scams after data breach - BBC",
-          "summary": "Booking.com customers warned of 'reservation hijack' scams after data breach\u00a0\u00a0BBC",
-          "source": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5pQy1QaWFsR0FmYmw3MFFIbFp5MHhYX082M3FyWmFtMjFZcHFHaUt4V0taVTVhT1ZodHlQakhlNGI4QTQyYUQ1aVJUdm12c3FJUzdiVkJOb0JrZw?oc=5"
-        },
-        "South America": {
-          "headline": "Evaluating Mexico\u2019s New Cybersecurity Plan - Recorded Future",
-          "summary": "Evaluating Mexico\u2019s New Cybersecurity Plan\u00a0\u00a0Recorded Future",
-          "source": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZkZqbFVQZlFVS0VDUkQtWnlvNm9kZVFqUzhoNmk5NS12Z1dacVpVdW5oZ1Vaakp3OEFuNFZPcXBVUWU4aXpGTWJyNExLc1dUdzdzTkh4UzNOdE1QdnktbUROMktXWnF3MnYtZ2EtcHNna0FpUGQxVi1fVmJuXzlpQUVWUXJGR2s?oc=5"
-        },
-        "Europe": {
-          "headline": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks - Europol",
-          "summary": "Global cyber strike disrupts SocGholish, Amadey, and StealC malware networks\u00a0\u00a0Europol",
-          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQMS1Xa0w1a1JNQjlwaDFjcWQ2SUtxbEpsWllJZGw3dnhfOThHa1NKdWVjSEJ4TVBrcFdSZ1JudG4wQkVlQ1VUd19Lb0FwME9waDFfNUlJQzlQWl9mSlBBMFM2SlFlMnJVSGg5dFJVeG9yWU5XRGZNRWViQ0tMZmc2Ui02UDZ2MjR5VER3Y3JIenJ4UGx2aVVFdmttMmk1azZnVWViTGtzcEpYWmhGMWtrWW8xWVU5Y3luZVNGU1o4UktiMW9yVnllYnJn?oc=5"
-        },
-        "India": {
-          "headline": "Daily Digest",
-          "summary": "Official National Cyber Crime Reporting Portal Daily Digest Advisory (Daily Digest). Covers active financial fraud vectors, malicious APK campaigns, and cyber safety alerts across India.",
-          "source": "https://cybercrime.gov.in/Webform/daily-digest.aspx"
         },
         "Singapore": {
           "headline": "Singapore Is Literally Training People to Get Scammed - TechRepublic",
