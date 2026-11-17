@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-16 14:03 UTC",
+  "updated_at": "2026-11-17 14:57 UTC",
   "history": [
+    {
+      "date": "2026-11-17",
+      "regions": {
+        "India": {
+          "headline": "Digital Arrest Scams and the Limits of Domestic Enforcement - orfonline.org",
+          "summary": "Digital Arrest Scams and the Limits of Domestic Enforcement\u00a0\u00a0orfonline.org",
+          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPbjFXVGRNWUNYZTBQdFJ5U09FT3JoOC1rcS1BUlJmWFFub1g2bDFzc19FMmhCTlhwaUhhMl84dGU0UGduanV5LW9nV21aQWgtUnM3RzZLaFpYOGNGQzVyZ0xuQThLUGUwZlN2Wi1MVGZTV1Fka25PbW5mYkctUWQ5YlV0aFhvdGVaY1p2NzBnSGJSd3NINlZfX1FnQkVjbU0?oc=5"
+        },
+        "North America": {
+          "headline": "Widespread service outages at major U.S. banks appear to be over - CBS News",
+          "summary": "Widespread service outages at major U.S. banks appear to be over\u00a0\u00a0CBS News",
+          "source": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNX1d2eVdIR1IwREpOWHRfSlJsSURCZjN1Y2hjQVQtYWN3ejJwWUVaZkg3SXVVRm5FNXFPOTJaZng5UjdvZTh2RElDWnp6cktHTUZTOTg5YWdsY2NnU0tzcGJweVJ3TXdZNERkbUZhOFhIRDZEYWRKYWtmd19xREtBVWJRNXZ0Y1ExYnBKUFFCbkZfT3ZFZnJhZTlHQWlJSXVjSVdN?oc=5"
+        },
+        "South America": {
+          "headline": "The Accountability Gap \u2013 Tackling Cyber Fraud Across Legal Frameworks - Stimson Center",
+          "summary": "The Accountability Gap \u2013 Tackling Cyber Fraud Across Legal Frameworks\u00a0\u00a0Stimson Center",
+          "source": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaEg2SWdIbkpUNERRd0NiQ3VYckdtTVk3REs5ZV9UVEFEZmlseGszODRQYkphQ2ZSSEpXaUp3eHE3SFNhek1xR3RxV1VicU8tTzVOSFh5SWM5OW42UjVwVGdvMGdjSUJ0dGVVZFRvTjdVV2VROGtHMEQ1dWJYYl84NEIwczlzYTZXNWpfZEd0bDRvRmppaDNUYjBtNFgxQQ?oc=5"
+        },
+        "Europe": {
+          "headline": "Guernsey Police warning over fraudsters posing as bank fraud team - BBC",
+          "summary": "Guernsey Police warning over fraudsters posing as bank fraud team\u00a0\u00a0BBC",
+          "source": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1PWXhGUTVuT3NqaEZrUm9QSEEyMjlWYnpXUEFoSFBKSTFlbkVWRklYQ0JsR2xVZEZ2WFg4eTAzSnh3T0QwTlM2SWV6bmxIR3ExYzQ5TFBZcmNaS2F3aGc?oc=5"
+        },
+        "Singapore": {
+          "headline": "Police Advisory On Resurgence Of Phishing Scams Impersonating Courier Companies Via Apple Imessage - Singapore Police Force",
+          "summary": "Police Advisory On Resurgence Of Phishing Scams Impersonating Courier Companies Via Apple Imessage\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRVNXZm1XaTZvcjI2WV9UZVVRcWxCS0VzWkRwUWo0VG9zU2pjWFYxUEVvR1B4NkpiZk9tekJVSUVwYUtEZ3l3WFJRN2dBekhlYXlvdTFsQjJZcTNpV2FVYU5CNEJOSVRDTU5ncFFUbnFpTU9PYzJEQ0gwMS1hWUtnWWt6YUpyb3pUOXZiV2Fvb25yR19kT2twVlNpY0duSjlUNjRMM2FsMk9BTVV2OFRuN1c5TDhOS20wdDZkM0FwWFNieVlhMXZtU0l3VzlUVWpZUDR3?oc=5"
+        },
+        "China": {
+          "headline": "Yangon Condo Raid Reveals Myanmar\u2019s Cyber Scam Sector Thriving in Commercial Capital - The Irrawaddy",
+          "summary": "Yangon Condo Raid Reveals Myanmar\u2019s Cyber Scam Sector Thriving in Commercial Capital\u00a0\u00a0The Irrawaddy",
+          "source": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPVVF2VDNwQ200bmQzb2JYVkxYUEVwR3RRbU1MaTRKYmpfY3pXUVY0c0tfWTNxNVZUenN2SjJ2QjVlbFhqVXVMZ0ZyR1lPckd3NmNVSkxzU2VaNEJWWTlydEdIN2lZVjFlcEtZdjkyM0xYRldzWkI1R3RPVjZVdVpzS3h0QUlFS0FQX0g3bDdGaHVaSlpqcTRzN2d0R2FkaWFobFJ0d0pXVWFVc25nZ0hFelFGemZTQ2RyLW9BeERhbXpxUEE?oc=5"
+        },
+        "Japan": {
+          "headline": "City of Osaka warns of data breach impacting 1 million as Japan reels from dozens of cyber incidents - The Record from Recorded Future News",
+          "summary": "City of Osaka warns of data breach impacting 1 million as Japan reels from dozens of cyber incidents\u00a0\u00a0The Record from Recorded Future News",
+          "source": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1BOEdSb1lMbENldjJPVXlpbWZINFBuMFVfUDRMZlN1d0dYSUwzMjZiVzh0OGdUZktXSk5oYVVmajR2RGl0akVtQ2lHR05vcTczYXp0UjN3eW1wYnctWUp0SXpRSnpDZ3NsYmwyRjBR?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "Popular websites compromised in bid to steal crypto, target iPhone users - Reuters",
+          "summary": "Popular websites compromised in bid to steal crypto, target iPhone users\u00a0\u00a0ReutersCyber Attack Hits 178 Major Websites: Full List of Affected Organizations\u00a0\u00a0NewsweekSprawling Malware Attack Reportedly Affects Zoom, CNN, Fox News, Peacock, and 170+ Others\u00a0\u00a0GizmodoCyberattack hits 178 websites including CNN, BBC, Fox News and Zoom; iPhone users also targeted\u00a0\u00a0LivemintCNN, Zoom, IKEA among 178 websites targeted in crypto, iPhone attack\u00a0\u00a0The Economic TimesCyberattack hits 178 organisations through compromised Optimizely code\u00a0\u00a0Indian Television Dot ComCyberattack targets 178 websites; CNN, BBC, Fox News hit\u00a0\u00a0The Indian Express",
+          "source": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTS1sYjJVSFJKSWN4SHY1S3g4aDJwdmd1SXp0YTY5aDJUNF9PS08zR29LWkVzVXk2d2tXZFh0dm9QRVNxc2xXYzczdWpXYmYwTmgwUDZfSFhBRE1XT3JHQnpNZERDdU5yMy16dDdVa1hYTVBqa0xGbTVPNkJBZTlIWmc4cldZaTI2QnpoaWo3NUxOb3FXQmZQck0yQzYzMVJ5MTROcFdTUGU4b0pmLUZ2Y3V3LVVJaEU?oc=5"
+        }
+      },
+      "featured_category": "Crypto Pig Butchering (Sha Zhu Pan)"
+    },
     {
       "date": "2026-11-16",
       "regions": {
@@ -1318,51 +1364,6 @@
           "headline": "AI is supercharging a global cyber fraud crisis. It could also solve it - The World Economic Forum",
           "summary": "AI is supercharging a global cyber fraud crisis. It could also solve it\u00a0\u00a0The World Economic Forum",
           "source": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNWGlMWWE0aE9Oc2lkWURBWS1qbUQwQzdQOWdibjVUdGJ6Uk5STjgzcFk0VnZNNWh2M1hRTUlkdDdNS3RNLTN1bGN4RDZvTURHai1vYjlvMTdOaV9IMng1MDVOcHlIYW5aT2RzNWhYd1ZjTWg4Y2VjUW1yUllfNV9jUGt1bWN4WUZWdzRGc1BUS0tZSGFQVGp1WXpPdGJiSjVhbjlfa2pBeFdRZDVCOHc?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-15",
-      "regions": {
-        "North America": {
-          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
-          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
-          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
-        },
-        "South America": {
-          "headline": "The fraud landscape in Central America: From credential theft to scams - BioCatch",
-          "summary": "The fraud landscape in Central America: From credential theft to scams\u00a0\u00a0BioCatch",
-          "source": "https://news.google.com/rss/articles/CBMimwFBVV95cUxObWtmcWtZb0k1V2NpVEhKVjZrNzhRM1dGR0Q5eks5ck1CTzAyUDNMUTBvNGwzNjV6QTUxUzBibDlhdVROeFlSdWdIWTEtYThIOUdpLWY1UE1fN0hDVkFXeWVNdlFLdndHcllFa0dILVFGM3c3MjFxSnlhX0g3aWR1b2FsMlpUckZkejJhRm5yVGNPTDdBSzA2TG5rUQ?oc=5"
-        },
-        "Europe": {
-          "headline": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network - Migration and Home Affairs",
-          "summary": "International investigation supported by Europol and Eurojust dismantles online fraud criminal network\u00a0\u00a0Migration and Home Affairs",
-          "source": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPekZudmUtRFExZk9KZHlJV2NwUHR0NUlhbmJ6azVzb0hmdV9xb0U1Y3dtUjlzM1VqemdVZVNYQUlOUTB6UnRnRFNaTU1yWG9ldjJnRllKZWFDbkRSVTJHcm0zMWhKc3VrTUIzM0FsdVp0eFlxZkF3S2p1WnR5c1l1TzJxUEs4RWlhTVUxMl9Pb05JcUxjazBhYVY5enA3cUpIUllIQ21yTjNtbi1MOFBWc2FqVkNYRWRYbEFlYl8tUXlWaUU5OF82azg0WmEwV3o5SzNNOUtITl9lQnJuYnNCUi1PQWk3Zm8?oc=5"
-        },
-        "India": {
-          "headline": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs - The420.in",
-          "summary": "India Launches Nationwide Cyber Campaign Against AI Scams, Deepfakes and Malicious APKs\u00a0\u00a0The420.in",
-          "source": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9YSDE4TEFGTExkZmtieWNDMFo3TTZxQVVlemE0WFFld0huZ3NiamltRXhDa3l2djRJbURaV05fRk5VZmdnRUttUXYyOEFpc1pqWlh2SXRkMkJBNTFPdWxrQ2F5bEY?oc=5"
-        },
-        "Singapore": {
-          "headline": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police - The Straits Times",
-          "summary": "Beware of scams impersonating travel platforms, $185,000 lost since January: Police\u00a0\u00a0The Straits Times",
-          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeFcydFlQbkpyTmJCei0xdkZvTVkwNEgwYnBPZk16NzdqVU52dVFtVFhQM3Iwc1E3TjhPOVpqRzJVTUE5TmFDRXBIdDM0cFVaM1pIZWd4bXQxbFpsaHBLOXBBeTU1ZFV2a3AyNTFrLW1LY2d1eVk0el9ndWVwMHpQNUFkSHBYZmk5c3l5TnhEWnUtRHJqNy13bnpFRHQzaWxKRFVGYVFaZC02QVpZTElwak5KYUthbkxmVVE?oc=5"
-        },
-        "China": {
-          "headline": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime - Malay Mail",
-          "summary": "Zahid: Malaysia and China ramp up fight against cyber scams, cross-border crime\u00a0\u00a0Malay Mail",
-          "source": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOX19UX19CeHNKV2ZWaTdjSFlDaGpCYnl1VnB0MU1sYUNvRkJmRnQ3NS0zaWpPak1GemYyODZUUVNYVVgzcEp6OUNtQ1FUcE1RSGM2cjFQbGZVWjZCV3pkdWxELS1BbHVEdmVWczlRTGNkM1hCOTVPRy12Z2xUeGVIemd6SmJRUVcyTWx0akZSVjQzMEZMTGJQYWl5eU1jWm5xaWpCWS1ieU1Ra1p3VnNmVDJLeHNBRkhGekZHMmhPWm81M0tPSk9jZGozdThyNk1U0gHWAUFVX3lxTE5zMkdlY1JEZTdCV2tjc2xGRmJSQ0JLYm5ZX1BqeUVzb2Q4OFgtWWh0VV9TZjViczkybXVMUWtHNG8xQUpVWHNyZW1aTXVMZXB6eVlvUXliZWxpT1JUcHdmVjZjT2xsZ2cwZ3VCV1dzYW5yVWUtSmN0WTl4ZTBON0E3akJuTU5FeDhva3VoNlNTdzlwQ0RGZVU0NGNySEQ4bzlhcWVxVzFzcG4tOVJmOTI0NWVRUU5UOFpWQzVacWltMlA0Q1dndmVQenE0RjlwX2RiQnlWdXc?oc=5"
-        },
-        "Japan": {
-          "headline": "Microsoft Disrupts 3 Phishing Kits Linked to Over 1 Billion Scam Messages - The Hacker News",
-          "summary": "Microsoft Disrupts 3 Phishing Kits Linked to Over 1 Billion Scam Messages\u00a0\u00a0The Hacker News",
-          "source": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1vbmcweWhVSHFHeEpod1ZVRmoxQ3dJcWtXOHZucU9HVU9KMFM2LXY3WUtqYkMzWWF5akZCMWg2OFdzWk9mNnU3X0tXWlc0eWRTU3B2bjhDOVhqenFUaVk1dmJwSmU3SnNUbmFlLUdtVkVLdk1zdjBBdFR4ejBkdw?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
-          "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
-          "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
         }
       }
     }
