@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-22 13:39 UTC",
+  "updated_at": "2026-11-23 16:40 UTC",
   "history": [
+    {
+      "date": "2026-11-23",
+      "regions": {
+        "India": {
+          "headline": "Digital Arrest Scams: Why Do People Still Fall For Them? - Sify News",
+          "summary": "Digital Arrest Scams: Why Do People Still Fall For Them?\u00a0\u00a0Sify News",
+          "source": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOWVRrRHRZMlMyVjhTOTJpRzhQQ2t4NHlJVzJMRTBLdjlNeUo4Z2lvbjZnclZWc2F3WXI2RzVzUXEtMmJxcGhqYlBlWlE3c0ZHY01mUFN1emx4U3RpMGdsZVpsUzZfNFNEY1h4amVaU0o1N29hd0NzQ0w4Qi1rOHVScDNYOFpSd2hRVDF4TEVB?oc=5"
+        },
+        "North America": {
+          "headline": "Active Cyber Fraud Campaign Target: North America",
+          "summary": "Phishing threats targeting consumers and online credentials reported across North America.",
+          "source": "https://thehackernews.com"
+        },
+        "South America": {
+          "headline": "The Accountability Gap \u2013 Tackling Cyber Fraud Across Legal Frameworks - Stimson Center",
+          "summary": "The Accountability Gap \u2013 Tackling Cyber Fraud Across Legal Frameworks\u00a0\u00a0Stimson Center",
+          "source": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaEg2SWdIbkpUNERRd0NiQ3VYckdtTVk3REs5ZV9UVEFEZmlseGszODRQYkphQ2ZSSEpXaUp3eHE3SFNhek1xR3RxV1VicU8tTzVOSFh5SWM5OW42UjVwVGdvMGdjSUJ0dGVVZFRvTjdVV2VROGtHMEQ1dWJYYl84NEIwczlzYTZXNWpfZEd0bDRvRmppaDNUYjBtNFgxQQ?oc=5"
+        },
+        "Europe": {
+          "headline": "Next issues cyber-attack warning after \u2018benign\u2019 data accessed by hackers - The Guardian",
+          "summary": "Next issues cyber-attack warning after \u2018benign\u2019 data accessed by hackers\u00a0\u00a0The Guardian",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNS1FENjhQdTZmanJFdXRtUlFfNktPQkhmdUg5QUtJWDhVcGdLMmFVakJXb3VQTkFlQi0wbTc1ZnR3S09Ram5aa191U3doaW1nd3pWVUNCRG44bnpwdWFkWkJEXzgyWnBidWc2UU14WUl1ZkwtdVNNTFFvSjdzRlN1VXROd0dLTm92SF93RGJJWlpfOWxfQ1dLODFzNmdUUVM2bGhBTGl4SmJMQzVLWGhnTkR0dVRXTFNDRDlV?oc=5"
+        },
+        "Singapore": {
+          "headline": "Police Advisory On Exploitation Of Apple Imessage By Scammers; More Than 30,000 Scam Accounts Disrupted - Singapore Police Force",
+          "summary": "Police Advisory On Exploitation Of Apple Imessage By Scammers; More Than 30,000 Scam Accounts Disrupted\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUU8yUldtd3dyeU5FQWc5TnZtbEdfVkpCaUNqeS05R2FzUlhaMFA5SDVjTENhZHdUVXdDSS1ZZ001Y3RiZnAyXzVhMWRaN3lwMG1zcWRLRzQ5TUlZWFE1cWxxdnlLLThPcjBxXzNHVm9MNWEtU3k5ZllrX2wzYVJfNHlZN01DLVhNaVAtS2NwYmFoVWxYOHRZbTRvYk1lcUt1Z0s2dG5OTVkxenJyWnVtX1JCWUR2ajJ0aEhZ?oc=5"
+        },
+        "China": {
+          "headline": "District of Columbia | Scam Center Strike Force - Department of Justice (.gov)",
+          "summary": "District of Columbia | Scam Center Strike Force\u00a0\u00a0Department of Justice (.gov)",
+          "source": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aN3hxdzVsUE1jTzJ2V0tNZThiT3Y1UmhQa0lpR1RrLW5fRmdnQ1RKbzNnYmVtLXcybktYcndVYXZmd1BiNkd2YU5sMGFRLU5YQ2JvcF9EQmV4VTZqN0JNLTFNd1dwSGs?oc=5"
+        },
+        "Japan": {
+          "headline": "More data breaches hit Japan, including leak of 77 million email addresses - The Japan Times",
+          "summary": "More data breaches hit Japan, including leak of 77 million email addresses\u00a0\u00a0The Japan Times",
+          "source": "https://news.google.com/rss/articles/CBMingFBVV95cUxOWExMUkdubHNVWjBqeU96dzZZMHBpQWxXSnFsQWZ4UzAxclpkMmJnMmxYV0NxMEFPcUJUbllydFAtNEVUczZuVXRkMTcyVmQtZml1U1RfWTE5eXdGRHZqYlRfMllfNU5hTWpYTzc4Z2tQWUdFX3g1NzNnd0dHdk1zZTZMTWNtMWlzWDdkRlh0aE9hNmNESzVKUXZrYXlyQQ?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "GTA VI, Black Friday and AI: Fraud Awareness Week Insights - Cyber Magazine",
+          "summary": "GTA VI, Black Friday and AI: Fraud Awareness Week Insights\u00a0\u00a0Cyber Magazine",
+          "source": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNbzhlZ2djeWx2cmtNODBkejRHbWtpLVoyVHZEQ3gycEpIZUV3Y081bF9adVF1ejJxenMwcEVjMjBYWjZWaXl4NXdUNHo0cERlazY1MTEzTktROW9JN3Z2OU1rTVlPUzZqT25ibURocnZ0NzI3ME5FYm96THlwUjJmejZkNDdYeHp0Z3hENG9KcUQ?oc=5"
+        }
+      },
+      "featured_category": "Identity Theft Using Leaked PAN & Aadhaar"
+    },
     {
       "date": "2026-11-22",
       "regions": {
@@ -1294,51 +1340,6 @@
           "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
           "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
           "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
-        },
-        "Europe": {
-          "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
-          "summary": "Booking.com under investigation by EU regulators over fake listings and scams | European Union\u00a0\u00a0The Guardian",
-          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVF5LVJ5UEZDWkVCT21KTzdrV2ZDNmt0MWdxalNuTTJkV2JjeUROTDgtQ01mWEwzeHBEbXNBTnlYYmVWV01tMmRPODducGFZV0RDeXBlLWlGNXRlTkh2YW5lWkRtTHRRbmh4aERFYld6Zl9xUjJLQTFFNmFaQVNGcWttRmNQYkxCY1BDUk1wekFJQkZOMWVQRnd4aTl4bXZnZVpXak5DVnFqV1BMNzNv?oc=5"
-        },
-        "India": {
-          "headline": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide) - DeXpose",
-          "summary": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide)\u00a0\u00a0DeXpose",
-          "source": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1tbldUNldVWWRGajZUdGVyc3VteVItNF8xQ0VTRzlMOHl1VTYwVkNUakhFZS1sY2VhdTJjeUtvYzBDZC03OU5nNUtTSnJJd1dBekpPWkNEbw?oc=5"
-        },
-        "Singapore": {
-          "headline": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results - Singapore Police Force",
-          "summary": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results\u00a0\u00a0Singapore Police Force",
-          "source": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlpaTlR1eG1PUzNRaEpSajdSMDFoYks4ZzVBU2QyaHFueDZNMVY4UzlueVpqbGdGc1V6bHRrSzZvUVJJdm5JTkpuLXUtYWZtOFBCTVlXa2VoN0w3Z0R4OHVVd3pWNEU5YnhqS1VOam84Rno3ZjVwQ1NFTWVuMzJVZWpmVl96TzdzYVZaY1A5MHRHWXVGcEhNUjB6dlZSTkJUN010MFFjNlY3LThhRlEwMS1LMjVXNHpBUWpJUzJmWGRSV3NNY2Z0b0RQdmpLOVMtZ21ra0p3?oc=5"
-        },
-        "China": {
-          "headline": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams - South China Morning Post",
-          "summary": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams\u00a0\u00a0South China Morning Post",
-          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRlZDaWRHa0RaWU5OUnF4YThpclN0UnM1eW9kdjBiNXFSbmZnWk16Y1BzekZkSlpja2RVZG9GZWp3VDZWcGh4VXlGOFhiTW9TTDc0NEhMSHBNQTlHX25vVWlIU0VMMktxVzdBNXc5LTJqQ0hVc2V0NE9NU185aUJSQnRGb1VSV1lxdzJ6ZllDOEZjckFGNXY1RWQ4YVRSOHBBc1FoQTdxdEZQdG1HN3hQenNQY08wV1pBd2Uw0gG7AUFVX3lxTE9IeWNmV2wyTEM3SGtzOGRsYl9xdldjb2JnUzlCangyQmt5XzVZb291clhhdEUycTVrdTVyaldsOUZaSlFwa0RteVB6RmdLZDBuT3Z1QnhPWUVWMzhKSVhqcmJDMk42OFlxY3ZDZzltOEJPT2pnS2NZWlNNTWZOSmtFNzhKbllCQVdyeXMwU3lCTEc3Z1lvQ0ZPVVZCNWIwcHNXdk1mQjE0MEJpdHpSSGJmV1VwR0FBWE9hbHM?oc=5"
-        },
-        "Japan": {
-          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
-          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
-          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "Cyberattacks target US infrastructure, and other cybersecurity news - World Economic Forum",
-          "summary": "Cyberattacks target US infrastructure, and other cybersecurity news\u00a0\u00a0World Economic Forum",
-          "source": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNkVyOW9FLWtxSkExTDdxQ0FOVUpKNXAxZjBWalYwQjhPNEtndTZNMTNyM2xMUzlvN0hRb041cll1UlZIQTNWSWladXJZeDZ1V0ZqRURFTGlBUnZON2RWS0pEY2VWTW03ZkYxbDFnUWVpWEF2VUxGVHpMWHNjTXhxcng5T3FVVmMtNFMzZlo2QjZsams1NEZRUEI2Qzh0THltaTR1Qg?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-24",
-      "regions": {
-        "North America": {
-          "headline": "I work in cybersecurity, but my mom lost 3,000 to online scams. Now, I do 3 things to keep her safe. - Yahoo",
-          "summary": "I work in cybersecurity, but my mom lost 3,000 to online scams. Now, I do 3 things to keep her safe.\u00a0\u00a0Yahoo",
-          "source": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUThrWnM5ZmxVUTl6cGYwcnpFS1NoekJMNjA1V0pxQmoxY1ZHa3hkWDMxMGFhY2MzYWpFeGl0VWs1cmtyWHV2dERidXZ2UW5aWWI3WGhfQjdwZXJsV2k3Snk3T1c4Q3BJN29ISnBzbXAxem01RjRFODdYTGJOeEd5bXlYRjVUdk5kZkhIUA?oc=5"
-        },
-        "South America": {
-          "headline": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats - Industrial Cyber",
-          "summary": "Latin America sees sharp rise in ransomware, hacktivist attacks in 2025 amid expanding fraud and phishing threats\u00a0\u00a0Industrial Cyber",
-          "source": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNSm1Mb2kzYTJvd2F6Zld5U01VNHdqdlpQb2pRcllBZzAyVldEN292UkwzaHV6VmlpOGowaHF4RHlvbEtocDAyNDJEQ0xaUFJET2JHWFl3UENBajJsbFNvSXNRR18yR0ZId2RkWjE3Qjc4bDVJYVNDVkJnVjRqOGh2SGpjQlNhLUhOR1JKTzNLUVdDWVhYU0dmd0pfWU1USnJ4dWpOSzdXY2Q2NFVNcHJlWHkxOGRZX2pLYzd1QTZ5U2RSanFuNFBQQjFwM3ZPNEZwUVJvUVFobWlSZDI1OGRGaFl3?oc=5"
         },
         "Europe": {
           "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
