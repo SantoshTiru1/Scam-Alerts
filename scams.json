@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-24 16:32 UTC",
+  "updated_at": "2026-11-25 16:13 UTC",
   "history": [
+    {
+      "date": "2026-11-25",
+      "regions": {
+        "India": {
+          "headline": "'Pushti' portal of NIA counters digital arrest scams, fake terror notices - BW Police World",
+          "summary": "'Pushti' portal of NIA counters digital arrest scams, fake terror notices\u00a0\u00a0BW Police World",
+          "source": "https://news.google.com/rss/articles/CBMitgFBVV95cUxORGxiNW5FNElmQWNIbFNGM3RvODhMeXdiSmNoanowVkVUbndFdFJBTTZRTkR1aHlzUmxtMVJxeGRnam8tdVVkTHJEV0x1STBBcDVLX1IzYXE3YXBzOGl2ODBTUXd5UkFhYUZKZFZ6VThvZm11Rm9TclRIdGJpbUp0b0NKTU5zNW10dUJYOENyTnJxemJjODVRYWtoY2NoWEZUUWhVZ0FpWTROYXZWRmZ5LW9RZ3VZZw?oc=5"
+        },
+        "North America": {
+          "headline": "U.S. Treasury's FinCEN Takes Some Systems Offline After Unauthorized Access - The Hacker News",
+          "summary": "U.S. Treasury's FinCEN Takes Some Systems Offline After Unauthorized Access\u00a0\u00a0The Hacker News",
+          "source": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQZVVZSGhZemo1YmgwN0Y1MnYxWTgyYzFpcG9wVEFXYmQ3UlFlQ1p4VlpCNnFQbVBBNVA4dnRqb0VMQ0hmUTJaSURFaVlmWmZQQlRFbWIyYmFOeEhXTmdZU3ZSS05wbUVyLVJxWk9MSXc5S0ZnSTZzUUxyS3Q1SVV6R1A1bw?oc=5"
+        },
+        "South America": {
+          "headline": "Cybersecurity in Latin America 2026 - RSM Global",
+          "summary": "Cybersecurity in Latin America 2026\u00a0\u00a0RSM Global",
+          "source": "https://news.google.com/rss/articles/CBMie0FVX3lxTE96MGxpdURNZkYtQXRmMXoyY0NDSjdBMTdUbE1RaEF6dHl1NzFyTUhvMzdwRF91SUtraFRIMnB0bEhfWTBQOWVVT3NSRGxjSWVTZi15b1JHYmRON1QxeEZLNVI3U1d5YkMycVNhcVVEQ2JpOVFVT09sWXNPQQ?oc=5"
+        },
+        "Europe": {
+          "headline": "UK's Next flags cyber breach at online supplier, says no customer data compromised - Reuters",
+          "summary": "UK's Next flags cyber breach at online supplier, says no customer data compromised\u00a0\u00a0Reuters",
+          "source": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNaTNseWZyOVhUckRBOGpXWnlrejNKY1MwSG85UmpiLUJ5ODZnZUt3SHFJTkNXS3BIai1SM1dfNExaMnliQTVDRlNQX09LQVcxTGk1c2JqYjNGZUxYRDJpUGJIUWt3Nkg3X3NYdC0zY2t3ODI5Zzd3bHJkaW9SOHIyeGo2OVpCN2h6LTQ1eF9DUDR1Z0hWSXJ6RkExV2M4eVp3MTdqSUtWb1JPdXV6eU55ak9feHdDaldDdGZxMDFsZU41STUwWTJuWW9B?oc=5"
+        },
+        "Singapore": {
+          "headline": "Police Advisory On Exploitation Of Apple Imessage By Scammers; More Than 30,000 Scam Accounts Disrupted - Singapore Police Force",
+          "summary": "Police Advisory On Exploitation Of Apple Imessage By Scammers; More Than 30,000 Scam Accounts Disrupted\u00a0\u00a0Singapore Police Force",
+          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUU8yUldtd3dyeU5FQWc5TnZtbEdfVkpCaUNqeS05R2FzUlhaMFA5SDVjTENhZHdUVXdDSS1ZZ001Y3RiZnAyXzVhMWRaN3lwMG1zcWRLRzQ5TUlZWFE1cWxxdnlLLThPcjBxXzNHVm9MNWEtU3k5ZllrX2wzYVJfNHlZN01DLVhNaVAtS2NwYmFoVWxYOHRZbTRvYk1lcUt1Z0s2dG5OTVkxenJyWnVtX1JCWUR2ajJ0aEhZ?oc=5"
+        },
+        "China": {
+          "headline": "District of Columbia | Scam Center Strike Force - Department of Justice (.gov)",
+          "summary": "District of Columbia | Scam Center Strike Force\u00a0\u00a0Department of Justice (.gov)",
+          "source": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aN3hxdzVsUE1jTzJ2V0tNZThiT3Y1UmhQa0lpR1RrLW5fRmdnQ1RKbzNnYmVtLXcybktYcndVYXZmd1BiNkd2YU5sMGFRLU5YQ2JvcF9EQmV4VTZqN0JNLTFNd1dwSGs?oc=5"
+        },
+        "Japan": {
+          "headline": "City of Osaka warns of data breach impacting 1 million as Japan reels from dozens of cyber incidents - The Record from Recorded Future News",
+          "summary": "City of Osaka warns of data breach impacting 1 million as Japan reels from dozens of cyber incidents\u00a0\u00a0The Record from Recorded Future News",
+          "source": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1BOEdSb1lMbENldjJPVXlpbWZINFBuMFVfUDRMZlN1d0dYSUwzMjZiVzh0OGdUZktXSk5oYVVmajR2RGl0akVtQ2lHR05vcTczYXp0UjN3eW1wYnctWUp0SXpRSnpDZ3NsYmwyRjBR?oc=5"
+        },
+        "Rest of the World": {
+          "headline": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History - TRM Labs",
+          "summary": "North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History\u00a0\u00a0TRM Labs",
+          "source": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNbzVFd2Y4VVJPaEdVQUNDa3RZTTBvM1ZlNGNldDBkXzNzZUpLdWkwdW5GNktYenRUZUZ6OGdoUHRic29CSXY2VS1EVXUySy1EUWppVU5tcVFJVFh6R3Nfd05ndk1OVUIzX3hPbkdncUUwRTA4MWJkS3BJb3ZIY01MVWRQdHZYcjBGWWROclVZSDVIMEgyR1dTZ2VkbXR6NG8xQlhQTmRRTzdhQUJ3RGM5LXRDbnhWREFsUGc?oc=5"
+        }
+      },
+      "featured_category": "Part-Time Job & Telegram Rating Tasks"
+    },
     {
       "date": "2026-11-24",
       "regions": {
@@ -1326,51 +1372,6 @@
           "headline": "PwC confirms learning records breached in attack on vendor site - Cybersecurity Dive",
           "summary": "PwC confirms learning records breached in attack on vendor site\u00a0\u00a0Cybersecurity Dive",
           "source": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSkV3M3U0MloyUlVuUUZGSEpKRDBXa3lDOUh5eFdrcC1IeGVYck1GbEkyRjcydU1CZHBzMmMwTDE0YWV1eUw4NHlvOS1JUnFmcVNPZHBfYlY2V0FiY1NkemtXa2hoTnA3bnJhUlo5NTFwcDcxYWt4QU5xYzllWV9yY2MxTV9OYWFuYzVRS2JueTNwblZr?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-26",
-      "regions": {
-        "North America": {
-          "headline": "An AI Conceived a Cyberattack Involving Christine Benz. A Cybersecurity Expert Explains - Morningstar",
-          "summary": "An AI Conceived a Cyberattack Involving Christine Benz. A Cybersecurity Expert Explains\u00a0\u00a0Morningstar",
-          "source": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQX0xtTkx5TzkySTJOOFVoNXUzLUdTNkdHdUhMNlQ5ek9CQUd4VFVIQjVrMDNkdy1rNkJWdE5ONlhJdFJrdzNfRTJ6V2FVcEtfVW9MWEFlaEQwQWZfQ19XeXd5Mlh4Wko0dWhZbnJrdGFKaERrVnVPRVZfa0RZNm1mWUFIX216VzdTd28ya1dqQ0hwYUZvWkFFMGtaX1oyTVYxY216Z19wSi16UmZuZjZaWUJheS1FWWYzcjBzRmJROWF0XzdONkE?oc=5"
-        },
-        "South America": {
-          "headline": "Visa detects scams and fights consumer fraud in Latin America - www.visa.com",
-          "summary": "Visa detects scams and fights consumer fraud in Latin America\u00a0\u00a0www.visa.com",
-          "source": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON0RyZ05iWDNWNktBNmppNWs5anZkYWRka0F0clJYWU5YNmhGR3F5bmlqR19sWFN1VVpEdUhhRF9EVUVvYmhyZF9JQzFUQ2hLTmQ1SmtaLUxnQXJraHUyOTJkLUFBUXNhblBaVzVITHNyVjJXbjJIdFZ5Q1FlRHp4TVJEeW5mLWpUMDZ2dWtmYmVLVlNsbUsxUlg5aWVZNVU?oc=5"
-        },
-        "Europe": {
-          "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
-          "summary": "Booking.com under investigation by EU regulators over fake listings and scams | European Union\u00a0\u00a0The Guardian",
-          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVF5LVJ5UEZDWkVCT21KTzdrV2ZDNmt0MWdxalNuTTJkV2JjeUROTDgtQ01mWEwzeHBEbXNBTnlYYmVWV01tMmRPODducGFZV0RDeXBlLWlGNXRlTkh2YW5lWkRtTHRRbmh4aERFYld6Zl9xUjJLQTFFNmFaQVNGcWttRmNQYkxCY1BDUk1wekFJQkZOMWVQRnd4aTl4bXZnZVpXak5DVnFqV1BMNzNv?oc=5"
-        },
-        "India": {
-          "headline": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide) - DeXpose",
-          "summary": "Cyber Crime in India: Statistics, Cases & How to Report (2026 Guide)\u00a0\u00a0DeXpose",
-          "source": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1tbldUNldVWWRGajZUdGVyc3VteVItNF8xQ0VTRzlMOHl1VTYwVkNUakhFZS1sY2VhdTJjeUtvYzBDZC03OU5nNUtTSnJJd1dBekpPWkNEbw?oc=5"
-        },
-        "Singapore": {
-          "headline": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results - Singapore Police Force",
-          "summary": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results\u00a0\u00a0Singapore Police Force",
-          "source": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlpaTlR1eG1PUzNRaEpSajdSMDFoYks4ZzVBU2QyaHFueDZNMVY4UzlueVpqbGdGc1V6bHRrSzZvUVJJdm5JTkpuLXUtYWZtOFBCTVlXa2VoN0w3Z0R4OHVVd3pWNEU5YnhqS1VOam84Rno3ZjVwQ1NFTWVuMzJVZWpmVl96TzdzYVZaY1A5MHRHWXVGcEhNUjB6dlZSTkJUN010MFFjNlY3LThhRlEwMS1LMjVXNHpBUWpJUzJmWGRSV3NNY2Z0b0RQdmpLOVMtZ21ra0p3?oc=5"
-        },
-        "China": {
-          "headline": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams - South China Morning Post",
-          "summary": "US sanctions Chinese-language Xinbi Guarantee marketplace over cyber scams\u00a0\u00a0South China Morning Post",
-          "source": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRlZDaWRHa0RaWU5OUnF4YThpclN0UnM1eW9kdjBiNXFSbmZnWk16Y1BzekZkSlpja2RVZG9GZWp3VDZWcGh4VXlGOFhiTW9TTDc0NEhMSHBNQTlHX25vVWlIU0VMMktxVzdBNXc5LTJqQ0hVc2V0NE9NU185aUJSQnRGb1VSV1lxdzJ6ZllDOEZjckFGNXY1RWQ4YVRSOHBBc1FoQTdxdEZQdG1HN3hQenNQY08wV1pBd2Uw0gG7AUFVX3lxTE9IeWNmV2wyTEM3SGtzOGRsYl9xdldjb2JnUzlCangyQmt5XzVZb291clhhdEUycTVrdTVyaldsOUZaSlFwa0RteVB6RmdLZDBuT3Z1QnhPWUVWMzhKSVhqcmJDMk42OFlxY3ZDZzltOEJPT2pnS2NZWlNNTWZOSmtFNzhKbllCQVdyeXMwU3lCTEc3Z1lvQ0ZPVVZCNWIwcHNXdk1mQjE0MEJpdHpSSGJmV1VwR0FBWE9hbHM?oc=5"
-        },
-        "Japan": {
-          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
-          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
-          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "Meta, Google, Microsoft and OpenAI Join Global Crackdown on West African Scam Networks - CyberSecurityNews",
-          "summary": "Meta, Google, Microsoft and OpenAI Join Global Crackdown on West African Scam Networks\u00a0\u00a0CyberSecurityNews",
-          "source": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBPR081cXZCYVJIdnN3cTZ5OU5mMFg0Y2txRWR0enBSUUREZVFwWUgwc0dOUWJYUUdiYzJYVmJWQTJCZ0hxUmVnc25aZkxEM0o3Y0VfeW1BcTV2c2ZUVmFvYU1kY3lpWHAy0gFuQVVfeXFMUDBTRWRwUG1HY1pwM1FNQ3h4ZGNlWnpOaHdCOHMtZkdSUjU0emNUUVZyTkJmSEFDRDh1NG1oYmNiMU5rbDVyZHc3dlBYTWozS1V0UGh4aTVTcWlCOWJSY0VTVTI0b2N4TERpMjJ6dHc?oc=5"
         }
       }
     }
