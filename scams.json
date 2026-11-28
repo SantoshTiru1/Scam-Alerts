@@ -1,6 +1,52 @@
 {
-  "updated_at": "2026-11-27 15:40 UTC",
+  "updated_at": "2026-11-28 14:36 UTC",
   "history": [
+    {
+      "date": "2026-11-28",
+      "regions": {
+        "India": {
+          "headline": "National Cyber Crime Reporting Advisory",
+          "summary": "Active financial fraud campaigns using malicious APK links and digital arrest threats reported.",
+          "source": "https://cybercrime.gov.in"
+        },
+        "North America": {
+          "headline": "Active Cyber Fraud Campaign Target: North America",
+          "summary": "Phishing threats targeting consumers and online credentials reported across North America.",
+          "source": "https://thehackernews.com"
+        },
+        "South America": {
+          "headline": "Active Cyber Fraud Campaign Target: South America",
+          "summary": "Phishing threats targeting consumers and online credentials reported across South America.",
+          "source": "https://thehackernews.com"
+        },
+        "Europe": {
+          "headline": "Active Cyber Fraud Campaign Target: Europe",
+          "summary": "Phishing threats targeting consumers and online credentials reported across Europe.",
+          "source": "https://thehackernews.com"
+        },
+        "Singapore": {
+          "headline": "Active Cyber Fraud Campaign Target: Singapore",
+          "summary": "Phishing threats targeting consumers and online credentials reported across Singapore.",
+          "source": "https://thehackernews.com"
+        },
+        "China": {
+          "headline": "Active Cyber Fraud Campaign Target: China",
+          "summary": "Phishing threats targeting consumers and online credentials reported across China.",
+          "source": "https://thehackernews.com"
+        },
+        "Japan": {
+          "headline": "Active Cyber Fraud Campaign Target: Japan",
+          "summary": "Phishing threats targeting consumers and online credentials reported across Japan.",
+          "source": "https://thehackernews.com"
+        },
+        "Rest of the World": {
+          "headline": "Active Cyber Fraud Campaign Target: Rest of the World",
+          "summary": "Phishing threats targeting consumers and online credentials reported across Rest of the World.",
+          "source": "https://thehackernews.com"
+        }
+      },
+      "featured_category": "Deepfake Executive & CEO Fraud"
+    },
     {
       "date": "2026-11-27",
       "regions": {
@@ -1329,51 +1375,6 @@
           "headline": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds - CBS News",
           "summary": "9 in 10 Americans have encountered a cyber scam as AI fuels fraud, Consumer Reports finds\u00a0\u00a0CBS News",
           "source": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wVVJCbVZuRlJuOGtZUEI4S0wxaXcwcUVVTVFkcE9UX3pMOVBkWlpET2c4dHc1cm02RjFWN0d5U2VqUlhLMld6WEE2d3VucG1xMmFRN05VWXhsSlhsZzRMYVZKVG1UbXlpbzM1R2VOVjVNeTdRQlE?oc=5"
-        }
-      }
-    },
-    {
-      "date": "2026-10-29",
-      "regions": {
-        "North America": {
-          "headline": "'Convincing' scam email used real booking number, check-in dates - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-          "summary": "'Convincing' scam email used real booking number, check-in dates\u00a0\u00a0ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTE9lM3RqcHdYN1hHOGtVcDhIelNabmhFTzhiVlYtbjRPTERTbnl4VHJlNk0tMUFTYm9lVzFaTmZ1T3lEUTZxOVp4dU5BSHd4TG5aai1DMjd5anpOZmhXQTJCMmk2UHlKNVRwWDJrdl9BVnBNSGR2UG9sX2N1M0xZYWc1U2NvbVFaUm5DS3ZPSjlhSmhMYUgyUVJqemxvS3p2TnpfTlZiQXJRV2hPOGpB?oc=5"
-        },
-        "South America": {
-          "headline": "3. The trends reshaping cybersecurity - World Economic Forum",
-          "summary": "3. The trends reshaping cybersecurity\u00a0\u00a0World Economic Forum",
-          "source": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOQVBWNEdpUmJVSHBLbU9iZzZkRFIzZXV0SE9mS1ZXdlJVMGtBcDhvTFZaQnV0VWxUR1NOZTVjc2ZCcEYybkJ6VzFEOGlPei1saW93cF9WdHNWeGpubVBvZ3V5U3pWZlN6NjQ3V1QxZzN5ajJ3OVR1VU9Vc1pnUHQzSHkycUpSS3pTSlU5dGFZS2dGem8zblZ1SVBMLUViU1hhSndHWGFrZUVSRXc?oc=5"
-        },
-        "Europe": {
-          "headline": "Booking.com under investigation by EU regulators over fake listings and scams | European Union - The Guardian",
-          "summary": "Booking.com under investigation by EU regulators over fake listings and scams | European Union\u00a0\u00a0The Guardian",
-          "source": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVF5LVJ5UEZDWkVCT21KTzdrV2ZDNmt0MWdxalNuTTJkV2JjeUROTDgtQ01mWEwzeHBEbXNBTnlYYmVWV01tMmRPODducGFZV0RDeXBlLWlGNXRlTkh2YW5lWkRtTHRRbmh4aERFYld6Zl9xUjJLQTFFNmFaQVNGcWttRmNQYkxCY1BDUk1wekFJQkZOMWVQRnd4aTl4bXZnZVpXak5DVnFqV1BMNzNv?oc=5"
-        },
-        "India": {
-          "headline": "E-Challan Scam: How One Download Turns Dangerous - The420.in",
-          "summary": "E-Challan Scam: How One Download Turns Dangerous\u00a0\u00a0The420.in",
-          "source": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9VMVFXU3NpN05HT1FLUTZ6RjBXQTRCTzU3cWFyLXhYWWxpSVh0UHdFYzN1dExaZ1pXbUhrY0hEUkw3N3hHd29PNVZUQS1qbWxCR1o5X2hCSUJpZGVSRTdJTkVWTHVoOVk?oc=5"
-        },
-        "Singapore": {
-          "headline": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results - Singapore Police Force",
-          "summary": "Police Advisory On Phishing Websites Impersonating SIMBA In Search Engine Results\u00a0\u00a0Singapore Police Force",
-          "source": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlpaTlR1eG1PUzNRaEpSajdSMDFoYks4ZzVBU2QyaHFueDZNMVY4UzlueVpqbGdGc1V6bHRrSzZvUVJJdm5JTkpuLXUtYWZtOFBCTVlXa2VoN0w3Z0R4OHVVd3pWNEU5YnhqS1VOam84Rno3ZjVwQ1NFTWVuMzJVZWpmVl96TzdzYVZaY1A5MHRHWXVGcEhNUjB6dlZSTkJUN010MFFjNlY3LThhRlEwMS1LMjVXNHpBUWpJUzJmWGRSV3NNY2Z0b0RQdmpLOVMtZ21ra0p3?oc=5"
-        },
-        "China": {
-          "headline": "Scam Center Strike Force Expands Reach to Target Global Crime Syndicates; Charges Scammers Based in Africa and Tied to China - Alaska Native News",
-          "summary": "Scam Center Strike Force Expands Reach to Target Global Crime Syndicates; Charges Scammers Based in Africa and Tied to China\u00a0\u00a0Alaska Native News",
-          "source": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOYmdVb0JZNmZQN3I1UjBleDk1R2lhQ1JQRVFaSkhBYTlkRm4wQ3pueWpZWGJDTFNTNWxMTG5jYnNJVzV2UHh6UEIwU3JSN0E2YU12eDlrS0c5SkN3a3FqN1ZpazlaQjZuV3g5MzBnaUMzVTlEMGxpaFJ1YkJXRlNqRW1idGJ4MV90UWRZVjdRV3R2a1FualVDQ2RJZVNtZnk4elZTQ1BCUThHdlZlQ3lTdm9Qb3lJLWFHZ2ZlVWRvdkJPNWtZbXlfN3BFWWs5MFFtY0lYNHJDMXB1cTlhdFRIRXRBNElsYzhvanczYmxCekk5UGM?oc=5"
-        },
-        "Japan": {
-          "headline": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims - Tom's Hardware",
-          "summary": "480,000 phishing emails sent from a PC hidden behind a fridge in a Japanese hotel room \u2014 Chinese couple arrested over fraud operation, scammers remotely leech Wi-Fi to target 2.4 million victims\u00a0\u00a0Tom's Hardware",
-          "source": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZ0J4czdJTWN0YzFCRzQta2JaMURWai10RDFyVkV3QW16QmpGam9yMnR0TnU2blFFWXV5MDRnRVNDaGlHWDI5WU5sMHFoYXM5SDZkbTlnZ1VVWnRQQ3FEN2FCc0FhOWpXSUh3ZTJpUnY2TFJqclVUVHM2ZWJOcmJ2OXJRSHdkY1JYMHltTkozMndBOFdhOG8wRnRvWmt5X2FBU1V6ZUlVUE9MOURjX0tFamVHMUhmT3ZHNE5mcmpqS0dvUVNzVXp0RTM0WjA4LUZqVlh4SERpVmZ5NHhneXhtUkppdUdMUV9hU0tILXJFV2lJenYyTHI5WmlvRFlnYkd4M1NfR19PTTFhalR6STNVenZGb2poc2lwNnhlQzEtdWtDZk90SVdHQVFlOUZXNDFjMmlNUw?oc=5"
-        },
-        "Rest of the World": {
-          "headline": "North Korea targeting cash-strapped Americans in expanding job scam: FBI - KTLA",
-          "summary": "North Korea targeting cash-strapped Americans in expanding job scam: FBI\u00a0\u00a0KTLA",
-          "source": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdzJxc19xVXR1RHVnNlJXQ1M1STB0c0RvQ1ZyNEsxV3Utb0VlSkxwYkllZS0zV0Fvd1ZHZUFFWFRTR3pRTllEOS00Skd6NlhiT1lLRHFEdFctUUNodmxFNTJNSDBkNWkydUNteGZYcVlrWGZQdlRhdHdTbnVjX0doWHhpNHZEQzNhWTlIS05QeW9ucDNnM0Vnb1ZoNzBoTC1yRldtQXYwTy0yUdIBrwFBVV95cUxOV3luODBjWkprMzhhenhFMVA2ZHJLMWw0MFRjWHJEMFU2OGFDQ1lINXQ2RjhKY0x0d1VpTlJPYW5sU2Z6eXh2d25WUGtfS2VUdUw5ajFPSGluQXkza3hNNG9iZGtsZWVVOHVEOEVNQXJGTXNUc0FObnpLVVYySUo5VFdlWk9oR19YYW9wQk8yTWxaRnpFRlFmZ2NxUjNMUll2SW40WkhpTl9XSmNKandv?oc=5"
         }
       }
     }
